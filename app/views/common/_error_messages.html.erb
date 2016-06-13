@@ -1,0 +1,12 @@
+<% if var.errors.any? %>
+<div id="error_explanation">
+	<div class="alert alert-danger">
+		抱歉，有<%= var.errors.count %>個小問題.
+	</div>
+	<ul>
+		<% var.errors.each do |key, msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>

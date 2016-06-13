@@ -1,0 +1,19 @@
+<div class="products-page">
+	<% @products.each do |product| %>
+		<div class="product-itme">
+			<%= link_to product_path(product) do %>
+				<% if product.photo.image.present? %>
+	    	  <%= image_tag(product.photo.image.thumb.url) %>
+	    	<% else %>
+	    	  <%= image_tag("http://img.ltn.com.tw/Upload/talk/page/800/2015/04/20/phpMZnOPn.jpeg",
+			     size: "280x210") %>
+	    	<% end %>
+	    <% end %>	</br>
+	    <div class="product-item-info">
+	    	<%= link_to product.title, product_path(product), class: "product-item-title" %>
+	    	<div class="product-item-description"><%= product.description.truncate(90) %></div>
+	    	<div class="product-item-price"><%= "售價 ： NT$ #{product.price}" %></div>
+	  	</div>
+	  </div>
+	<% end %>
+</div>	

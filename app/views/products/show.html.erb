@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		<%= image_tag(@product.photo.image.medium.url) %>
+	</div>
+	<div class="col-md-6 col-xs-12">
+		<h2><%= @product.title %></h2>
+		<div><%= @product.description %></div>
+		<div class="product-price">
+			<span id="product-price-nt"> NT$</span>
+			<span id="product-price-number"><%= @product.price %></span>
+		</div>
+		<%= link_to "#", id: "product-add-cart" do %>
+			<i class="fa fa-plus" aria-hidden="true"></i>
+			<span> 加入購物車</span>
+		<% end %>
+	</div>
+</div>

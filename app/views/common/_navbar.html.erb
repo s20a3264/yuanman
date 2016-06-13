@@ -1,0 +1,11 @@
+<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navar-header">
+			<%= link_to "Home", root_path %>
+			
+			<%= link_to "管理", manager_index_path %>
+			<%= link_to("登出", destroy_manager_session_path, method: :delete, class: "navbar-right") %>
+
+		</div>
+	</div>	
+</nav>	

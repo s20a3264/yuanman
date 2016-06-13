@@ -1,0 +1,26 @@
+<h2>商品列表</h2>
+
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>商品名稱</th>
+			<th>商品圖片</th>
+			<th>商品價格</th>
+			<th>操作選項</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @products.each do |product| %>
+			<tr>
+				<td><%= product.id %></td>
+				<td><%= product.title %></td>
+				<td width="280"><%= image_tag(product.photo.image.thumb.url) %></td>
+				<td><%= product.price %></td>
+				<td width="100"><%= link_to "編輯", edit_manager_product_path(product) %></td>
+			</tr>
+		<% end %>	
+	</tbody>
+</table>
+</div>

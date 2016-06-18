@@ -5,7 +5,11 @@
 	<div class="form-group">
 		<%= f.fields_for :photo do |photo_form| %>
 			<%= photo_form.label :image, "商品圖片"%>
-			<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png'  %>
+			<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile(event)"  %>
+			<img id="output" />
+			<script>
+
+			</script>
 			<%= photo_form.hidden_field :image_cache %>
 		<% end %>	
 	</div>

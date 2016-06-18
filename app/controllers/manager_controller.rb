@@ -5,5 +5,11 @@ class ManagerController < ApplicationController
 
 	layout 'manager'
 
+	def admin_required
+		if	!current_manager.admin?
+			redirect_to root_path
+		end	
+	end
+
 
 end

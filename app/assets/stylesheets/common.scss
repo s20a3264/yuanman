@@ -1,3 +1,5 @@
+html, body{ margin:0; height:100%; }
+
 body {
 	padding-top: 70px;
   a {
@@ -6,6 +8,11 @@ body {
     }
   }
 }
+
+.hr-2 {
+  margin: 5px 0;
+}
+
 
 textarea {
 	display: block;
@@ -20,3 +27,31 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.inline-block {
+  display: inline-block;
+}
+
+
+/* button */
+
+.button-1 {
+  border: 2px solid #444;
+  padding: 10px;
+  color: #444;
+  &:hover {
+    background: #444;
+    color: #fff;
+  }
+}
+
+/* filter */
+
+.blur{
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
+  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius=20, MakeShadow=false)
+}
+

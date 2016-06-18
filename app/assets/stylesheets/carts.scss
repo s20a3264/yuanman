@@ -1,0 +1,105 @@
+.cart-page {
+	padding: 0 10px 50px 10px;
+}
+
+.cart-info-title {
+	height: 30px;
+	width: 100%;
+	margin-top: 20px;
+	display:inline-flex;
+	align-items:center;
+	font-size: 16px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	background: #222;
+	color: #fff;
+	padding: 0 0 0 10px;
+	#info {
+		width: 70%;
+	}
+	#price {
+		width: 20%;
+		min-width: 50px;
+	}
+}
+
+.cart-info {
+	border: 1px solid #444;
+	border-top: none;
+	padding: 0;
+	.info-body {
+		width: 100%;
+		height: 125px;
+		padding: 0 5px 10px 5px;
+		border-bottom: 1px solid #eeeeee;
+		display:inline-flex;
+		align-items:center;
+		.image {
+			width: 35%;
+			img {
+				margin-bottom: 0;
+			}
+		}
+		.title {
+			width: 35%;
+		}
+		.price {
+			width: 20%;
+			padding-left: 10px;
+		}
+	}
+	.cart-item-delete {
+		font-size: 12px;
+		margin-left: 5px;
+		color: #333;
+		&:hover {
+			color: $red;
+		}
+	}
+}
+
+.cart-image {
+	width: 140px;
+	height: 105px;
+}
+
+@media screen and (max-width: 680px) {
+	.cart-info{
+		.info-body {
+			height: 95px;
+			.cart-image {
+				width: 100px;
+				height: 75px;
+			}
+		}
+	}
+}
+
+.cart-message {
+	min-height: 50px;
+	line-height: 50px;
+	background: #eee;
+	margin: 20px 0;
+	text-align: center;
+	.cart-items-count {
+		color: $red;
+	}
+	.cart-price-total {
+		color: $red;
+		font-size: 18px;
+	}
+}
+
+#note {
+	margin-top: 20px;
+	padding: 10px;
+	background: #70b29c;
+	border: 1px dashed #555;
+	#note-title {
+		font-weight: bold;
+		font-size: 16px;
+	}
+	#note-body {
+		margin: 10px 0 0 5px;
+	}
+}

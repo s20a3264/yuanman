@@ -89,8 +89,8 @@ zh-TW:
       already_signed_out: "成功登出了。"
       new:
         sign_in: "登入"
-      signed_in: "成功登入了。"
-      signed_out: "成功登出了。"
+      signed_in: "登入成功。"
+      signed_out: "登出成功。"
     shared:
       links:
         back: "返回"

@@ -1,7 +1,8 @@
 html, body{ margin:0; height:100%; }
 
 body {
-	padding-top: 70px;
+	padding: 70px 5px 0 5px;
+  color: $gray2;
   a {
     &:hover {
       text-decoration: none;
@@ -32,15 +33,34 @@ textarea {
   display: inline-block;
 }
 
+.table-div {
+  border: 1px solid $gray;
+  margin-left: -1px;
+  margin-top: -1px;
+  padding: 5px;
+}
+
+.table-div-body {
+  border: 1px solid $gray;
+  margin-left: -1px;
+  margin-top: -1px;
+  padding: 5px;
+  .row {
+  }
+}
+
+
+
 
 /* button */
 
 .button-1 {
-  border: 2px solid #444;
+  border: 2px solid $gray2;
   padding: 10px;
-  color: #444;
+  background: #fff;
+  color: $gray2;
   &:hover {
-    background: #444;
+    background: $gray2;
     color: #fff;
   }
 }

@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
 	def index
-		@products = Product.all
+		@products = Product.all.order(created_at: :asc)
 	end
 
 	def show
@@ -10,10 +10,11 @@ class ProductsController < ApplicationController
 
 	def add_to_cart
 		@product = Product.find(params[:id])
+		quantity = params[:quantity]
 
 		if !current_cart.items.include?(@product)
-			current_cart.add_product_to_cart(@product)
-			flash[:notice] = "你已成功將 #{@product.title} 加入購物車"
+			current_cart.add_product_to_cart(@product, quantity)
+			flash[:notice] = "你已成功將 #{@product.title} #{params[:quantity]}個加入購物車"
 		else	
 			flash[:warning] = "購物車內已有此物品"
 		end

@@ -1,5 +1,5 @@
 .cart-page {
-	padding: 0 10px 50px 10px;
+	padding: 0 0 50px 0;
 }
 
 .cart-info-title {
@@ -11,7 +11,7 @@
 	font-size: 16px;
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
-	background: #222;
+	background: $blue1;
 	color: #fff;
 	padding: 0 0 0 10px;
 	#info {
@@ -24,7 +24,7 @@
 }
 
 .cart-info {
-	border: 1px solid #444;
+	border: 1px dotted #444;
 	border-top: none;
 	padding: 0;
 	.info-body {
@@ -93,13 +93,21 @@
 #note {
 	margin-top: 20px;
 	padding: 10px;
-	background: #70b29c;
-	border: 1px dashed #555;
+	background: $blue1;
+	color: #fff;
 	#note-title {
 		font-weight: bold;
 		font-size: 16px;
 	}
 	#note-body {
 		margin: 10px 0 0 5px;
+		a {
+			background: #fff;
+			padding: 2px;
+			&:hover {
+				background: $blue2;
+				color: #fff;
+			}
+		}
 	}
 }

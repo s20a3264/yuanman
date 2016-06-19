@@ -15,7 +15,7 @@
 
 			<div class="info-body">
 				<div class="image">
-					<%= image_tag(product.photo.image.thumb.url, class: "thumbnail cart-image blur") %>
+					<%= image_tag(product.photo.image.thumb.url, class: "thumbnail cart-image") %>
 				</div>	
 				<div class="title">						
 					<%= link_to product.title, product_path(product) %>
@@ -55,7 +55,7 @@
 	<% end %>
 
 
-	<%= link_to checkout_carts_path, method: :post, class: "button-1 pull-right" do %>
+	<%= link_to checkout_carts_path, method: :get, class: "button-1 pull-right" do %>
 		<span>確認結帳</span>
 		<i class="fa fa-arrow-right" aria-hidden="true"></i>
 	<% end %>

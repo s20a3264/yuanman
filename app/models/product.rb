@@ -5,4 +5,5 @@ class Product < ActiveRecord::Base
 	accepts_nested_attributes_for :photo
 
 	validates :title, presence: { message: "請填寫商品名稱" }
+
 end

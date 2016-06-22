@@ -1,0 +1,40 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="2" class="th center">商品資訊</th>
+      <th class="th ">價格</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |product| %>
+      <tr>
+        <td class="td-image">
+          <%= image_tag(product.photo.image.thumb.url, class: "thumbnail cart-image") %>
+        </td>
+        <td class="td-item-info">
+          <%= link_to(product.title, product_path(product)) %> <br>
+          <%= form_tag({ controller: "carts", action: "refresh"}, method: "post") do %>
+            <span>
+            	數量 ： <%= select_tag(:quantity, options_for_select(product_quantity_range(product),
+            							find_cart_items_quantity(@cart_items_hash, product)), onchange: "this.form.submit()" ) %>
+					  <span>
+					  <%= hidden_field_tag :product_id, product.id %>	
+					<% end %>  	
+        </td>
+        <td class="td-price">
+          <span class="small">
+          	<%= product.price %> x <%= find_cart_items_quantity(@cart_items_hash, product) %>
+          </span><br>
+          NTD <%= sum(@cart_items_hash, product) %>
+        </td>
+      </tr>
+    <% end %>
+		<tr>
+			<td colspan="3" class="cart-message">
+  		購物車內共有<span class="cart-items-count"><%= current_cart.items.count %></span>項商品，
+  		消費總金額 NT$ 
+  		<span class="cart-price-total"><%= render_cart_total_price(@items, @cart_items_hash) %></span>
+  		</td>
+		</tr>
+  </tbody>
+</table>

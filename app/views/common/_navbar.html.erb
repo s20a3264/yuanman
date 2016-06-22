@@ -1,16 +1,14 @@
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tt">
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-			</button>			
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-list">
+				<i class="fa fa-th-list" aria-hidden="true"></i>
+			</button>
+			<%= link_to root_path, class: "navbar-brand" do %>	
+				<%= image_tag("brand.jpg", class: "brand") %>
+			<% end %>	
 		</div>
-			<div class="collapse navbar-collapse" id="tt">
-				<ul class="nav navbar-nav">
-					<li><%= link_to "Home", root_path %></li>
-				</ul>
+			<div class="collapse navbar-collapse" id="nav-list">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<%= link_to carts_path do %>

@@ -18,7 +18,11 @@ module ApplicationHelper
     alerts.join("\n").html_safe
   end
 
-	def render_cart_items_count(cart)
-		cart.cart_items.count	
-	end
+  def render_navbar 
+    if manager_signed_in? && current_manager.admin?
+      render("common/manager_navbar")
+    else
+      render "common/navbar"  
+    end
+  end
 end

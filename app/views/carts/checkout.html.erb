@@ -1,12 +1,14 @@
- <div class="row">
+<div class="row">
   <div class="col-md-12">
 
   	<h2> 購物明細 </h2>
 		<table class="table table-bordered table-striped">
 		  <thead>
 		    <tr>
-		      <th width="80%">商品明細</th>
-		      <th>價格</th>
+		      <th>商品明細</th>
+		      <th>單價</th>
+		      <th>數量</th>
+		      <th>總價</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -16,7 +18,14 @@
 		          <%= link_to(product.title, product_path(product)) %>
 		        </td>
 		        <td>
-		          <%= product.price %>
+		        	<%=  product.price %>
+		        </td>
+		        <td>
+		        	<%= find_cart_items_quantity(@cart_items_hash, product) %>
+		        </td>
+		        <td>
+		          <span class="small"> NTD</span>
+		          <%=  product.price * find_cart_items_quantity(@cart_items_hash, product) %>
 		        </td>
 		      </tr>
 		    <% end %>

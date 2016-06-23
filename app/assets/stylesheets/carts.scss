@@ -11,17 +11,34 @@
 	color: #fff;
 }
 
-.td-image {
-	width: 35%;
+.td-body {
 }
 
-.td-item-info {
+.td-image {
+	width: 30%;
+	border-right: none !important;
+	.remove-cart-item {
+		font-size: 16px;
+		color: $gray2;
+		&:hover {
+			color: $red;
+		}
+	}
+}
+
+.td-item-info {	
 	text-align: left;
+	border-left: none !important;
 }
 
 .td-price {
-	min-width:90px;
+	min-width:50px;
 }
+
+.td-sum{
+	min-width:50px;
+}
+
 
 .cart-image {
 	width: 140px;
@@ -30,12 +47,12 @@
 
 @media screen and (max-width: 768px) {
 	.td-image {
-		width: 116px;
+		width: 104px;
 	}
 
 	.cart-image {
-		width: 100px;
-		height: 75px;
+		width: 88px;
+		height: 66px;
 	}
 }
 

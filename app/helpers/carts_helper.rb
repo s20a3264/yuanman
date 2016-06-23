@@ -1,7 +1,7 @@
 module CartsHelper
 
 	def render_cart_items_count(cart)
-		cart.cart_items.count	
+		cart.items.count	
 	end
 
 	def render_cart_total_price(items, cart_items)

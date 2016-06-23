@@ -19,6 +19,14 @@ class CartsController < ApplicationController
 		@info = @order.build_info
 	end
 
+	def delete_cart_item
+		cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+		cart_item.destroy
+
+		flash[:notice] = "你已將 #{params[:product_title]} 從購物車刪除"
+		redirect_to carts_path
+	end
+
 	private
 
 

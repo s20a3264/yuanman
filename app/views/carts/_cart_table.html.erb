@@ -1,36 +1,43 @@
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
   <thead>
     <tr>
       <th colspan="2" class="th center">商品資訊</th>
-      <th class="th ">價格</th>
+      <th class="th">單價</th>
+      <th class="th">小計</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="td-body">
     <% @items.each do |product| %>
       <tr>
         <td class="td-image">
+          <%= link_to delete_cart_item_carts_path(product_id: product.id, product_title: product.title), 
+          method: :post, class: "remove-cart-item" do %>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          <% end %>  
           <%= image_tag(product.photo.image.thumb.url, class: "thumbnail cart-image") %>
         </td>
         <td class="td-item-info">
           <%= link_to(product.title, product_path(product)) %> <br>
-          <%= form_tag({ controller: "carts", action: "refresh"}, method: "post") do %>
+          <%= form_tag({ controller: "carts", action: "refresh"}, method: :post, remote: true) do %>
             <span>
             	數量 ： <%= select_tag(:quantity, options_for_select(product_quantity_range(product),
             							find_cart_items_quantity(@cart_items_hash, product)), onchange: "this.form.submit()" ) %>
 					  <span>
-					  <%= hidden_field_tag :product_id, product.id %>	
+					  <%= hidden_field_tag :product_id, product.id %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%=  %>
 					<% end %>  	
         </td>
         <td class="td-price">
-          <span class="small">
-          	<%= product.price %> x <%= find_cart_items_quantity(@cart_items_hash, product) %>
-          </span><br>
-          NTD <%= sum(@cart_items_hash, product) %>
+          <%= product.price %>
+        </td>
+        <td class="td-sum">
+          NT$ <%= sum(@cart_items_hash, product) %>
         </td>
       </tr>
     <% end %>
 		<tr>
-			<td colspan="3" class="cart-message">
+			<td colspan="4" class="cart-message">
   		購物車內共有<span class="cart-items-count"><%= current_cart.items.count %></span>項商品，
   		消費總金額 NT$ 
   		<span class="cart-price-total"><%= render_cart_total_price(@items, @cart_items_hash) %></span>

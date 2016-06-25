@@ -23,5 +23,13 @@ class ApplicationController < ActionController::Base
 
   	cart	
   end
+
+  def cart_items_to_hash
+    @cart_items_hash = {}
+    current_cart.cart_items.each do |item|
+      @cart_items_hash[item.product_id] = item.quantity 
+    end
+    @cart_items_hash
+  end
 	
 end

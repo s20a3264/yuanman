@@ -3,6 +3,7 @@
 		<div class="center"><h2>你的購物車</h2></div>
   	
   	<%= render 'cart_table' %>
+  	
 
 		<div id="note">
 			<span id="note-title">購物須知：</span>	<br>
@@ -19,17 +20,5 @@
 
 		<hr>
 	
-		<div id="cart-bottom-botton" class="clearfix">
-			<%= link_to products_path,  class: "button-1 pull-left" do %>
-				<i class="fa fa-arrow-left" aria-hidden="true"></i>
-				<span>繼續選購</span>
-			<% end %>
-		
-		
-			<%= link_to checkout_carts_path, class: "button-1 pull-right" do %>
-				<span>確認結帳</span>
-				<i class="fa fa-arrow-right" aria-hidden="true"></i>
-			<% end %>
-		</div>
 	</div>	
 </div>	

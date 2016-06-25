@@ -34,5 +34,24 @@
 
 		<hr>
 
+		<h2>訂單資訊</h2>
+
+		<div>
+			<%= simple_form_for @order do |f| %>
+				<%= f.simple_fields_for :info do |info_form| %>
+					<div class="form-group col-md-6 col-xs-6">
+						<%= info_form.input :shipping_name %>
+					</div>
+					<div class="form-group col-md-6 col-xs-6">
+						<%= info_form.input :shipping_address %>
+					</div>
+				<% end %>
+				
+				<div>
+					<%= f.submit "生成訂單", class: "bitton-1", data: { disable_with: "訂單送出中..."} %>
+				</div>	
+			<% end %>
+		</div>
+
 	</div>
 </div>		

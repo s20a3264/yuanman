@@ -12,11 +12,11 @@ module CartsHelper
 		sum	
 	end
 
-	def find_cart_items_quantity(cart_items, product)
-		cart_items[product.id]
-	end
-
 	def sum(cart_items, product)
 		product.price * find_cart_items_quantity(cart_items, product)
+	end
+
+	def find_cart_items_quantity(cart_items, product)
+		cart_items[product.id]
 	end
 end

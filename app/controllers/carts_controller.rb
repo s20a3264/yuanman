@@ -27,14 +27,14 @@ class CartsController < ApplicationController
 		redirect_to carts_path
 	end
 
+	def clean
+		current_cart.clean!
+
+		flash[:warning] = "購物車已清空"
+		redirect_to carts_path
+	end
+
 	private
 
 
-	def cart_items_to_hash
-		@cart_items_hash = {}
-		current_cart.cart_items.each do |item|
-			@cart_items_hash[item.product_id] = item.quantity 
-		end
-		@cart_items_hash
-	end
 end

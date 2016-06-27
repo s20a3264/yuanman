@@ -20,4 +20,31 @@ class Cart < ActiveRecord::Base
 		sum	
 	end
 
+	#確認庫存，數量不足，或完全沒貨
+	def stock_check
+		@hash = {}
+		d_array = []
+		c_array = []
+
+		self.cart_items.each do |item|
+			product = Product.find_by(id: item.product_id)
+			if item.quantity > product.quantity && product.quantity == 0
+				item.destroy
+				d_array <<  product.title
+				@hash[:delete] = d_array		
+			elsif item.quantity > product.quantity
+				item.quantity = product.quantity
+				item.save
+				c_array << product.title
+				@hash[:change] = c_array
+			end
+		end
+		@hash
+	end
+
+	#清空購物車
+	def clean!
+		self.cart_items.destroy_all
+	end
+
 end

@@ -11,7 +11,7 @@
       <tr>
         <td class="td-image">
           <%= link_to delete_cart_item_carts_path(product_id: product.id, product_title: product.title), 
-          method: :post, class: "remove-cart-item" do %>
+          method: :delete, class: "remove-cart-item" do %>
             <i class="fa fa-times" aria-hidden="true"></i>
           <% end %>  
           <%= image_tag(product.photo.image.thumb.url, class: "thumbnail cart-image") %>
@@ -32,7 +32,7 @@
           <%= product.price %>
         </td>
         <td class="td-sum">
-          NT$ <%= sum(@cart_items_hash, product) %>
+          <span class="small">NT$</span> <%= sum(@cart_items_hash, product) %>
         </td>
       </tr>
     <% end %>
@@ -49,7 +49,7 @@
             <span>繼續選購</span>
           <% end %>
                
-          <%= link_to checkout_carts_path, class: "button-blue pull-right" do %>
+          <%= link_to checkout_carts_path, method: :post, class: "button-blue pull-right" do %>
             <i class="fa fa-cart-arrow-down fa-2x" aria-hidden="true"></i>
             <span>前往結帳</span>
           <% end %>

@@ -19,7 +19,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .container-fluid  {
-    padding:0;
+    padding:0 10px 0 10px;
   }
 }
 
@@ -109,6 +109,7 @@ textarea {
   }
 }
 
+
 .button-blue {
   border: 2px solid $blue1;
   padding: 8px 10px;
@@ -119,6 +120,16 @@ textarea {
     background:darken($blue1, 10%);
     color: #fff;
   }
+}
+
+.button-disabled {
+  border: 2px solid $gray1;
+  padding: 8px 10px;
+  background: $gray1;
+  color: #000;
+  opacity: 0.5;
+  filter:alpha(opacity=50);
+  font-weight: bold;
 }
 
 
@@ -151,3 +162,4 @@ textarea {
 .inline {
   display: inline;
 }
+

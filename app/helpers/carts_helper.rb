@@ -4,19 +4,26 @@ module CartsHelper
 		cart.items.count	
 	end
 
+	#購物車商品總價
 	def render_cart_total_price(items, cart_items)
-		sum = 0
+		@sum = 0
 		items.each do |product|
-			sum += sum(cart_items, product)
+			@sum += sum(cart_items, product)
 		end
-		sum	
+		@sum	
 	end
 
-	def sum(cart_items, product)
-		product.price * find_cart_items_quantity(cart_items, product)
+	#訂單應付總金額
+	def render_total_amount
+		@sum + 100
 	end
 
-	def find_cart_items_quantity(cart_items, product)
-		cart_items[product.id]
+	#購物車單件商品小計
+	def sum(cart_items_hash, product)
+		product.price * find_cart_items_quantity(cart_items_hash, product)
+	end
+
+	def find_cart_items_quantity(cart_items_hash, product)
+		cart_items_hash[product.id]
 	end
 end

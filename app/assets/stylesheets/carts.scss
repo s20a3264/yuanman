@@ -1,5 +1,20 @@
 /* carts */
 
+.cart-page-title {
+	margin-right: -70px;
+}
+
+.ur-cart {
+	font-size: 30px;
+}
+
+.clean-cart {
+	color: $gray1;
+	&:hover {
+		color: $red;
+	}
+}
+
 .cart-table {
 }
 
@@ -10,7 +25,7 @@
 .th {
 	height: 50px;
 	line-height: 50px;
-	background: #000;
+	background: #222;
 	color: #fff;
 }
 
@@ -111,6 +126,20 @@
 
 /* checkout */
 
+.checkout-page-top {
+	padding-bottom: 50px;
+}
+
+
+
+.checkout-page-buttom {
+	background: #eee;
+	padding-bottom: 50px;
+}
+
+
+
+
 .info-price {
 	width: 30px;
 }
@@ -123,3 +152,28 @@
 .info-quantity {
 	width: 5px;
 }
+
+.money-info {
+	padding-right: 10px;
+}
+
+.money-box {
+}
+
+.border-top {
+	border-top: 2px dashed #444;
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+.money-type {
+	text-align: left;
+	width: 150px;
+	display: inline-block;
+}
+
+.colon {
+	width: 15px;
+	display: inline-block;	
+}
+

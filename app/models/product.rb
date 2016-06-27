@@ -6,4 +6,17 @@ class Product < ActiveRecord::Base
 
 	validates :title, presence: { message: "請填寫商品名稱" }
 
+
+	class << self 
+
+		def set_inventory!(current_cart)
+			current_cart.cart_items.each do |item|
+				product = item.product
+				product.quantity -= item.quantity
+				product.save
+			end	
+		end
+
+	end
+
 end

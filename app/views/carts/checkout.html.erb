@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row checkout-page-top">
   <div class="col-md-12">
 
   	<h2> 購物明細 </h2>
@@ -18,7 +18,7 @@
 		          <%= link_to(product.title, product_path(product)) %>
 		        </td>
 		        <td>
-		        	<%=  product.price %>
+		        	<%= product.price %>
 		        </td>
 		        <td>
 		        	<%= find_cart_items_quantity(@cart_items_hash, product) %>
@@ -32,26 +32,42 @@
 		  </tbody>
 		</table>
 
-		<hr>
-
-		<h2>訂單資訊</h2>
-
-		<div>
+		<div class="clearfix money-info">
+      <div class="pull-right">
+				<div class="money-box">
+					<span class="money-type">運費</span>
+					<span class="colon">:</span>
+					<span class="money">$100</span>
+				</div>
+				<div class="money-box">
+					<span class="money-type">商品總價</span>
+					<span class="colon">:</span>
+					<span class="money">$<%= render_cart_total_price( current_cart.items, @cart_items_hash) %></span>
+				</div>	
+				<div class="money-box border-top">
+        	<span class="money-type">本次消費應付金額</span>
+					<span class="colon">:</span>
+        	<span class="money">$<%= render_total_amount %></span>
+        </div>	
+      </div>
+    </div>
+	</div>
+</div>	
+<div class="row checkout-page-buttom">
+	<div class="col-md-12"><h2>訂單資訊</h2></div>
 			<%= simple_form_for @order do |f| %>
 				<%= f.simple_fields_for :info do |info_form| %>
-					<div class="form-group col-md-6 col-xs-6">
+					<div class="form-group col-md-6 col-sm-12 col-xs-12">
 						<%= info_form.input :shipping_name %>
 					</div>
-					<div class="form-group col-md-6 col-xs-6">
+					<div class="form-group col-md-6 col-sm-12 col-xs-12">
 						<%= info_form.input :shipping_address %>
 					</div>
 				<% end %>
 				
-				<div>
+				<div class="col-md-12">
 					<%= f.submit "生成訂單", class: "bitton-1", data: { disable_with: "訂單送出中..."} %>
 				</div>	
 			<% end %>
-		</div>
 
-	</div>
 </div>		

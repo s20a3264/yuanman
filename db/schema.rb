@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628183711) do
+ActiveRecord::Schema.define(version: 20160630045655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,11 @@ ActiveRecord::Schema.define(version: 20160628183711) do
     t.boolean  "is_paid",        default: false
     t.string   "payment_method"
     t.string   "aasm_state",     default: "order_placed"
+    t.string   "order_number"
   end
 
   add_index "orders", ["aasm_state"], name: "index_orders_on_aasm_state", using: :btree
+  add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
   add_index "orders", ["token"], name: "index_orders_on_token", using: :btree
 
   create_table "photos", force: :cascade do |t|

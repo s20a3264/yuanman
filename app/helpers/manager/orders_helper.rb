@@ -1,0 +1,2 @@
+module Manager::OrdersHelper
+end

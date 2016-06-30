@@ -8,10 +8,15 @@ class Order < ActiveRecord::Base
 
 	accepts_nested_attributes_for :info
 
-	before_create :generate_token
+	before_create :generate_token, :generate_order_number
 
 	def generate_token
 		self.token = SecureRandom.uuid
+	end
+
+	def generate_order_number
+		random_code = SecureRandom.uuid.gsub(/-/, '').upcase[0, 8]
+		self.order_number = Time.zone.now.strftime("%y%m%d%H%M%S") + random_code
 	end
 
 	def build_item_cache_from_cart(cart)
@@ -35,6 +40,10 @@ class Order < ActiveRecord::Base
 
 	def pay!
 		self.update_columns(is_paid: true )
+	end
+
+	def for_pay2go
+		self.total + 100
 	end
 
 	aasm do 

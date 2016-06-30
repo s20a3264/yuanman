@@ -1,26 +1,39 @@
-<h2>商品列表</h2>
+<div class="row">
 
-<div class="table-responsive">
+<div class="col-md-12 col xs-12">
+	<h2>商品列表</h2>
+
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
-			<th>#</th>
-			<th>商品名稱</th>
 			<th>商品圖片</th>
-			<th>商品價格</th>
-			<th>操作選項</th>
+			<th>名稱</th>
+			<th>價格</th>
+			<th>庫存</th>
+			<th>選項</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @products.each do |product| %>
 			<tr>
-				<td><%= product.id %></td>
+				<td width="120"><%= image_tag(product.photo.image.thumb.url, class: "manager-img") %></td>
 				<td><%= product.title %></td>
-				<td width="280"><%= image_tag(product.photo.image.thumb.url) %></td>
 				<td><%= product.price %></td>
-				<td width="100"><%= link_to "編輯", edit_manager_product_path(product) %></td>
+				<td><%= product.quantity %></td>
+				<td width="80">
+					<div>
+						<%= link_to "編輯", edit_manager_product_path(product) %>
+					</div>
+					<div>
+						<%= link_to "刪除", manager_product_path(product), method: :delete,
+					 		data: { confirm: "確定刪除 #{product.title}?"} %>
+					</div>
+					<div>下架</div>
+					<div>補貨</div>
+				</td>
 			</tr>
 		<% end %>	
 	</tbody>
 </table>
+</div>
 </div>

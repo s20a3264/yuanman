@@ -1,7 +1,10 @@
 class OrdersController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user!, except: :pay2go_cc_notify
 
 	before_action :cart_items_to_hash, only: [:create]
+
+	protect_from_forgery except: :pay2go_cc_notify
+
 
 	def create
 		@order = current_user.orders.build(order_params)
@@ -36,8 +39,28 @@ class OrdersController < ApplicationController
 		@order.make_payment!
 
 		flash[:notice] =  "成功完成付款"
-		redirect_to order_path(@order.token)
+		redirect_to account_orders_path
 	end
+
+  def pay2go_cc_notify
+    @order = Order.find_by_token(params[:id])
+
+    if params["Status"] == "SUCCESS"
+
+      @order.make_payment!
+
+      if @order.is_paid?
+        flash[:success] = "信用卡付款成功"
+
+        redirect_to account_orders_path
+      else
+        render text: "信用卡付款失敗"
+      end
+    else
+      render text: "交易失敗"
+    end
+  end
+
 
 	private
 

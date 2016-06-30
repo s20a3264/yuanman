@@ -24,7 +24,7 @@
 		        	<%= find_cart_items_quantity(@cart_items_hash, product) %>
 		        </td>
 		        <td>
-		          <span class="small"> NTD</span>
+		          <span class="small">NTD</span>
 		          <%=  product.price * find_cart_items_quantity(@cart_items_hash, product) %>
 		        </td>
 		      </tr>
@@ -58,15 +58,15 @@
 			<%= simple_form_for @order do |f| %>
 				<%= f.simple_fields_for :info do |info_form| %>
 					<div class="form-group col-md-6 col-sm-12 col-xs-12">
-						<%= info_form.input :shipping_name %>
+						<%= info_form.input :shipping_name, label: "收件人姓名" %>
 					</div>
 					<div class="form-group col-md-6 col-sm-12 col-xs-12">
-						<%= info_form.input :shipping_address %>
+						<%= info_form.input :shipping_address, label: "收件人地址" %>
 					</div>
 				<% end %>
 				
 				<div class="col-md-12">
-					<%= f.submit "生成訂單", class: "bitton-1", data: { disable_with: "訂單送出中..."} %>
+					<%= f.submit "生成訂單", class: "button-blue", data: { disable_with: "訂單送出中..."} %>
 				</div>	
 			<% end %>
 

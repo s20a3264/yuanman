@@ -12,12 +12,20 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<%= link_to carts_path do %>
-							購物車 <i class="fa fa-shopping-cart"></i>( <%= render_cart_items_count(current_cart) %> )
+							<i class="fa fa-shopping-cart"></i> 購物車 ( <%= render_cart_items_count(current_cart) %> ) 
 						<% end %>	
 					</li>
 					<% if user_signed_in? %>
-						<li><%= link_to "會員中心", "#" %></li>
-						<li><%= link_to "登出", destroy_user_session_path, method: :delete %></li>
+						<li>
+							<%= link_to account_orders_path  do %>
+								<i class="fa fa-user" aria-hidden="true"></i> 會員中心
+							<% end %>	
+						</li>
+						<li>
+							<%= link_to destroy_user_session_path, method: :delete do %>
+								<i class="fa fa-sign-out" aria-hidden="true"></i> 登出
+							<% end %>	
+						</li>
 					<% else %>
 						<li><%= link_to "登入", new_user_session_path %></li>	
 					<% end %>	

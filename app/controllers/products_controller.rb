@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
 	def index
-		@products = Product.all.includes(:photo).order(created_at: :asc)
+		@products = Product.all.includes(:photo).order(created_at: :DESC)
 	end
 
 	def show
@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 	end
 
 	def add_to_cart
-		@product = Product.find(params[:id])
+		@product = Product.find_by(id: params[:id])
 		quantity = params[:quantity]
 
 		if !current_cart.items.include?(@product)
@@ -20,6 +20,13 @@ class ProductsController < ApplicationController
 		end
 			
 		redirect_to :back
+
+		rescue
+
+    logger.error("Attempt to access invalid product #{params[:id]}")
+    flash[:notice] = '商品不存在或已被刪除'
+    redirect_to root_path
+
 	end
 
 end

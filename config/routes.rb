@@ -6,8 +6,15 @@ Rails.application.routes.draw do
   root 'products#index'
 
   namespace :manager do
+    get 'index' => 'core#index'
     resources :products
-    get 'index' => 'manage#index'
+    resources :orders do 
+      member do
+        post :cancel
+        post :shipped
+        post :return
+      end
+    end 
   end 
 
   resources :products do
@@ -28,8 +35,17 @@ Rails.application.routes.draw do
   resources :orders  do 
     member do 
       get :pay_with_credit_card
+      post :pay2go_cc_notify
     end
-  end     
+  end   
+
+  namespace :account do 
+    resources :orders do 
+      member do 
+        post :cancel
+      end
+    end    
+  end    
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

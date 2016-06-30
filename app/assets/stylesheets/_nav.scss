@@ -1,8 +1,10 @@
 
 .navbar {
 	background: #fff;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
+	margin-bottom: 0;
+	border: none;
 }
 
 .navbar-brand {
@@ -14,8 +16,13 @@
 }
 
 @media screen and (min-width: 768px) {
+	.navbar {
+		background:rgba(0,0,0,0);
+		filter:Alpha(opacity=0);
+	}
 	.navbar > .container-fluid > #nav-list > .nav {
-		padding-top: 20px;
+		margin-right: 5px;
+		padding-top: 10px;
 	}
 }
 
@@ -48,9 +55,37 @@
 
 .navbar-default .navbar-nav {
 	li {
-		padding-left:15px;
+		position:relative;
 		a {
-			color: #000;
 		}
 	}
 }
+
+@media screen and (min-width: 768px) {
+	.navbar-default .navbar-nav {
+		li {
+			margin-left: 5px;
+			border: 1px solid $gray1;
+			border-radius: 3px;
+			a {
+				padding:5px 10px;
+				color: $gray1;
+				&:hover {
+					color: #fff;
+					background: $gray1;
+				}
+			}
+		}
+	}
+	.product-on-shelf {
+		border: 1px solid $green !important;
+		a {
+			color: $green !important;
+			&:hover {
+				background: $green !important;
+				color: #fff !important;
+			}
+		}
+	}
+}
+

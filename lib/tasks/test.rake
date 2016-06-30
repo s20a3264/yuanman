@@ -1,6 +1,7 @@
-task :d_cart => :environment do
-	Cart.all.each do |p|
-		p.destroy
+task :p => :environment do
+	Product.all.each do |p|
+		p.quantity = 20
+		p.save
 		puts "#{p.id} done"
 	end	
 end		

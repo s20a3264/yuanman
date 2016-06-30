@@ -1,0 +1,23 @@
+<div class="md">
+  <h2>訂單列表 </h2>
+  
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>訂單編號</th>
+        <th>下單時間</th>
+        <th>訂單狀態</th>
+      </tr>
+    </thead>
+    <tbody> 
+      <% @orders.each do |order| %>
+      <tr>
+        <td> <%= link_to(order.order_number, order_path(order.token)) %> </td>
+        <td> <%= order.created_at.to_s(:db) %> </td>
+        <td> <%= render_order_state(order)  %></td>
+      </tr>
+      <% end %>
+  
+    </tbody>
+  </table>
+</div>

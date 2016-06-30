@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <h2>訂單列表 </h2>
+    
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>訂單編號</th>
+          <th class="hidden-xs">生成時間</th>
+          <th>訂購者</th>
+          <th>訂單狀態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+          <td> <%= link_to(order.order_number, manager_order_path(order) ) %> </td>
+          <td class="hidden-xs"> <%= order.created_at.to_s(:db) %> </td>
+          <td> <%= order.user.email %></td>
+          <td> <%= render_order_state(order) %> </td>
+        </tr>
+        <% end %>
+    
+      </tbody>
+    </table>
+    <%= will_paginate @orders %>
+  </div>
+</div>

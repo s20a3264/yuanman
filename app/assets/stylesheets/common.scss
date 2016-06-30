@@ -1,18 +1,26 @@
 html, body{ margin:0; height:100%; }
 
 body {
-	padding: 70px 0px 0 0px;
+	padding: 57px 0px 0 0px;
   color: $gray2;
+  .container-fluid  {
+  }
   a {
     &:hover {
       text-decoration: none;
     }
   }
+  .mt {
+    margin-top: 40px;
+  }
+  .md  {
+    margin-bottom: 80px;
+  }
 }
 
 @media screen and (min-width: 768px) {
   body {
-  padding-top:80px;
+  padding-top:71px;
   }
 }
 
@@ -100,7 +108,7 @@ textarea {
 
 .button-1 {
   border: 2px solid $gray2;
-  padding: 8px 10px;
+  padding: 5px 8px;
   background: #fff;
   color: $gray2;
   &:hover {
@@ -112,7 +120,7 @@ textarea {
 
 .button-blue {
   border: 2px solid $blue1;
-  padding: 8px 10px;
+  padding: 5px 8px;
   background:  $blue1;
   color: #fff;
   &:hover {
@@ -143,6 +151,18 @@ textarea {
   filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius=20, MakeShadow=false)
 }
 
+/* alert */
+
+.alert-success {
+  background: $green;
+  color: #fff;
+}
+
+.alert-warning {
+  background: $red1;
+  color:#fff;
+}
+
 
 /* display */
 
@@ -161,5 +181,14 @@ textarea {
 
 .inline {
   display: inline;
+}
+
+/* color */
+.green {
+  color: $green;
+}
+
+.red {
+  color: $red1;
 }
 

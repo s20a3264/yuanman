@@ -2,7 +2,7 @@ class Manager::ProductsController < ManagerController
 
 
 	def index
-		@products = Product.all
+		@products = Product.all.includes(:photo)
 	end
 
 	def new
@@ -33,6 +33,18 @@ class Manager::ProductsController < ManagerController
 		else
 		 render :edit
 		end 	
+	end
+
+	def destroy
+		@product = Product.find(params[:id])
+
+		if @product.destroy
+
+			flash[:warning] = "#{@product.title} 已被刪除"
+			redirect_to :back
+		else
+			render :index
+		end	
 	end
 
 

@@ -15,6 +15,11 @@ class CartsController < ApplicationController
 	end
 
 	def checkout
+		if current_cart.items.count == 0
+			flash[:warning] = "您的購物車內沒有商品"
+
+			redirect_to root_path
+		end	
 		@order = current_user.orders.build
 		@info = @order.build_info
 	end
@@ -30,7 +35,7 @@ class CartsController < ApplicationController
 	def clean
 		current_cart.clean!
 
-		flash[:warning] = "購物車已清空"
+		flash[:success] = "購物車已清空"
 		redirect_to carts_path
 	end
 

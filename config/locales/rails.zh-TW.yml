@@ -106,7 +106,7 @@ zh-TW:
     format: "%{attribute} %{message}"
     messages:
       accepted: 必須是可被接受的
-      blank: 不能是空白字元
+      blank: 此為必填欄位
       present: 必須是空白
       confirmation: 兩次輸入須一致
       empty: 不能留空

@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
 	def index
-		@products = Product.all.includes(:photo).order(created_at: :DESC)
+		@products = Product.products_are_selling.includes(:photo).order(created_at: :DESC)
 	end
 
 	def show
@@ -28,5 +28,6 @@ class ProductsController < ApplicationController
     redirect_to root_path
 
 	end
+
 
 end

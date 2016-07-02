@@ -10,6 +10,7 @@ class Manager::OrdersController < ManagerController
 		@order_items = @order.items
 	end
 
+
 	def shipped
 		@order = Order.find_by(id: params[:id])
 		@order.ship!

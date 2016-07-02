@@ -40,7 +40,9 @@
 
 @media screen and (max-width: 768px) {
 	.home-bg {
-	margin-top: -150px;
+		margin-top: -150px;
+		height: 260px;
+		background-size: 100% 260px;
 	}
 }
 
@@ -133,7 +135,7 @@
 				line-height: 1.1;
 			}
 			.product-item-description {
-				height: 140px;
+				height: 130px;
 				line-height: 1.3;
 			}
 		}

@@ -1,7 +1,7 @@
 task :p => :environment do
 	Product.all.each do |p|
-		p.quantity = 20
+		p.selling = true
 		p.save
-		puts "#{p.id} done"
+		puts "#{p.title} done"
 	end	
 end		

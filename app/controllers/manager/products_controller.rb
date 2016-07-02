@@ -47,6 +47,22 @@ class Manager::ProductsController < ManagerController
 		end	
 	end
 
+	def off_shelf
+		@product = Product.find(params[:id])
+		@product.off_shelf
+
+		flash[:success] = "#{@product.title} 已下架"
+		redirect_to :back
+	end
+
+	def on_shelf
+		@product = Product.find(params[:id])
+		@product.on_shelf
+
+		flash[:success] = "#{@product.title} 已上架"
+		redirect_to :back		
+	end
+
 
 	private
 

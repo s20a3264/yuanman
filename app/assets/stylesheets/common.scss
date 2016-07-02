@@ -3,9 +3,12 @@ html, body{ margin:0; height:100%; }
 body {
 	padding: 57px 0px 0 0px;
   color: $gray2;
+  font-family:  Helvetica, sans-serif;
+  font-size: 15px;
   .container-fluid  {
   }
   a {
+    font-family:  Helvetica, sans-serif;
     &:hover {
       text-decoration: none;
     }

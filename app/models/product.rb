@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
 
 	validates :title, presence: { message: "請填寫商品名稱" }
 
+	scope :products_are_selling, -> { where(selling: true) }
 
 	class << self 
 
@@ -16,7 +17,17 @@ class Product < ActiveRecord::Base
 				product.save
 			end	
 		end
-
 	end
+
+	def off_shelf
+		self.selling = false
+		self.save
+	end
+
+	def on_shelf
+		self.selling = true
+		self.save		
+	end
+
 
 end

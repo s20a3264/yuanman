@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
 	def pay2go_cc_return
 		@order = Order.find_by_token(params[:id])
 		json_data = JSON.parse(params["JSONData"])
-		result = json_data['Result']
+		result = JSON.parse(json_data['Result'])
 		check_code = Pay2goService.new(@order, TradeNo: result['TradeNo']).check("check_code")
 
 		if json_data['Status'] == "SUCCESS" && @order.is_paid == false && check_code == result['CheckCode']
@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
 			flash[:success] = "信用卡付款完成"
 			redirect_to order_path(@order.token)
 		elsif json_data['Status'] == "SUCCESS" && check_code == result['CheckCode']
-			flash[:success] = "信用卡付款成功"
+			flash[:success] = "信用卡付款完成"
 			redirect_to order_path(@order.token)
 		else
 			flash[:warning] = "交易失敗,#{json_data["Message"]}"
@@ -60,7 +60,7 @@ class OrdersController < ApplicationController
   def pay2go_cc_notify
     @order = Order.find_by_token(params[:id])
 		json_data = JSON.parse(params["JSONData"])
-		result = json_data['Result']
+		result = JSON.parse(json_data['Result'])
 		check_code = Pay2goService.new(@order, TradeNo: result['TradeNo']).check("check_code")
 
     if json_data['Status'] == "SUCCESS" && @order.is_paid == false && check_code == result['CheckCode']

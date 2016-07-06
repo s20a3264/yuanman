@@ -40,9 +40,11 @@ Rails.application.routes.draw do
 
   resources :orders  do 
     member do 
-      post :pay2go_cc_notify
       post :pay2go_atm_complete
+      post :pay2go_cc_notify
       post :pay2go_cc_return
+      post :pay2go_wa_notify
+      post :pay2go_wa_return
     end
   end   
 

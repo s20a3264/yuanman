@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
-	before_action :authenticate_user!, except: [:pay2go_cc_notify, :pay2go_atm_complete, :gg]
+	before_action :authenticate_user!, except: [:gg, :pay2go_cc_notify, :pay2go_atm_complete]
 
 	before_action :cart_items_to_hash, only: [:create]
 
 	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_complete, :gg]
+	skip_before_action :verify_authenticity_token, only: [:gg, :pay2go_cc_notify]
 
 
 
@@ -36,8 +37,10 @@ class OrdersController < ApplicationController
 
 	def gg
 		if params['Status'] == "SUCCESS"
-			lash[:success] = "信用卡付款成功"
+			flash[:success] = "信用卡付款成功"
 			redirect_to root_path
+		else
+			redirect_to root_path	
 		end	
 	end
 

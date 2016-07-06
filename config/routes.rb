@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
   root 'products#index'
 
+  post "gg" => 'orders#gg'
+
   namespace :manager do
     get 'index' => 'core#index'
     get 'zbc' => "core#zbc"
@@ -43,9 +45,6 @@ Rails.application.routes.draw do
       post :pay2go_cc_notify
       post :pay2go_atm_complete
     end
-    collection do 
-      post :gg
-    end  
   end   
 
   namespace :account do 

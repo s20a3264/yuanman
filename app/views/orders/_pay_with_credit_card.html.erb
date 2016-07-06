@@ -3,7 +3,7 @@
   <%= hidden_field_tag "MerchantID",      Pay2go.merchant_id %>
   <%= hidden_field_tag "LoginType",       "0" %>
   <%= hidden_field_tag "RespondType",     "JSON" %>
-  <%= hidden_field_tag "Version",         "1.1" %>
+  <%= hidden_field_tag "Version",         "1.2" %>
 
   <%= hidden_field_tag "ItemDesc",        "order_sample" %>
   <%= hidden_field_tag "MerchantOrderNo", order.order_number %>
@@ -11,7 +11,6 @@
   <%= hidden_field_tag "Amt",             order.for_pay2go %>
 
   <%= hidden_field_tag "CREDIT",          "1" %>
-  <%= hidden_field_tag "ReturnURL",       "" %>
   <%= hidden_field_tag "NotifyURL",       pay2go_cc_notify_order_url(order.token) %>
   <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>
 

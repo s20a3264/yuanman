@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
 
 	has_many :items, class_name: "OrderItem", dependent: :destroy
 	has_one  :info,  class_name: "OrderInfo", dependent: :destroy
+	has_one  :trade_info, dependent: :destroy
 
 	accepts_nested_attributes_for :info
 
@@ -45,6 +46,12 @@ class Order < ActiveRecord::Base
 	def for_pay2go
 		self.total + 100
 	end
+
+	def trade_info_save(info)
+		t_info = self.build_trade_info
+  	t_info.pay_info = info
+  	t_info.save
+  end
 
 	aasm do 
 		state :order_placed, initial: true

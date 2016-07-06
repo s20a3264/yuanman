@@ -10,6 +10,8 @@ gem "simple_form"
 gem "aasm"
 gem 'will_paginate', '~> 3.1.0'
 gem "pay2go"
+gem 'httpclient'
+gem "figaro"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -10,6 +10,7 @@
           <th class="hidden-xs">生成時間</th>
           <th>訂購者</th>
           <th>訂單狀態</th>
+          <th>查詢</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +20,7 @@
           <td class="hidden-xs"> <%= order.created_at.to_s(:db) %> </td>
           <td> <%= order.user.email %></td>
           <td> <%= render_order_state(order) %> </td>
+          <td><%= render "state_query", order: order %></td>
         </tr>
         <% end %>
     

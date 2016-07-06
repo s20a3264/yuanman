@@ -7,12 +7,17 @@ class Pay2goService
     @total_price = order.for_pay2go
   end
 
-  def check_value
-    d = Digest::SHA256.hexdigest(url_params).upcase
+  def check(code)
+    @code = self.send(code)
+    d = Digest::SHA256.hexdigest(@code).upcase
   end
 
-  def url_params
+  def check_value
     "HashKey=#{Pay2go.hash_key}&Amt=#{@total_price}&MerchantID=#{Pay2go.merchant_id}&MerchantOrderNo=#{@merchant_order_no}&TimeStamp=#{@timestamp}&Version=1.1&HashIV=#{Pay2go.hash_iv}"
+  end
+
+  def state_query
+    "IV=#{Pay2go.hash_iv}&Amt=#{@total_price}&MerchantID=#{Pay2go.merchant_id}&MerchantOrderNo=#{@merchant_order_no}&Key=#{Pay2go.hash_key}"
   end
 
 end

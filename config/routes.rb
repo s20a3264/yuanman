@@ -7,13 +7,14 @@ Rails.application.routes.draw do
 
   namespace :manager do
     get 'index' => 'core#index'
+    get 'zbc' => "core#zbc"
     resources :products do
       member do
         post :off_shelf
         post :on_shelf
       end
     end    
-    resources :orders do 
+    resources :orders do
       member do
         post :cancel
         post :shipped
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
 
   resources :orders  do 
     member do 
-      get :pay_with_credit_card
+      post :return
       post :pay2go_cc_notify
       post :pay2go_atm_complete
     end

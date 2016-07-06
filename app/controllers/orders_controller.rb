@@ -28,36 +28,32 @@ class OrdersController < ApplicationController
 	end
 
 	def show
-		@order = Order.find_by(token: params[:id])
+		@order = current_user.orders.find_by(token: params[:id])
 		@order_info = @order.info
 		@order_items = @order.items
 	end
 
-	def pay_with_credit_card
-		@order = Order.find_by(token: params[:id])
-		@order.set_payment_with!("credit_card")
-		@order.make_payment!
-
-		flash[:notice] =  "成功完成付款"
-		redirect_to account_orders_path
+	def return
+		@order = Order.find_by_token(params[:id])
+		if params['Status'] == "SUCCESS"
+	    render text: "交易成功"
+	  else
+	  	render text: "交易失敗,#{params["Message"]}"
+	  end	
 	end
 
   def pay2go_cc_notify
     @order = Order.find_by_token(params[:id])
+		json_data = JSON.parse(params["JSONData"])
 
-    if params["Status"] == "SUCCESS"
-
+    if json_data['Status'] == "SUCCESS"
+    	@order.set_payment_with!("credit_card")
       @order.make_payment!
+      @order.trade_info_save(json_data['Result'])
 
-      if @order.is_paid?
-        flash[:success] = "信用卡付款成功"
-
-        redirect_to account_orders_path
-      else
-        render text: "信用卡付款失敗"
-      end
+      flash[:success] = "信用卡付款成功"
     else
-      render text: "交易失敗"
+      render text: "交易失敗,#{params["Message"]}"
     end
   end
 
@@ -99,5 +95,8 @@ class OrdersController < ApplicationController
 
 
 		"很抱歉，由於商品庫存不足，您的購物車內商品 ： #{c_message}#{d_message}"	
+	end
+
+	def check_code(params)
 	end
 end

@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_complete, :gg]
 
 
+
 	def create
 		@order = current_user.orders.build(order_params)
 		error_info = current_cart.stock_check

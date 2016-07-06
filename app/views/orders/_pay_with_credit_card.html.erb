@@ -4,9 +4,11 @@
   <%= hidden_field_tag "LoginType",       "0" %>
   <%= hidden_field_tag "RespondType",     "JSON" %>
   <%= hidden_field_tag "Version",         "1.2" %>
+  <%= hidden_field_tag "TradeLimit",      "300" %>
 
   <%= hidden_field_tag "ItemDesc",        "order_sample" %>
   <%= hidden_field_tag "MerchantOrderNo", order.order_number %>
+  <%= hidden_field_tag "Email",           current_user.email %>
   <%= hidden_field_tag "TimeStamp",       order.created_at.to_i %>
   <%= hidden_field_tag "Amt",             order.total %>
 

@@ -17,7 +17,7 @@
         <% @orders.each do |order| %>
         <tr>
           <td> <%= link_to(order.order_number, manager_order_path(order) ) %> </td>
-          <td class="hidden-xs"> <%= order.created_at.to_s(:db) %> </td>
+          <td class="hidden-xs"> <%= order.created_at.localtime.to_s(:db) %> </td>
           <td> <%= order.user.email %></td>
           <td> <%= render_order_state(order) %> </td>
           <td><%= render "state_query", order: order %></td>

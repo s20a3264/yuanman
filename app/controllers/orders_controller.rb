@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-	before_action :authenticate_user!, except: [:gg, :pay2go_cc_notify, :pay2go_atm_complete]
+	before_action :authenticate_user!, except: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_atm_complete]
 
 	before_action :cart_items_to_hash, only: [:create]
 
-	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_complete, :gg]
+	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_complete, :pay2go_cc_return]
 
 
 
@@ -34,13 +34,24 @@ class OrdersController < ApplicationController
 		@order_items = @order.items
 	end
 
-	def gg
+	def pay2go_cc_return
+		@order = Order.find_by_token(params[:id])
 		json_data = JSON.parse(params["JSONData"])
-		if json_data['Status'] == "SUCCESS"
+
+		if json_data['Status'] == "SUCCESS" && @order.is_paid == false
+			@order.make_payment!
+    	@order.set_payment_with!("credit_card")
+      @order.trade_info_save(json_data['Result'])
+
+			flash[:success] = "信用卡付款完成"
+			redirect_to order_path(@order)
+		elsif json_data['Status'] == "SUCCESS" 
 			flash[:success] = "信用卡付款成功"
-			redirect_to root_path
+			redirect_to order_path(@order.token)
 		else
-			render text: "交易失敗,#{json_data["Message"]}"
+			flash[:warning] = "交易失敗,#{json_data["Message"]}"
+
+			redirect_to order_path(@order.token)
 		end	
 	end
 
@@ -48,14 +59,10 @@ class OrdersController < ApplicationController
     @order = Order.find_by_token(params[:id])
 		json_data = JSON.parse(params["JSONData"])
 
-    if json_data['Status'] == "SUCCESS"
-    	@order.set_payment_with!("credit_card")
+    if json_data['Status'] == "SUCCESS" && @order.is_paid == false
       @order.make_payment!
+    	@order.set_payment_with!("credit_card")
       @order.trade_info_save(json_data['Result'])
-
-      flash[:success] = "信用卡付款成功"
-    else
-      render text: "交易失敗,#{json_data["Message"]}"
     end
   end
 

@@ -1,4 +1,4 @@
-<%= form_tag "https://capi.pay2go.com/MPG/mpg_gateway", method: :post do  %>
+<%= form_tag ENV['pay2go_service_url'], method: :post do  %>
 
   <%= hidden_field_tag "MerchantID",      Pay2go.merchant_id %>
   <%= hidden_field_tag "LoginType",       "0" %>
@@ -11,7 +11,7 @@
   <%= hidden_field_tag "Amt",             order.for_pay2go %>
 
   <%= hidden_field_tag "CREDIT",          "1" %>
-  <%= hidden_field_tag "ReturnURL",       gg_url %>
+  <%= hidden_field_tag "ReturnURL",       pay2go_cc_return_order_url(order.token)  %>
   <%= hidden_field_tag "NotifyURL",       pay2go_cc_notify_order_url(order.token) %>
   <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>
 

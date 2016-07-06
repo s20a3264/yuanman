@@ -40,10 +40,12 @@ Rails.application.routes.draw do
 
   resources :orders  do 
     member do 
-      post :return
       post :pay2go_cc_notify
       post :pay2go_atm_complete
     end
+    collection do 
+      post :gg
+    end  
   end   
 
   namespace :account do 

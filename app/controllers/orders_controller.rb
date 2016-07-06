@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-	before_action :authenticate_user!, except: [:pay2go_cc_notify, :pay2go_atm_complete]
+	before_action :authenticate_user!, except: [:pay2go_cc_notify, :pay2go_atm_complete, :gg]
 
 	before_action :cart_items_to_hash, only: [:create]
 
-	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_complete]
+	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_complete, :gg]
 
 
 	def create
@@ -33,13 +33,11 @@ class OrdersController < ApplicationController
 		@order_items = @order.items
 	end
 
-	def return
-		@order = Order.find_by_token(params[:id])
+	def gg
 		if params['Status'] == "SUCCESS"
-	    render text: "交易成功"
-	  else
-	  	render text: "交易失敗,#{params["Message"]}"
-	  end	
+			lash[:success] = "信用卡付款成功"
+			redirect_to root_path
+		end	
 	end
 
   def pay2go_cc_notify

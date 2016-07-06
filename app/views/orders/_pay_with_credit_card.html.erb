@@ -8,7 +8,7 @@
   <%= hidden_field_tag "ItemDesc",        "order_sample" %>
   <%= hidden_field_tag "MerchantOrderNo", order.order_number %>
   <%= hidden_field_tag "TimeStamp",       order.created_at.to_i %>
-  <%= hidden_field_tag "Amt",             order.for_pay2go %>
+  <%= hidden_field_tag "Amt",             order.total %>
 
   <%= hidden_field_tag "CREDIT",          "1" %>
   <%= hidden_field_tag "ReturnURL",       pay2go_cc_return_order_url(order.token)  %>

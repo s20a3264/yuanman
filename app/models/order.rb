@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
 	end
 
 	def calculate_total!(cart)
-		self.total = cart.total_price
+		self.total = cart.total_price + 100
 		self.save
 	end
 
@@ -41,10 +41,6 @@ class Order < ActiveRecord::Base
 
 	def pay!
 		self.update_columns(is_paid: true )
-	end
-
-	def for_pay2go
-		self.total + 100
 	end
 
 	def trade_info_save(info)

@@ -37,15 +37,17 @@ class OrdersController < ApplicationController
 	def pay2go_cc_return
 		@order = Order.find_by_token(params[:id])
 		json_data = JSON.parse(params["JSONData"])
+		result = json_data['Result']
+		check_code = Pay2goService.new(@order, TradeNo: result['TradeNo']).check("check_code")
 
-		if json_data['Status'] == "SUCCESS" && @order.is_paid == false
+		if json_data['Status'] == "SUCCESS" && @order.is_paid == false && check_code == result['CheckCode']
 			@order.make_payment!
     	@order.set_payment_with!("credit_card")
       @order.trade_info_save(json_data['Result'])
 
 			flash[:success] = "信用卡付款完成"
-			redirect_to order_path(@order)
-		elsif json_data['Status'] == "SUCCESS" 
+			redirect_to order_path(@order.token)
+		elsif json_data['Status'] == "SUCCESS" && check_code == result['CheckCode']
 			flash[:success] = "信用卡付款成功"
 			redirect_to order_path(@order.token)
 		else
@@ -58,8 +60,10 @@ class OrdersController < ApplicationController
   def pay2go_cc_notify
     @order = Order.find_by_token(params[:id])
 		json_data = JSON.parse(params["JSONData"])
+		result = json_data['Result']
+		check_code = Pay2goService.new(@order, TradeNo: result['TradeNo']).check("check_code")
 
-    if json_data['Status'] == "SUCCESS" && @order.is_paid == false
+    if json_data['Status'] == "SUCCESS" && @order.is_paid == false && check_code == result['CheckCode']
       @order.make_payment!
     	@order.set_payment_with!("credit_card")
       @order.trade_info_save(json_data['Result'])
@@ -106,6 +110,5 @@ class OrdersController < ApplicationController
 		"很抱歉，由於商品庫存不足，您的購物車內商品 ： #{c_message}#{d_message}"	
 	end
 
-	def check_code(params)
-	end
+
 end

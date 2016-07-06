@@ -35,11 +35,12 @@ class OrdersController < ApplicationController
 	end
 
 	def gg
-		if params['Status'] == "SUCCESS"
+		json_data = JSON.parse(params["JSONData"])
+		if json_data['Status'] == "SUCCESS"
 			flash[:success] = "信用卡付款成功"
 			redirect_to root_path
 		else
-			render text: "交易失敗,#{JSON.parse(params["JSONData"])}"
+			render text: "交易失敗,#{json_data["Message"]}"
 		end	
 	end
 

@@ -13,7 +13,7 @@ class Pay2goService
   end
 
   def check_value
-    "HashKey=#{Pay2go.hash_key}&Amt=#{@total_price}&MerchantID=#{Pay2go.merchant_id}&MerchantOrderNo=#{@merchant_order_no}&TimeStamp=#{@timestamp}&Version=1.1&HashIV=#{Pay2go.hash_iv}"
+    "HashKey=#{ENV['hash_key']}&Amt=#{@total_price}&MerchantID=#{ENV['merchant_id']}&MerchantOrderNo=#{@merchant_order_no}&TimeStamp=#{@timestamp}&Version=1.2&HashIV=#{ENV['hash_iv']}"
   end
 
   def state_query

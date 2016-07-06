@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
 	before_action :cart_items_to_hash, only: [:create]
 
 	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_atm_complete, :gg]
-	skip_before_action :verify_authenticity_token, only: [:gg, :pay2go_cc_notify]
 
 
 
@@ -40,7 +39,7 @@ class OrdersController < ApplicationController
 			flash[:success] = "信用卡付款成功"
 			redirect_to root_path
 		else
-			redirect_to root_path	
+			render text: "交易失敗,#{JSON.parse(params["JSONData"])}"
 		end	
 	end
 
@@ -55,7 +54,7 @@ class OrdersController < ApplicationController
 
       flash[:success] = "信用卡付款成功"
     else
-      render text: "交易失敗,#{params["Message"]}"
+      render text: "交易失敗,#{json_data["Message"]}"
     end
   end
 

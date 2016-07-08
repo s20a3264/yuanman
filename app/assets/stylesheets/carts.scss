@@ -25,7 +25,7 @@
 .th {
 	height: 50px;
 	line-height: 50px;
-	background: #222;
+	background: $mc;
 	color: #fff;
 }
 
@@ -91,7 +91,7 @@
 
 #note {
 	padding: 10px;
-	background: $blue1;
+	background: $mc;
 	color: #fff;
 	#note-title {
 		font-weight: bold;
@@ -102,8 +102,9 @@
 		a {
 			background: #fff;
 			padding: 2px;
+			color: $mc;
 			&:hover {
-				background: $blue2;
+				background: darken($mc, 10%);
 				color: #fff;
 			}
 		}
@@ -126,35 +127,16 @@
 
 /* checkout */
 
-.checkout-page-top {
-	padding-bottom: 50px;
+.checkout-order-table {
+	border-bottom: 2px solid #eee;	
 }
 
-
-
-.checkout-page-buttom {
-	background: #eee;
-	padding-bottom: 50px;
-}
-
-
-
-
-.info-price {
-	width: 30px;
-}
-
-.info-x {
-	width: 5px;
-	margin-right:10px;
-}
-
-.info-quantity {
-	width: 5px;
+.under-h2 {
+	margin: 0 0 25px 15px;
 }
 
 .money-info {
-	padding-right: 10px;
+	padding-right: 20px;
 }
 
 .money-box {
@@ -168,16 +150,29 @@
 
 .money-type {
 	text-align: left;
-	width: 150px;
+	width: 190px;
 	display: inline-block;
 }
 
-.colon {
-	width: 15px;
+.dollar-sign {
+	width: 5px;
 	display: inline-block;	
 }
 
-.checkout-form {
-	padding: 0 15px;
+.money {
+	text-align:right;
+	min-width: 45px;
+	display: inline-block;
+}
+
+.shipping-info-form {
+	margin-bottom: 40px;
+	div {
+		padding: 0 10px;
+	}
+	.btn-normal {
+		margin-left: 20px;
+		margin-top: 20px;
+	}
 }
 

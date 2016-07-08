@@ -1,13 +1,13 @@
-<div>
+<div class="state-option under-h2">
 	<% case order.aasm_state %>
 	<% when "order_placed" %>
 		<%= link_to("取消訂單",
 								cancel_account_order_path(order),
-								class: "btn btn-default btn-sm", method: :post) %>
+								class: "btn-small", method: :post) %>
 	<% when "paid" %>
 		<%= link_to("取消訂單",
 								cancel_account_order_path(order),
-								class: "btn btn-default btn-sm", method: :post) %>
+								class: "btn-small", method: :post) %>
 		
 	<% end %>	
 </div>

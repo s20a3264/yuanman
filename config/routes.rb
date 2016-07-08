@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :carts  do 
     collection do 
-      post :checkout
+      get :checkout
       post :refresh
       delete :delete_cart_item
       delete :clean

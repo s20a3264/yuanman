@@ -1,3 +1,47 @@
-// Place all the styles related to the orders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.checkout-order {
+	margin-top: 60px;
+	margin-bottom: 60px;
+	border: 3px solid $mc;
+	background: #fff;
+	max-width: 1000px;
+	h2 {
+		margin: 25px 0 20px 15px;
+		display: block;
+	}
+	.p-title {
+		min-width: 140px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+.checkout-order {
+	margin-top: 80px;
+	margin-left: 10%;
+	margin-right: 10%;
+	}
+}
+
+
+/* pay-with */
+
+.select-pay {
+	height: 60px;
+	line-height: 60px;
+	width: 100%;
+	background: #eee;
+	font-size: 17px;
+}
+
+.pay-with {
+	display: block;
+	margin: 10px;
+}
+
+@media screen and (min-width: 768px) {
+	.pay-with {
+		display: inline-block;
+		float:left;
+		width: 48%;
+		margin: 10px 1%;
+	}
+}	

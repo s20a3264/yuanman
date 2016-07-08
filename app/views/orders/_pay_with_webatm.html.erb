@@ -17,5 +17,5 @@
   <%= hidden_field_tag "NotifyURL",       pay2go_wa_notify_order_url(order.token) %>
   <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>
 
-  <%= submit_tag "使用WebATM付款", class: "btn btn-danger btn-lg btn-default" %>
+  <%= submit_tag "WebATM", class: "btn-sw" %>
 <% end %>

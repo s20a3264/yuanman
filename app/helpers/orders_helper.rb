@@ -1,22 +1,20 @@
 module OrdersHelper
 	#單項商品小計
-	def order_sum(price, quantity)
-		price * quantity
+	def order_item_sum(item)
+		item.price * item.quantity
 	end
 
 	#商品總價
 	def render_order_total_price(items)
 		sum = 0
 		items.each do |item|
-			sum += order_sum(item.price, item.quantity)
+			sum += order_item_sum(item)
 		end
 		sum	
 	end
 
-	#訂單總金額
-	def render_order_total_amount
-		render_order_total_price(@order_items) + 100
-	end
+
+
 
 	#AASM翻譯
 	def render_order_state(order)

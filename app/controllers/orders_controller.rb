@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
 
 	def create
 		@order = current_user.orders.build(order_params)
+		current_user.info_build(order_params) if !current_user.info["shipping_name"]
 		error_info = current_cart.stock_check
 		if error_info.empty?
 			if @order.save
@@ -26,7 +27,7 @@ class OrdersController < ApplicationController
 				render 'carts/checkout'	
 			end
 		else
-			flash[:danger] = error_message(error_info)
+			flash[:warning] = error_message(error_info)
 
 			redirect_to carts_path
 		end		

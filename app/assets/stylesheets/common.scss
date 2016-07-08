@@ -5,16 +5,21 @@ body {
   color: $gray2;
   font-family:  Helvetica, sans-serif;
   font-size: 15px;
+  background: #f1f2f3;
+  word-wrap: break-all;
   .container-fluid  {
   }
   a {
+    color: $brown;
     font-family:  Helvetica, sans-serif;
+    font-weight: bold;
     &:hover {
       text-decoration: none;
+      color: darken($brown, 10%);
     }
   }
   .mt {
-    margin-top: 40px;
+    margin-top: 60px;
   }
   .md  {
     margin-bottom: 80px;
@@ -53,6 +58,12 @@ textarea {
   border-radius: 4px;
 }
 
+/* table */
+
+table {
+  word-break: break-all;
+}
+
 .table > thead > tr > th {
   vertical-align: middle;
 }
@@ -61,8 +72,11 @@ textarea {
   vertical-align: middle;
 }
 
+.high-table {
+  height: 60px;
+}
 
-/* table */
+
 .div-table {
   display: table;
   width:100%;
@@ -106,42 +120,6 @@ textarea {
 }
 
 
-
-/* button */
-
-.button-1 {
-  border: 2px solid $gray2;
-  padding: 5px 8px;
-  background: #fff;
-  color: $gray2;
-  &:hover {
-    background: $gray2;
-    color: #fff;
-  }
-}
-
-
-.button-blue {
-  border: 2px solid $blue1;
-  padding: 5px 8px;
-  background:  $blue1;
-  color: #fff;
-  &:hover {
-    border: 2px solid darken($blue1, 10%);
-    background:darken($blue1, 10%);
-    color: #fff;
-  }
-}
-
-.button-disabled {
-  border: 2px solid $gray1;
-  padding: 8px 10px;
-  background: $gray1;
-  color: #000;
-  opacity: 0.5;
-  filter:alpha(opacity=50);
-  font-weight: bold;
-}
 
 
 /* filter */
@@ -195,3 +173,8 @@ textarea {
   color: $red1;
 }
 
+/* font */
+
+.monospace {
+  font-family: 'Monaco', 'Andale Mono';
+}

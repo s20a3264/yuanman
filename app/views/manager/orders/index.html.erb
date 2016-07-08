@@ -16,7 +16,7 @@
       <tbody>
         <% @orders.each do |order| %>
         <tr>
-          <td> <%= link_to(order.order_number, manager_order_path(order) ) %> </td>
+          <td> <%= link_to(order.order_number, manager_order_path(order), class: "monospace" ) %> </td>
           <td class="hidden-xs"> <%= order.created_at.localtime.to_s(:normal) %> </td>
           <td> <%= order.user.email %></td>
           <td> <%= render_order_state(order) %> </td>

@@ -14,5 +14,5 @@
   <%= hidden_field_tag "NotifyURL",       pay2go_atm_complete_order_url(order.token) %>
   <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>
 
-  <%= submit_tag "使用ATM付款", :class => "btn btn-danger btn-lg btn-default" %>
+  <%= submit_tag "ATM轉帳", :class => "btn-sw" %>
 <% end %>

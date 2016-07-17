@@ -5,4 +5,10 @@ zh-TW:
       paid: 已付款
       shipped: 已出貨
       order_cancelled: 取消訂單
+      return_processing: 退貨處理中
       good_returned: 退貨
+      good_return_failed: 退貨失敗
+  payment_method:
+    web_atm: WebATM
+    credit_card: 信用卡一次付清
+

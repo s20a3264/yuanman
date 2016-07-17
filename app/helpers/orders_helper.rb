@@ -30,4 +30,9 @@ module OrdersHelper
 			content_tag(:span, "未付款", class: "red")
 		end		
 	end
+
+	#付款方式翻譯
+	def render_payment_method(method)
+		t("payment_method.#{method}")
+	end
 end

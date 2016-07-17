@@ -147,6 +147,14 @@ table {
 
 /* display */
 
+.bold {
+  font-weight: bold;
+}
+
+.large {
+  font-size: 19px;
+}
+
 .center {
   vertical-align: middle;
   text-align: center;
@@ -162,6 +170,10 @@ table {
 
 .inline {
   display: inline;
+}
+
+.margin-0 {
+  margin: 0;
 }
 
 /* color */

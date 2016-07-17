@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708193500) do
+ActiveRecord::Schema.define(version: 20160710174149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20160708193500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "title"
+    t.string   "user_name"
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
 
   create_table "managers", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -75,11 +87,13 @@ ActiveRecord::Schema.define(version: 20160708193500) do
     t.string   "payment_method"
     t.string   "aasm_state",     default: "order_placed"
     t.string   "order_number"
+    t.jsonb    "trade_info",     default: {}
   end
 
   add_index "orders", ["aasm_state"], name: "index_orders_on_aasm_state", using: :btree
   add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
   add_index "orders", ["token"], name: "index_orders_on_token", using: :btree
+  add_index "orders", ["trade_info"], name: "index_orders_on_trade_info", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.integer  "product_id"

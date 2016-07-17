@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         post :cancel
         post :shipped
         post :return
+        post :return_fail
       end
     end 
   end 
@@ -50,11 +51,17 @@ Rails.application.routes.draw do
 
   namespace :account do 
     resources :orders do 
-      member do 
+      member do
         post :cancel
+        post :ask_for_return
+        post :ask_for_refund
+        get  :message_board
+        get  :message_of_cancel
+        post :create_message
       end
-    end    
-  end    
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

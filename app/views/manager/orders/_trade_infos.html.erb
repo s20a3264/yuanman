@@ -1,0 +1,57 @@
+<table class="table table-striped table-bordered margin-0">
+  <tbody>
+    <tr>
+      <td class="high-table bold">
+        訂購人電子郵件
+      </td>
+    </tr>
+    <tr>
+      <td class="high-table">
+        <%= order.user.email %>
+      </td>
+    </tr>
+    <tr>
+      <td class="high-table bold">
+        訂單編號
+      </td>
+    </tr>
+    <tr>
+      <td class="high-table">
+        <span class="monospace"><%= order.order_number %></span>
+      </td>
+    </tr>
+
+    <% if order.is_paid %>
+      <tr>
+        <td class="high-table bold">
+          付款方式
+        </td>
+      </tr>
+      <tr>
+        <td class="high-table">
+          <%= render_payment_method(order.payment_method) %>
+        </td>
+      </tr>      
+      <tr>
+        <td class="high-table bold">
+          付款時間
+        </td>
+      </tr>
+      <tr>
+        <td class="high-table">
+          <%= order.trade_info["PayTime"] %>
+        </td>
+      </tr>
+      <tr>
+        <td class="high-table bold">
+          交易金額
+        </td>
+      </tr>
+      <tr>
+        <td class="high-table">
+          <span class="small">NTD</span><%= order.trade_info["Amt"] %>
+        </td>
+      </tr>                  
+    <% end %>
+  </tbody>
+</table>

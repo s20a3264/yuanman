@@ -1,0 +1,35 @@
+<%= render "common/error_messages", var: @comment %>
+<div class="mt md">
+	<h2>買賣留言板</h2>
+
+	<div class="message-board">
+		<% @comments.each do |c| %>
+			<% if !c.id.nil? %>
+			<div class="comment-body clearfix">
+				<div>
+					<%= render_comment_title(c) %>
+				</div>
+				<span class="large"><%= c.user_name %>： </span>
+				<div class="comment-content"><%= simple_format(c.content) %></div>
+				<span class="comment-time pull-right"><%= c.created_at.to_s(:normal) %></span>
+			</div>
+				
+			<hr class="hr-2">
+			<% end %>
+		<% end %>	
+		</div>
+
+		<div class="new-message">
+			<h2>留言給我們</h2>
+			
+			<%= form_for([@order, @comment], {url: create_message_account_order_path(@order),
+			 method: :post })do |f| %>
+			
+				<%= f.hidden_field :user_name, value: @order.info.shipping_name %>
+
+				<%= f.text_area :content, class: "new-message-area" %>
+
+				<%= f.submit "送出", class: "btn-normal" %>
+				<% end %>
+		</div>
+</div>

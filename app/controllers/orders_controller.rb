@@ -41,10 +41,7 @@ class OrdersController < ApplicationController
 
 	def pay2go_cc_return
 		if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
-			@order.make_payment!
-    	@order.set_payment_with!("credit_card")
-      @order.trade_info_save(@json_data['Result'])
-
+			@order.complete_payment("credit_card", @json_data['Result'])
 			flash[:success] = "信用卡付款完成"
 			redirect_to order_path(@order.token)
 		elsif @json_data['Status'] == "SUCCESS" && @check_code == @result['CheckCode']
@@ -52,25 +49,19 @@ class OrdersController < ApplicationController
 			redirect_to order_path(@order.token)
 		else
 			flash[:warning] = "交易失敗,#{@json_data["Message"]}"
-
 			redirect_to order_path(@order.token)
 		end	
 	end
 
   def pay2go_cc_notify
     if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
-      @order.make_payment!
-    	@order.set_payment_with!("credit_card")
-      @order.trade_info_save(@json_data['Result'])
+    	 @order.complete_payment("credit_card", @json_data['Result'])
     end
   end
 
   def pay2go_wa_return
 		if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
-			@order.make_payment!
-    	@order.set_payment_with!("web_atm")
-      @order.trade_info_save(@json_data['Result'])
-
+			@order.complete_payment("web_atm", @json_data['Result'])
 			flash[:success] = "WebATM付款完成"
 			redirect_to order_path(@order.token)
 		elsif @json_data['Status'] == "SUCCESS" && @check_code == @result['CheckCode']
@@ -85,9 +76,7 @@ class OrdersController < ApplicationController
 
   def pay2go_wa_notify
   	if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
-      @order.make_payment!
-    	@order.set_payment_with!("web_atm")
-      @order.trade_info_save(@json_data['Result'])
+  		 @order.complete_payment("web_atm", @json_data['Result'])
   	end
   end
 

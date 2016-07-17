@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
 
 	has_many :items, class_name: "OrderItem", dependent: :destroy
 	has_one  :info,  class_name: "OrderInfo", dependent: :destroy
-	has_one  :trade_info, dependent: :destroy
+	has_many :comments, as: :commentable
 
 	accepts_nested_attributes_for :info
 
@@ -35,42 +35,66 @@ class Order < ActiveRecord::Base
 		self.save
 	end
 
-	def set_payment_with!(method)
-		self.update_columns(payment_method: method )
-	end
-
 	def pay!
 		self.update_columns(is_paid: true )
 	end
 
-	def trade_info_save(info)
-		t_info = self.build_trade_info
-  	t_info.pay_info = info
-  	t_info.save
+	def complete_payment(method, info)
+		self.make_payment!
+		self.update_columns(payment_method: method, trade_info: info)
   end
 
 	aasm do 
 		state :order_placed, initial: true
+		state :number_received
 		state :paid
 		state :shipped
+		state :refund_processing
 		state :order_cancelled
+		state :return_processing
 		state :good_returned
+		state :good_return_failed
+
+		event :take_a_number do
+			transitions from: :order_placed,						to: :number_received
+		end
+		
+		event :nonreal_time_payment, after_commit: :pay! do
+			transitions from: :number_received,					to: :paid
+		end
 
 		event :make_payment, after_commit: :pay! do 
-			transitions from: :order_placed, to: :paid
+			transitions from: :order_placed, 						to: :paid
 		end
 		
 		event :ship do 
-			transitions from: :paid, 			   to: :shipped
+			transitions from: :paid, 										to: :shipped
+		end
+
+		event :cancell_payment_order do 
+			transitions from: :paid,										to: :refund_processing 
 		end
 		
-		event :return_good do 
-			transitions from: :shipped,			 to: :good_returned
+		event :refund_completed do
+			transitions from: :refund_processing,				to: :order_cancelled
 		end	
 
 		event :cancell_order do 
-			transitions from: [:order_placed, :paid], to: :order_cancelled
+			transitions from: [:order_placed, :paid], 	to: :order_cancelled
 		end	
+
+		event :ask_for_good_returned do
+			transitions from: :shipped, 								to: :return_processing
+		end
+		
+		event :return_good do 
+			transitions from: :return_processing,			  to: :good_returned
+		end	
+		
+		event :return_fail do
+			transitions from: :return_processing, 			to: :good_return_failed
+		end		
+
 	end	
 
 end

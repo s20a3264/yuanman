@@ -1,23 +1,30 @@
-<div>
+<div class="under-h2">
 	<% case order.aasm_state %>
 	<% when "order_placed" %>
 		<%= link_to("取消訂單",
 								cancel_manager_order_path(order),
-								class: "btn btn-default btn-sm", method: :post) %>
+								class: "btn-small", method: :post, data: { confirm: "確定取消訂單？"}) %>
 	<% when "paid" %>
-		<%= link_to("取消訂單",
-								cancel_manager_order_path(order),
-								class: "btn btn-default btn-sm", method: :post) %>
 		<%= link_to("出貨",
 								shipped_manager_order_path(order),
-								class: "btn btn-default btn-sm", method: :post) %>
-	<% when "shipped" %>
+								class: "btn-small", method: :post) %>	
+		<%= link_to("取消訂單",
+								cancel_manager_order_path(order),
+								class: "btn-small", method: :post, data: { confirm: "確定取消訂單？"}) %>
+	<% when "return_processing" %>
 		<%= link_to("退貨",
 				return_manager_order_path(order),
-				class: "btn btn-default btn-sm", method: :post) %>
+				class: "btn-small", method: :post, data: { confirm: "確定同意退貨？"}) %>
+		<%= link_to("拒絕退貨",
+				return_fail_manager_order_path(order),
+				class: "btn-small", method: :post, data: { confirm: "確定拒絕退貨？"}) %>				
+	<% when "shipped" %>
+		<span class="label label-default">已出貨</span>				
 	<% when "order_cancelled" %>
 		<span class="label label-default">訂單已取消</span>
 	<% when "good_returned" %>
-		<span class="label label-default">已退貨</span>
-	<% end %>	
+		<span class="label label-default">退貨處理完成</span>
+	<% when "good_return_failed" %>
+		<span class="label label-default">退貨失敗</span>
+	<% end %>
 </div>

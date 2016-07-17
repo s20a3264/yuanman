@@ -1,11 +1,11 @@
 <% if var.errors.any? %>
 <div id="error_explanation">
-	<div class="alert alert-danger">
+	<div class="alert alert-warning">
 		抱歉，有<%= var.errors.count %>個小問題.
 	</div>
 	<ul>
-		<% var.errors.full_messages.each do |key, msg| %>
-		<li><%= key %> <%= msg %></li>
+		<% var.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
 		<% end %>
 	</ul>
 </div>

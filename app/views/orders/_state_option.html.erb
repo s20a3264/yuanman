@@ -6,15 +6,17 @@
 		<%= link_to "取消訂單",  message_of_cancel_account_order_path(order.token), class: "btn-small" %>
 	<% when "shipped" %>
 		<%= link_to("申請退貨",
-				ask_for_return_account_order_path(order),
-				class: "btn-small", method: :post, data: { confirm: "申請退貨前請先閱讀退貨須知！"}) %>
+				message_of_return_account_order_path(order.token),
+				class: "btn-small", data: { confirm: "申請退貨前請先閱讀退貨須知！"}) %>
+	<% when "refund_processing" %>
+		<span class="label label-default">退款作業處理中</span>					
 	<% when "return_processing" %>
-		<span class="label label-default">退貨處理中</span>				
+		<span class="label label-default">退貨作業處理中</span>				
 	<% when "order_cancelled" %>
 		<span class="label label-default">訂單已取消</span>
 	<% when "good_returned" %>
 		<span class="label label-default">已接受退貨</span>	
 	<% when "good_return_failed" %>
-		<span class="label label-default">退貨請求被拒絕</span>			
+		<span class="label label-default">不符合退貨條件</span>			
 	<% end %>	
 </div>

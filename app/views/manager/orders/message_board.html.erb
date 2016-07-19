@@ -5,12 +5,12 @@
 	<%= render "messages" %>
 
 	<div class="new-message">
-		<h2>留言給我們</h2>
+		<h2>留言給買家</h2>
 		
-		<%= form_for([@order, @comment], {url: create_message_account_order_path(@order),
+		<%= form_for([@order, @comment], {url: create_message_manager_order_path(@order),
 		 method: :post })do |f| %>
 		
-			<%= f.hidden_field :user_name, value: @order.info.shipping_name %>
+			<%= f.hidden_field :user_name, value: "圓滿生機" %>
 
 			<%= f.text_area :content, placeholder: "輸入新留言....", class: "new-message-area" %>
 

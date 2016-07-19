@@ -9,21 +9,31 @@ class Account::OrdersController < ApplicationController
 	def cancel
 		@order = Order.find_by(id: params[:id])
 		@comment = @order.comments.build(comment_params)
-		@comment.save
-		@order.cancell_order! 
-		flash[:success] = "訂單已取消"
-		redirect_to order_path(@order.token)
+		if @comment.save
+			@order.cancel
+			flash[:success] = "訂單已取消"
+			redirect_to order_path(@order.token)
+		else	
+			render :message_of_cancel
+		end	
 		rescue
 			flash[:warning] = "取消訂單失敗，此訂單可能已經出貨"
 			redirect_to order_path(@order.token)
 	end
 
-	def ask_for_return
+	def request_return
 		@order = Order.find_by(id: params[:id])
-		@order.ask_for_good_returned!
-
-		flash[:success] = "已申請退貨"
-		redirect_to :back
+		@comment = @order.comments.build(comment_params)
+		if @comment.save
+			@order.request_good_returned!
+			flash[:success] = "已申請退貨"
+			redirect_to order_path(@order.token)
+		else
+			render "message_of_return"
+		end
+		rescue
+			flash[:warning] = "申請退貨失敗，請再試一次"
+			redirect_to order_path(@order.token)			
 	end
 
 	# message board
@@ -49,6 +59,11 @@ class Account::OrdersController < ApplicationController
 	def message_of_cancel
 		@order = Order.find_by(token: params[:id])
 		@comment = @order.comments.build
+	end
+
+	def message_of_return
+		@order = Order.find_by(token: params[:id])
+		@comment = @order.comments.build		
 	end
 
 	private

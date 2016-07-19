@@ -19,7 +19,7 @@ class CartsController < ApplicationController
 			flash[:warning] = "您的購物車內沒有商品"
 			redirect_to root_path
 		end	
-		@user_info = current_user.info if current_user.allow_use_of_info
+		@user_info = current_user.info if current_user.pre_use_info
 		@order = current_user.orders.build
 		@info = @order.build_info
 	end

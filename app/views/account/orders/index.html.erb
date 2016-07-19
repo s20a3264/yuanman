@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th>訂單編號</th>
+        <th>留言</th>
         <th>下單時間</th>
         <th>訂單狀態</th>
       </tr>
@@ -13,6 +14,7 @@
       <% @orders.each do |order| %>
       <tr>
         <td> <%= link_to(order.order_number, order_path(order.token), class: "monospace") %> </td>
+        <td> <%= link_to "買賣留言板", message_board_account_order_path(order.token) %></td>
         <td> <%= order.created_at.localtime.to_s(:normal) %> </td>
         <td> <%= render_order_state(order)  %></td>
       </tr>

@@ -44,6 +44,15 @@ class Order < ActiveRecord::Base
 		self.update_columns(payment_method: method, trade_info: info)
   end
 
+  def cancel
+  	case self.aasm_state
+  	when "order_placed"
+  		self.cancel_order!
+  	when "paid"	
+  		self.cancel_payment_order!
+  	end	
+  end
+
 	aasm do 
 		state :order_placed, initial: true
 		state :number_received
@@ -71,7 +80,7 @@ class Order < ActiveRecord::Base
 			transitions from: :paid, 										to: :shipped
 		end
 
-		event :cancell_payment_order do 
+		event :cancel_payment_order do 
 			transitions from: :paid,										to: :refund_processing 
 		end
 		
@@ -79,11 +88,11 @@ class Order < ActiveRecord::Base
 			transitions from: :refund_processing,				to: :order_cancelled
 		end	
 
-		event :cancell_order do 
+		event :cancel_order do 
 			transitions from: [:order_placed, :paid], 	to: :order_cancelled
 		end	
 
-		event :ask_for_good_returned do
+		event :request_good_returned do
 			transitions from: :shipped, 								to: :return_processing
 		end
 		

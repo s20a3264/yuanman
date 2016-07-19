@@ -1,0 +1,20 @@
+<div class="messages">
+
+	<% if @comments.count == 0 %>
+		<span>目前沒有留言</span>
+	<% else %>	
+	  <% @comments.each do |c| %>
+	  	<% if c.persisted? %>
+	  	  <div class="comment-body clearfix">
+	  	  	<div>
+	  	  		<%= render_comment_title(c) %>
+	  	  	</div>
+	  	  	<span class="large"><%= c.user_name %>： </span>
+	  	  	<div class="comment-content"><%= simple_format(c.content) %></div>
+	  	  	<span class="comment-time pull-right"><%= c.created_at.to_s(:normal) %></span>
+	  	  </div>				
+	  	  <hr class="hr-2">
+	  	<% end %>
+	  <% end %>
+	<% end %>  
+</div>

@@ -18,8 +18,12 @@ Rails.application.routes.draw do
       member do
         post :cancel
         post :shipped
+        post :refund
         post :return
         post :return_fail
+        get  :message_board
+        get  :message_of_cancel
+        post :create_message        
       end
     end 
   end 
@@ -53,10 +57,10 @@ Rails.application.routes.draw do
     resources :orders do 
       member do
         post :cancel
-        post :ask_for_return
-        post :ask_for_refund
+        post :request_return
         get  :message_board
         get  :message_of_cancel
+        get  :message_of_return
         post :create_message
       end
     end

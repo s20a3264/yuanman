@@ -1,6 +1,7 @@
 class Manager::CoreController < ManagerController
 
 	def index
+		@orders = Order.undone_orders
 	end
 
 	def zbc

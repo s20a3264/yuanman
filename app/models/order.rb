@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
 	has_one  :info,  class_name: "OrderInfo", dependent: :destroy
 	has_many :comments, as: :commentable
 
+	scope  :undone_orders, -> {where(undone: true)}
+
 	accepts_nested_attributes_for :info
 
 	before_create :generate_token, :generate_order_number

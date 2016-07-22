@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719154231) do
+ActiveRecord::Schema.define(version: 20160721231948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,12 +88,14 @@ ActiveRecord::Schema.define(version: 20160719154231) do
     t.string   "aasm_state",     default: "order_placed"
     t.string   "order_number"
     t.jsonb    "trade_info",     default: {}
+    t.boolean  "undone",         default: true
   end
 
   add_index "orders", ["aasm_state"], name: "index_orders_on_aasm_state", using: :btree
   add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
   add_index "orders", ["token"], name: "index_orders_on_token", using: :btree
   add_index "orders", ["trade_info"], name: "index_orders_on_trade_info", using: :btree
+  add_index "orders", ["undone"], name: "index_orders_on_undone", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.integer  "product_id"

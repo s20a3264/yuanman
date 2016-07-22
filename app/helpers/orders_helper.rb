@@ -18,9 +18,12 @@ module OrdersHelper
 
 	#AASM翻譯
 	def render_order_state(order)
-		color = order.aasm_state == "paid" ? "green" : "none"
-		content_tag(:span, t("orders.order_state.#{order.aasm_state}"), class: color)
+		content_tag(:span, t("orders.order_state.#{order.aasm_state}"), class: "order-state #{order.aasm_state}")
 	end
+
+	def render_order_state_manager(order)
+		content_tag(:span, t("orders.order_state_manager.#{order.aasm_state}"), class: "order-state #{order.aasm_state}")
+	end	
 
 	#已付款or未付款
 	def render_order_paid_state(order)

@@ -1,0 +1,81 @@
+/* button */
+
+.btn {
+  
+}
+
+.btn-normal {
+  border: 2px solid $mc;
+  padding: 5px 8px;
+  background:  $mc;
+  color: #fff;
+  font-size: 15px;
+  &:hover {
+    border: 2px solid darken($mc, 10%);
+    background:darken($mc, 10%);
+    color: #fff;
+  }
+}
+
+.button-1 {
+  border: 2px solid $gray2;
+  padding: 5px 8px;
+  background: #fff;
+  color: $gray2;
+  &:hover {
+    background: $gray2;
+    color: #fff;
+  }
+}
+
+
+.button-blue {
+  border: 2px solid $blue1;
+  padding: 5px 8px;
+  background:  $blue1;
+  color: #fff;
+  &:hover {
+    border: 2px solid darken($blue1, 10%);
+    background:darken($blue1, 10%);
+    color: #fff;
+  }
+}
+
+.btn-small {
+  border: 2px solid $mc;
+  padding: 5px 8px;
+  background:  $mc;
+  color: #fff;
+  font-size: 12px;
+  &:hover {
+    border: 2px solid darken($mc, 10%);
+    background:darken($mc, 10%);
+    color: #fff;
+  }
+}
+
+.btn-sw {
+  border: 2px solid $mc;
+  padding: auto;
+  height: 60px;
+  text-align: center;
+  width: 100%;
+  background:  $mc;
+  color: #fff;
+  font-size: 15px;
+  &:hover {
+    border: 2px solid darken($mc, 10%);
+    background:darken($mc, 10%);
+    color: #fff;
+  }  
+}
+
+.button-disabled {
+  border: 2px solid $gray1;
+  padding: 8px 10px;
+  background: $gray1;
+  color: #000;
+  opacity: 0.5;
+  filter:alpha(opacity=50);
+  font-weight: bold;
+}

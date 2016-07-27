@@ -1,0 +1,20 @@
+<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-list">
+    		<i class="fa fa-th-list" aria-hidden="true"></i>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="nav-list">
+			<ul class="nav navbar-nav">
+			  <li><%= link_to "Home", root_path %></li>
+			  <li><%= link_to "管理", manager_index_path %></li>
+			  <li><%= link_to "產品列表", manager_products_path %></li>
+			  <li class="product-on-shelf"><%= link_to "產品上架", new_manager_product_path %></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right nav-list">
+			  <li><%= link_to("登出", destroy_manager_session_path, method: :delete) %></li>
+			</ul>
+		</div>
+	</div>	
+</nav>	

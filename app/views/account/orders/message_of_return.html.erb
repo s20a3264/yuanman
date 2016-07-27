@@ -1,0 +1,15 @@
+<%= render "common/error_messages", var: @comment %>
+
+<div class="new-message">
+	<h2>申請退貨</h2>
+	<%= form_for([@order, @comment], {url: request_return_account_order_path(@order), method: :post})do |f| %>
+	
+	<%= f.hidden_field :title, value: "申請退貨" %>
+	<%= f.hidden_field :user_name, value: @order.info.shipping_name %>
+
+	<%= f.label :content, "請簡述申請退貨原因" %>
+	<%= f.text_area :content, class: "new-message-area", placeholder: "在此輸入...."  %>
+
+	<%= f.submit "申請退貨", class: "btn-normal" %>
+	<% end %>
+</div>

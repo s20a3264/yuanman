@@ -1,0 +1,34 @@
+
+    <h2>訂單列表 </h2>
+    
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>訂單編號</th>
+          <th>聯繫買家</th>
+          <th class="hidden-xs">下單時間</th>
+          <th width="80">收件人</th>
+          <th class="hidden-xs">信箱</th>
+          <th>訂單狀態</th>
+          <th>查詢</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+          <td>
+            <%= link_to(order.order_number, manager_order_path(order), class: "monospace" ) %> 
+          </td>
+          <td><%= link_to "買賣留言板", message_board_manager_order_path(order) %></td>
+          <td class="hidden-xs"> <%= order.created_at.localtime.to_s(:normal) %> </td>
+          <td> <%= order.user.info["shipping_name"] %></td>
+          <td class="hidden-xs"><%= order.user.email %></td>
+          <td> <%= render_order_state(order) %> </td>
+          <td><%= render "state_query", order: order %></td>
+        </tr>
+        <% end %>
+    
+      </tbody>
+    </table>
+    <%= paginate @orders %>

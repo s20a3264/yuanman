@@ -1,0 +1,20 @@
+<%= render "common/error_messages", var: @comment %>
+<div class="mt md">
+	<h2>買賣留言板</h2>
+
+	<%= render "messages" %>
+
+	<div class="new-message">
+		<h2>留言給買家</h2>
+		
+		<%= form_for([@order, @comment], {url: create_message_manager_order_path(@order),
+		 method: :post })do |f| %>
+		
+			<%= f.hidden_field :user_name, value: "圓滿生機" %>
+
+			<%= f.text_area :content, placeholder: "輸入新留言....", class: "new-message-area" %>
+
+			<%= f.submit "送出", class: "btn-normal" %>
+			<% end %>
+	</div>
+</div>

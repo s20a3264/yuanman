@@ -1,0 +1,30 @@
+<div class="mt md row">
+	<div class="col-md-6 col-xs-12">
+		<%= image_tag(@product.photo.image.medium.url, alt: @product.title, title: @product.title) %>
+	</div>
+	<div class="col-md-6 col-xs-12">
+		<h2><%= @product.title %></h2>
+		<div><%= simple_format(@product.description) %></div>
+		<div class="product-price">
+			<span id="product-price-nt"> NT$</span>
+			<span id="product-price-number"><%= @product.price %></span>
+		</div>
+
+		<% if @product.quantity == 0 %>
+			<span class="button-disabled pull-right">
+				此商品目前缺貨中
+			</span>
+			
+		<% else %>
+			<%= form_tag({ controller: "products", action: "add_to_cart"}, method: "post") do %>
+			
+				<span>數量 ：</span><br>
+				<%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
+				<%= button_tag(type: "submit", class: "pull-right button-1") do %>
+					<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+					<span> 加入購物車</span>
+				<% end %>
+			<% end %>	
+		<% end %>
+	</div>
+</div>

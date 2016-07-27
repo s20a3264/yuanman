@@ -1,0 +1,80 @@
+.checkout-order {
+	margin-top: 60px;
+	margin-bottom: 60px;
+	border: 3px solid $mc;
+	background: #fff;
+	max-width: 1000px;
+	h2 {
+		margin: 25px 0 15px 15px;
+		display: block;
+	}
+	.p-title {
+		min-width: 140px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+.checkout-order {
+	margin-top: 80px;
+	margin-left: 10%;
+	margin-right: 10%;
+	}
+}
+
+
+/* pay-with */
+
+.select-pay {
+	height: 60px;
+	line-height: 60px;
+	width: 100%;
+	background: #eee;
+	font-size: 17px;
+}
+
+.pay-with {
+	display: block;
+	margin: 10px;
+}
+
+@media screen and (min-width: 768px) {
+	.pay-with {
+		display: inline-block;
+		float:left;
+		width: 48%;
+		margin: 10px 1%;
+	}
+}	
+
+/* order-state */
+
+.order-state {
+	padding: 5px 0;
+	border-radius: 3px;
+	width: 160px;
+	display: block;
+	text-align: center;
+}
+
+.paid {
+	background: $green;
+	color: #fff;
+}
+
+.refund_processing {
+	background: #fd9426;
+	color: #fff;
+}
+
+.return_processing {
+	background: $red1;
+	color: #fff;	
+}
+
+@media screen and (max-width: 768px) {
+	.order-state {
+		padding: 3px 8px;
+		width: 80px;
+		font-size: x-small;
+	}
+}

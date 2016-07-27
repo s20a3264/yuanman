@@ -1,0 +1,30 @@
+<div class="mt cart-page row">
+	<div class="col-md-offset-1 col-md-10 col-sm-12">
+		<div class="center">
+			<div class="cart-page-title">
+				<span class="ur-cart">你的購物車</span> 
+				<%= link_to "(清空購物車)", clean_carts_path, method: :delete,
+				 class: "small clean-cart", data: { confirm: "確定清空購物車？"} %>
+			</div>
+		</div>
+  	
+  	<%= render 'cart_table' %>
+
+
+		<div id="note">
+			<span id="note-title">購物須知：</span>	<br>
+			<div id="note-body">
+				<span><i class="fa fa-caret-right" aria-hidden="true"></i> 每筆訂單需加收運費xx元整</span><br>
+				<span><i class="fa fa-caret-right" aria-hidden="true"></i> 單筆訂單消費滿xx元可享運費全免</span><br>
+				<span><i class="fa fa-caret-right" aria-hidden="true"></i> 運送地區僅限台澎金馬</span><br>
+				<span>
+					<i class="fa fa-caret-right" aria-hidden="true"></i>
+					 更多訊息請詳見 - <%= link_to "關於本店", "#" %>
+				</span>
+			</div>
+		</div>
+
+		<hr>
+	
+	</div>	
+</div>	

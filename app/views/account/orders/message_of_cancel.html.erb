@@ -1,0 +1,15 @@
+<%= render "common/error_messages", var: @comment %>
+
+<div class="new-message">
+	<h2>取消訂單</h2>
+	<%= form_for([@order, @comment], {url: cancel_account_order_path(@order), method: :post})do |f| %>
+	
+	<%= f.hidden_field :title, value: "取消訂單" %>
+	<%= f.hidden_field :user_name, value: @order.info.shipping_name %>
+
+	<%= f.label :content, "請簡述取消訂單原因" %>
+	<%= f.text_area :content, class: "new-message-area"  %>
+
+	<%= f.submit "取消訂單", class: "btn-normal" %>
+	<% end %>
+</div>

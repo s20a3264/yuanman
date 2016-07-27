@@ -1,0 +1,178 @@
+/* carts */
+
+.cart-page-title {
+	margin-right: -70px;
+}
+
+.ur-cart {
+	font-size: 30px;
+}
+
+.clean-cart {
+	color: $gray1;
+	&:hover {
+		color: $red;
+	}
+}
+
+.cart-table {
+}
+
+.cart-page {
+	padding: 0 0 50px 0;
+}
+
+.th {
+	height: 50px;
+	line-height: 50px;
+	background: $mc;
+	color: #fff;
+}
+
+.td-body {
+}
+
+.td-image {
+	width: 30%;
+	border-right: none !important;
+	.remove-cart-item {
+		font-size: 16px;
+		color: $gray2;
+		&:hover {
+			color: $red;
+		}
+	}
+}
+
+.td-item-info {	
+	text-align: left;
+	border-left: none !important;
+}
+
+.td-price {
+	min-width:50px;
+}
+
+.td-sum{
+	min-width:50px;
+}
+
+
+.cart-image {
+	width: 140px;
+	height: 105px;
+}
+
+@media screen and (max-width: 768px) {
+	.td-image {
+		width: 104px;
+	}
+
+	.cart-image {
+		width: 88px;
+		height: 66px;
+	}
+}
+
+.cart-message {
+	min-height: 50px;
+	line-height: 50px;
+	background: #eee;
+	margin: 20px 0;
+	text-align: center;
+	.cart-items-count {
+		color: $red;
+	}
+	.cart-price-total {
+		color: $red;
+		font-size: 18px;
+	}
+}
+
+#note {
+	padding: 10px;
+	background: $mc;
+	color: #fff;
+	#note-title {
+		font-weight: bold;
+		font-size: 16px;
+	}
+	#note-body {
+		margin: 10px 0 0 5px;
+		a {
+			background: #fff;
+			padding: 2px;
+			color: $mc;
+			&:hover {
+				background: darken($mc, 10%);
+				color: #fff;
+			}
+		}
+	}
+}
+
+#cart-bottom-botton {
+	padding: 20px 13% 0 13%;
+	.back {
+			margin-top: 10px;
+	}
+}
+
+
+@media screen and (max-width: 768px) {
+	#cart-bottom-botton {
+		padding: 20px 5% 0 5%;
+	}
+}
+
+/* checkout */
+
+.checkout-order-table {
+	border-bottom: 2px solid #eee;	
+}
+
+.under-h2 {
+	margin: 15px 0 25px 15px;
+}
+
+.money-info {
+	padding-right: 20px;
+}
+
+.money-box {
+}
+
+.border-top {
+	border-top: 2px dashed #444;
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+.money-type {
+	text-align: left;
+	width: 190px;
+	display: inline-block;
+}
+
+.dollar-sign {
+	width: 5px;
+	display: inline-block;	
+}
+
+.money {
+	text-align:right;
+	min-width: 45px;
+	display: inline-block;
+}
+
+.shipping-info-form {
+	margin-bottom: 40px;
+	div {
+		padding: 0 10px;
+	}
+	.btn-normal {
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+}
+

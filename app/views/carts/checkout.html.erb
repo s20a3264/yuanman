@@ -1,0 +1,82 @@
+
+  <div class="checkout-order clearfix">
+
+  	<h2> 購物明細 </h2>
+		
+		<div class="under-h2">
+			<%= link_to "返回購物車", carts_path, class: "btn-small" %>
+		</div>
+
+		<table class="table table-striped checkout-order-table">
+		  <thead>
+		    <tr>
+          <th class="high-table p-title">商品明細</th>
+          <th class="high-table">單價</th>
+          <th class="high-table">數量</th>
+          <th class="high-table">小計</th>
+        </tr>
+		  </thead>
+		  <tbody>
+		    <% current_cart.items.each do |product| %>
+		      <tr>
+		        <td class="high-table p-title">
+		          <%= link_to(product.title, product_path(product)) %>
+		        </td>
+		        <td class="high-table">
+		        	<%= product.price %>
+		        </td>
+		        <td class="high-table">
+		        	<%= find_cart_items_quantity(@cart_items_hash, product) %>
+		        </td>
+		        <td class="high-table">
+		          <span class="small">NTD</span>
+		          <%=  product.price * find_cart_items_quantity(@cart_items_hash, product) %>
+		        </td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
+
+		<div class="clearfix money-info">
+      <div class="pull-right">
+				<div class="money-box">
+					<span class="money-type">商品總價</span>
+					<span class="dollar-sign">$</span>
+					<span class="money"><%= render_cart_total_price( current_cart.items, @cart_items_hash) %></span>
+				</div>      	
+				<div class="money-box">
+					<span class="money-type">運費(郵寄/宅配)</span>
+					<span class="dollar-sign">$</span>
+					<span class="money">100</span>
+				</div>	
+				<div class="money-box border-top">
+        	<span class="money-type">本次消費應付金額</span>
+					<span class="dollar-sign">$</span>
+        	<span class="money"><%= render_total_amount %></span>
+        </div>	
+      </div>
+    </div>
+
+		<hr>
+
+		<h2>訂單資訊</h2>
+
+		<div class="shipping-info-form">
+			<%= simple_form_for @order do |f| %>
+				<%= f.simple_fields_for :info do |info_form| %>
+					<div class="checkout-form">
+						<%= info_form.input :shipping_name, label: "收件人姓名",
+						 input_html: { value:  @user_info["shipping_name"], class: "form-group"} %>
+					</div>
+					<div class="checkout-form">
+						<%= info_form.input :shipping_address, label: "收件人地址",
+						 input_html: { value:  @user_info["shipping_address"], class: "form-group"} %>
+					</div>
+				<% end %>
+				
+					<%= f.submit "確認下單，前往付款", class: "btn-normal", data: { disable_with: "訂單送出中..."} %>
+			<% end %>
+		</div>	
+
+</div>		

@@ -1,0 +1,38 @@
+<div class="products-page">
+	<div class="home-options">
+		<ol>
+			<li class="home-option"><%= link_to  "Home", "#" %></li>
+			<li class="home-option"><%= link_to  "News", "#" %></li>
+			<li class="home-option"><%= link_to  "品牌故事", "#" %></li>
+			<li class="home-option"><%= link_to  "購物須知", "#" %></li>
+			<li class="home-option"><%= link_to  "Q&A ", "#" %></li>
+			<li class="home-option">
+				<%= link_to "#" do %>
+				<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+				<% end %>
+			</li>
+		</ol>
+	</div>
+	<div class="home-bg"></div>
+	
+	<div class="category">
+		<%= link_to "所有商品 \\ All Product", "#" %> 
+	</div>
+
+	<div class="product-items">
+		<% @products.each do |product| %>
+			<div class="product-itme">
+				<%= link_to product_path(product),class: "item-image" do %>
+				<%= image_tag(product.photo.image.thumb.url, alt: product.title, title: product.title) %>
+				<% end %>	</br>
+				<div class="product-item-info">
+					<%= link_to product.title, product_path(product), class: "product-item-title" %>
+					<div class="product-item-description"><%= product.description.truncate(60) %></div>
+					<div class="product-item-price"><em class="red"><%= "NT$#{product.price}" %></em></div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class=" clearfix"></div>
+</div>
+

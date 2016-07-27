@@ -1,0 +1,51 @@
+/* message board */
+
+.messages {
+	padding: 20px;
+	width: 60%;
+	border: 1px solid gray;
+	border-radius: 5px;
+	background: #fff;
+	.comment-title {
+		padding: 3px 5px;
+		margin-bottom: 10px;
+		font-size: x-small;
+		border-radius: 5px;
+		background: $red1;
+		color: #fff;
+	}
+	.comment-body {
+		padding-top: 18px;
+		.comment-content {
+			padding: 5px 0 0 5px;
+		}
+		.comment-time {
+			color: $gray1;
+			font-size: small;
+		}
+	}	
+}
+
+@media screen and (max-width: 768px) {
+	.messages {
+		width: 100%;
+	}
+}
+
+.new-message {
+	margin-top: 80px;
+}
+
+.new-message-area {
+	width:  60%;
+	border: 1px solid gray;
+	border-radius: 5px;
+	max-height: 200px;
+	margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+	.new-message-area {
+		width: 100%;
+	}
+}

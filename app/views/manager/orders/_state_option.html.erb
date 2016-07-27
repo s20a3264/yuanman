@@ -1,0 +1,34 @@
+<div class="under-h2">
+	<% case order.aasm_state %>
+	<% when "order_placed" %>
+		<%= link_to("取消訂單",
+								message_of_cancel_manager_order_path(order),
+								class: "btn-small") %>
+	<% when "paid" %>
+		<%= link_to("出貨",
+								shipped_manager_order_path(order),
+								class: "btn-small", method: :post) %>	
+		<%= link_to("取消訂單",
+								message_of_cancel_manager_order_path(order),
+								class: "btn-small") %>
+	<% when "refund_processing" %>
+		<%= link_to("通知買家退款完成",
+								refund_manager_order_path(order),
+								class: "btn-small", method: :post) %>						
+	<% when "return_processing" %>
+		<%= link_to("退貨",
+				return_manager_order_path(order),
+				class: "btn-small", method: :post, data: { confirm: "確定同意退貨？"}) %>
+		<%= link_to("拒絕退貨",
+				return_fail_manager_order_path(order),
+				class: "btn-small", method: :post, data: { confirm: "確定拒絕退貨？"}) %>				
+	<% when "shipped" %>
+		<span class="label label-default">已出貨</span>				
+	<% when "order_cancelled" %>
+		<span class="label label-default">此訂單已被取消</span>
+	<% when "good_returned" %>
+		<span class="label label-default">退貨處理完成</span>
+	<% when "good_return_failed" %>
+		<span class="label label-default">不符合退貨條件</span>
+	<% end %>
+</div>

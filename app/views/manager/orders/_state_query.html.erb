@@ -1,0 +1,14 @@
+<%= form_tag "https://capi.pay2go.com/API/QueryTradeInfo", method: :post do  %>
+
+  <%= hidden_field_tag "MerchantID",      Pay2go.merchant_id %>
+  <%= hidden_field_tag "RespondType",     "JSON" %>
+  <%= hidden_field_tag "Version",         "1.1" %>
+
+  <%= hidden_field_tag "MerchantOrderNo", order.order_number %>
+  <%= hidden_field_tag "TimeStamp",       order.created_at.to_i %>
+  <%= hidden_field_tag "Amt",             order.total %>
+
+  <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("state_query") %>
+
+  <%= submit_tag "查詢", class: "btn-small" %>
+<% end %>

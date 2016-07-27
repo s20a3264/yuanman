@@ -1,0 +1,35 @@
+<div class="checkout-order clearfix">
+  <h2> 訂單明細 </h2>
+
+  <%= link_to "買賣留言板", message_board_account_order_path(@order.token), class: "under-h2" %>
+
+  <%= render 'state_option', order: @order %>
+
+  <%= render 'order_infos_table' %>
+
+  
+  <% if !@order.is_paid? %>
+    <% if @order.aasm_state == "order_cancelled" %>
+      <p class="text-center">此訂單已被取消</p>
+    <% else %>
+      <div class="select-pay center">
+        請選擇付款方式
+      </div>
+
+      <div class="pay-with">
+        <%= render "pay_with_credit_card", order: @order %>
+      </div>
+      <div class="pay-with">
+        <%= render "pay_with_webatm", order: @order %>
+      </div>
+      <div class="pay-with">
+        <%= render "pay_with_cvs", order: @order %>
+      </div>
+      <div class="pay-with">
+        <%= render "pay_with_atm", order: @order %>
+      </div>     
+    <% end %> 
+  <% else %>
+    <p class="text-center">此訂單已完成付款</p>
+  <% end %>
+</div>

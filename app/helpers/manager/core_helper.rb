@@ -1,0 +1,2 @@
+module Manager::CoreHelper
+end

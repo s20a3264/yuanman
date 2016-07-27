@@ -1,0 +1,61 @@
+<table class="cart-table table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th colspan="2" class="th center">商品資訊</th>
+      <th class="th">單價</th>
+      <th class="th">小計</th>
+    </tr>
+  </thead>
+  <tbody class="td-body">
+    <% @items.each do |product| %>
+      <tr>
+        <td class="td-image">
+          <%= link_to delete_cart_item_carts_path(product_id: product.id, product_title: product.title), 
+          method: :delete, class: "remove-cart-item" do %>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          <% end %>  
+          <%= image_tag(product.photo.image.thumb.url, class: "thumbnail cart-image") %>
+        </td>
+        <td class="td-item-info">
+          <%= link_to(product.title, product_path(product)) %> <br>
+          <%= form_tag({ controller: "carts", action: "refresh"}, method: :post, remote: true) do %>
+            <span>
+            	數量 ： <%= select_tag(:quantity, options_for_select(product_quantity_range(product),
+            							find_cart_items_quantity(@cart_items_hash, product)), onchange: "this.form.submit()" ) %>
+					  <span>
+					  <%= hidden_field_tag :product_id, product.id %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%=  %>
+					<% end %>  	
+        </td>
+        <td class="td-price">
+          <%= product.price %>
+        </td>
+        <td class="td-sum">
+          <span class="small">NT$</span> <%= sum(@cart_items_hash, product) %>
+        </td>
+      </tr>
+    <% end %>
+		<tr>
+			<td colspan="4" class="cart-message">
+  		  購物車內共有<span class="cart-items-count"><%= current_cart.items.count %></span>項商品，
+  		  消費總金額 NT$ 
+  		  <span class="cart-price-total"><%= render_cart_total_price(@items, @cart_items_hash) %></span>
+
+
+        <div id="cart-bottom-botton" class="clearfix">
+          <%= link_to products_path,  class: "back button-1 pull-left" do %>
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <span>繼續選購</span>
+          <% end %>
+               
+          <%= link_to checkout_carts_path, method: :get, class: "btn-normal pull-right" do %>
+            <i class="fa fa-cart-arrow-down fa-2x" aria-hidden="true"></i>
+            <span>前往結帳</span>
+          <% end %>
+        </div>
+
+  		</td>
+		</tr>
+  </tbody>
+</table>

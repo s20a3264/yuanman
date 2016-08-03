@@ -1,4 +1,17 @@
 module OrdersHelper
+	#設定付款時限
+	def set_expire_date(order)
+		date = order.created_at.advance(days: 1)
+		date.to_s(:Ymd)
+	end
+
+	#將總秒數格式化
+	def formatted_duration(total_seconds)
+		hours = total_seconds / (3600)
+		minutes = (total_seconds / 60) % 60
+		seconds = total_seconds % 60
+		"#{hours}#{minutes}#{seconds}"
+	end
 	#單項商品小計
 	def order_item_sum(item)
 		item.price * item.quantity
@@ -12,8 +25,6 @@ module OrdersHelper
 		end
 		sum	
 	end
-
-
 
 
 	#AASM翻譯
@@ -38,4 +49,16 @@ module OrdersHelper
 	def render_payment_method(method)
 		t("payment_method.#{method}")
 	end
+
+	#顯示取號付款資訊
+	def render_payment_info(info)
+		if info["PaymentType"] == "CVS"
+			render 'cvs_payment_info'
+		elsif info["PaymentType"] == "VACC"
+			render 'vacc_payment_info'
+		end			
+	end
+
+
+
 end

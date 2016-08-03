@@ -66,6 +66,12 @@ class Account::OrdersController < ApplicationController
 		@comment = @order.comments.build		
 	end
 
+	#取號資訊
+	def payment_info
+		@order = Order.find_by(token: params[:id])
+		@payment_info = @order.payment_info
+	end
+
 	private
 		def comment_params
 			params.require(:comment).permit(:title, :content, :user_name)

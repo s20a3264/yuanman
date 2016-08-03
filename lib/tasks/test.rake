@@ -20,4 +20,12 @@ task :p => :environment do
 			puts "#{p.id} set undone = false"					
 		end	
 	end	
+end
+
+task :q =>	:environment do
+	Product.all.each do |p|
+		p.quantity = 100
+		p.save
+		print "#{p.title} ok"
+	end
 end		

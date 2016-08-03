@@ -1,0 +1,30 @@
+<%= @payment_info %>
+
+<div class="row mt md">
+	<div class="col-md-8 col-md-offset-2 border">
+		<h3>繳費資訊</h3>
+		<hr>
+    <div>
+    	<span>超商繳費代碼</span><br>
+    	<%= @payment_info["CodeNo"] %>
+    </div>
+    <hr>
+    <div>
+    	<span>繳費金額</span>	<br>
+    	<span class="small">NTD</span><%= @payment_info["Amt"] %>
+    </div>
+    <hr>
+    <div>
+    	<span>繳費期限</span><br>
+    	<%= @order.deadline.to_s(:normal) %>
+    </div>
+    <hr>
+    <div>
+			<span>請在繳費期限前至超商繳費</span><br>
+			<span>超過繳費截期限的未付款訂單將被系統取消</span>	<br>
+			<span>超商代碼繳費詳細操作方法請參照</span><br>
+			<%= link_to "支付操作步驟說明-超商代碼繳費",
+			  "https://www.pay2go.com/info/site_description/payment_teach", target: "_blank" %>
+		</div>
+	</div>
+</div>

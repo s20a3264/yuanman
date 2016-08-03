@@ -13,7 +13,7 @@
   <%= hidden_field_tag "Amt",             order.total %>
 
   <%= hidden_field_tag "WEBATM",          "1" %>
-  <%= hidden_field_tag "ReturnURL",       pay2go_wa_return_order_url(order.token)  %>
+  <%= hidden_field_tag "ReturnURL",       realtime_return_order_url(order.token)  %>
 <!--   <%= hidden_field_tag "NotifyURL",       pay2go_wa_notify_order_url(order.token) %>
  -->  
   <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>

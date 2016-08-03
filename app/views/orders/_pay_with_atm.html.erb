@@ -11,7 +11,8 @@
   <%= hidden_field_tag "Amt",             order.total %>
 
   <%= hidden_field_tag "VACC",            "1" %>
-  <%= hidden_field_tag "NotifyURL",       pay2go_atm_complete_order_url(order.token) %>
+  <%= hidden_field_tag "ReturnURL",       pay2go_atm_return_order_url(order.token)  %>
+<!--   <%= hidden_field_tag "NotifyURL",       pay2go_atm_notify_order_url(order.token) %> -->
   <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>
 
   <%= submit_tag "ATM轉帳", :class => "btn-sw" %>

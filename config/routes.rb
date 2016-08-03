@@ -45,11 +45,17 @@ Rails.application.routes.draw do
 
   resources :orders  do 
     member do 
+      post :realtime_return
+      post :realtime_notify
+      post :non_realtime_customer
+      post :non_realtime_notify
       post :pay2go_atm_complete
       post :pay2go_cc_notify
       post :pay2go_cc_return
       post :pay2go_wa_notify
       post :pay2go_wa_return
+      post :pay2go_atm_return
+      post :pay2go_atm_notify
     end
   end   
 
@@ -62,6 +68,7 @@ Rails.application.routes.draw do
         get  :message_of_cancel
         get  :message_of_return
         post :create_message
+        get  :payment_info
       end
     end
   end

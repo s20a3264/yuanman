@@ -1,14 +1,17 @@
 class OrdersController < ApplicationController
 	before_action :authenticate_user!, except: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
-																							:pay2go_wa_notify, :pay2go_atm_complete]
+																							:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
+																						  :realtime_notify, :non_realtime_customer, :non_realtime_notify]
 
-	before_action :get_pay2go_json, only: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
-		                                   :pay2go_wa_notify,]
+	before_action :set_pay2go_json, only: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
+		                                     :pay2go_wa_notify, :realtime_return, :realtime_notify,
+		                                     :non_realtime_customer, :non_realtime_notify]
 	
 	before_action :cart_items_to_hash, only: [:create]
 
 	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_cc_return, :pay2go_wa_return,
-																:pay2go_wa_notify, :pay2go_atm_complete]
+																:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
+																:realtime_notify, :non_realtime_customer, :non_realtime_notify]
 
 
 	def create
@@ -80,6 +83,49 @@ class OrdersController < ApplicationController
   	end
   end
 
+  def realtime_return
+  	@order.store_trade_info(@result) if @order.trade_info.empty?
+  	if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
+  		@order.complete_payment(@payment_type)
+  		flash[:success] = @message
+			redirect_to order_path(@order.token)
+		elsif @json_data['Status'] == "SUCCESS" && @check_code == @result['CheckCode']
+			flash[:success] = "WebATM付款完成"
+			redirect_to order_path(@order.token)
+		else
+			flash[:warning] = "交易失敗,#{@json_data["Message"]}"
+
+			redirect_to order_path(@order.token)
+		end	  		
+  end
+
+  def realtime_notify
+  	@order.store_trade_info(@result) if @order.trade_info.empty?
+  	if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
+  		 @order.complete_payment(@payment_type)
+  	end  	
+  end
+
+  def non_realtime_customer
+  	if @json_data['Status'] == "SUCCESS"
+  		@order.take_a_number!
+  		@order.store_payment_info(@result)
+  		flash[:success] = "取號成功"
+
+  	  redirect_to payment_info_account_order_path(@order.token)
+  	end
+  	rescue
+  		flash[:warning] = "取號失敗，請重新嘗試或選擇其他付款方式" 
+  		redirect_to order_path(@order.token)
+  end
+
+  def non_realtime_notify
+  	@order.store_trade_info(@result)
+  	if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
+  		 @order.complete_payment(@payment_type)
+  	end    	
+  end
+
   def pay2go_atm_complete
     @order = Order.find_by_token(params[:id])
 
@@ -120,11 +166,32 @@ class OrdersController < ApplicationController
 		"很抱歉，由於商品庫存不足，您的購物車內商品 ： #{c_message}#{d_message}"	
 	end
 
-	def get_pay2go_json
+	def set_pay2go_json
 		@order = Order.find_by_token(params[:id])
 		@json_data = JSON.parse(params["JSONData"])
 		@result = JSON.parse(@json_data['Result'])
 		@check_code = Pay2goService.new(@order, TradeNo: @result['TradeNo']).check("check_code")
+
+		case @result['PaymentType']
+		when "CREDIT"
+			@payment_type = "credit_card"
+			@message = "信用卡付款完成"
+		when "WEBATM"
+			@payment_type = "web_atm"
+			@message = "WebATM付款完成"
+		when "CVS"	
+			@payment_type = "cvs"
+		end 	
+	end
+
+	def translate(payment_type)
+		case payment_type
+
+		when "CREDIT"
+			"credit_card"
+		when "WEBATM"
+			"web_atm"
+		end
 	end
 
 

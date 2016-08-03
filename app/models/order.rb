@@ -7,7 +7,15 @@ class Order < ActiveRecord::Base
 	has_one  :info,  class_name: "OrderInfo", dependent: :destroy
 	has_many :comments, as: :commentable
 
-	scope  :undone_orders, -> {where(undone: true)}
+	#待處理訂單
+	scope  :undone_orders, 	-> {where(undone: true)}
+	#已付款訂單
+	scope  :paid_orders,   	-> {where(aasm_state: "paid")}
+	#訂單需退款
+	scope  :refund_orders, 	-> {where(aasm_state: ["refund_processing", "return_processing"])}
+	#信用卡付款訂單
+	scope  :cc_orders, 			-> {where(payment_method: "credit_card")}
+	#超商繳費訂單
 
 	accepts_nested_attributes_for :info
 
@@ -38,19 +46,30 @@ class Order < ActiveRecord::Base
 	end
 
 	def pay!
-		self.update_columns(is_paid: true )
+		self.update_columns(is_paid: true)
 	end
 
-	def complete_payment(method, info)
+	#儲存交易回傳訊息
+	def store_trade_info(info)
+		self.update_columns(trade_info: info)
+	end
+
+	#儲存非即時支付取號資訊以及繳費期限
+	def store_payment_info(info)
+		deadline = Time.zone.now.advance(days: 1)
+		self.update_columns(payment_info: info, deadline: deadline)
+	end
+
+	def complete_payment(method)
+		self.update_columns(payment_method: method, is_paid: true)
 		self.make_payment!
-		self.update_columns(payment_method: method, trade_info: info)
   end
 
   def cancel
   	case self.aasm_state
   	when "order_placed"
   		self.cancel_order!
-  	when "paid"	
+  	when "paid"
   		self.cancel_payment_order!
   	end	
   end
@@ -70,12 +89,12 @@ class Order < ActiveRecord::Base
 			transitions from: :order_placed,						to: :number_received
 		end
 		
-		event :nonreal_time_payment, after_commit: :pay! do
+		event :nonreal_time_payment do
 			transitions from: :number_received,					to: :paid
 		end
 
-		event :make_payment, after_commit: :pay! do 
-			transitions from: :order_placed, 						to: :paid
+		event :make_payment do 
+			transitions from: [:order_placed, :number_received], to: :paid
 		end
 		
 		event :ship do 

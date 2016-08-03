@@ -2,6 +2,7 @@ zh-TW:
   orders:
     order_state:
       order_placed: 已下單
+      number_received: 未繳費
       paid: 已付款
       shipped: 已出貨
       order_cancelled: 訂單已取消
@@ -11,6 +12,7 @@ zh-TW:
       good_return_failed: 不符合退貨條件
     order_state_manager:
       order_placed: 已下單
+      number_received: "已取號，未繳費"
       paid: 已付款 - 等待出貨
       shipped: 已出貨
       order_cancelled: 訂單已取消

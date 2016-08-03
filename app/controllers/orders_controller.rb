@@ -109,6 +109,7 @@ class OrdersController < ApplicationController
   def non_realtime_customer
   	if @json_data['Status'] == "SUCCESS"
   		#@order.take_a_number!
+
   		@order.store_payment_info(@result)
   		flash[:success] = "取號成功"
 

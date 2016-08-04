@@ -2,7 +2,12 @@ class Manager::ProductsController < ManagerController
 
 
 	def index
-		@products = Product.all.includes(:photo)
+		session[:order] ||= "DESC"
+		session[:order_by] ||= "id"
+		o = session[:order]
+		ob = session[:order_by]
+		query_scope =  params["query_scope"] ? params["query_scope"] : "all"
+		@products = Product.includes(:photo).send(query_scope).order("#{ob} #{o}").page(params[:page]).per(10)
 	end
 
 	def new
@@ -61,6 +66,14 @@ class Manager::ProductsController < ManagerController
 
 		flash[:success] = "#{@product.title} 已上架"
 		redirect_to :back		
+	end
+
+	def replenish
+		@product = Product.find_by(id: params[:id])
+		@product.quantity += params[:number].to_i
+		@product.save
+
+		redirect_to :back
 	end
 
 

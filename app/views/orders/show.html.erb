@@ -2,6 +2,7 @@
   <h2> 訂單明細 </h2>
 
   <%= link_to "買賣留言板", message_board_account_order_path(@order.token), class: "under-h2" %>
+  <%= payment_info_link(@order) %>
 
   <%= render 'state_option', order: @order %>
 
@@ -11,6 +12,8 @@
   <% if !@order.is_paid? %>
     <% if @order.aasm_state == "order_cancelled" %>
       <p class="text-center">此訂單已被取消</p>
+    <% elsif @order.aasm_state == "number_received" %> 
+      <p class="text-center">已取號，等待付款.....</p>
     <% else %>
       <div class="select-pay center">
         請選擇付款方式

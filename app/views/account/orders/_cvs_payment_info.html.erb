@@ -1,30 +1,35 @@
-<%= @payment_info %>
 
-<div class="row mt md">
+<div class="row mt md mrf">
 	<div class="col-md-8 col-md-offset-2 border">
 		<h3>繳費資訊</h3>
 		<hr>
     <div>
-    	<span>超商繳費代碼</span><br>
-    	<%= @payment_info["CodeNo"] %>
+    	<span>超商繳費代碼</span>
+    	<div class="gray margin-top"><%= @payment_info["CodeNo"] %></div>
     </div>
     <hr>
     <div>
-    	<span>繳費金額</span>	<br>
-    	<span class="small">NTD</span><%= @payment_info["Amt"] %>
+    	<span>繳費金額</span>	
+    	<div class="gray margin-top"><span class="small">＄</span><%= @payment_info["Amt"] %></div>
     </div>
     <hr>
     <div>
-    	<span>繳費期限</span><br>
-    	<%= @order.deadline.to_s(:normal) %>
+    	<span>繳費期限</span>
+    	<div class="gray margin-top"><%= @order.deadline.to_s(:normal) %></div>
     </div>
     <hr>
-    <div>
-			<span>請在繳費期限前至超商繳費</span><br>
-			<span>超過繳費截期限的未付款訂單將被系統取消</span>	<br>
-			<span>超商代碼繳費詳細操作方法請參照</span><br>
-			<%= link_to "支付操作步驟說明-超商代碼繳費",
+	</div>
+	 <div id="note" class="col-md-8 col-md-offset-2">
+    <span id="note-title">超商繳費注意事項：</span>	<br>
+    <div id="note-body">
+
+			<span><i class="fa fa-caret-right" aria-hidden="true"></i>請在繳費期限前至四大超商繳費</span><br>
+			<span><i class="fa fa-caret-right" aria-hidden="true"></i>繳費期限為取得繳費代碼後24小時內</span><br>
+			<span><i class="fa fa-caret-right" aria-hidden="true"></i>超過繳費截期限的未付款訂單將被系統取消</span>	<br>
+			<span><i class="fa fa-caret-right" aria-hidden="true"></i>超商代碼繳費詳細操作方法請參照</span><br>
+			<%= link_to "超商代碼繳費-支付操作步驟說明",
 			  "https://www.pay2go.com/info/site_description/payment_teach", target: "_blank" %>
 		</div>
 	</div>
+
 </div>

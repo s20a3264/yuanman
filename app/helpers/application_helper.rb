@@ -25,4 +25,13 @@ module ApplicationHelper
       render "common/navbar"  
     end
   end
+
+  def session_link(session_key, session_value, name, options, html_options = {})
+    if session_value == session[session_key]
+      content_tag(:span, name)
+    else
+      link_to(name, options, html_options)
+    end     
+  end
+
 end

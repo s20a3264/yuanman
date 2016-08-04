@@ -7,11 +7,14 @@ Rails.application.routes.draw do
 
   namespace :manager do
     get 'index' => 'core#index'
+    get 'set_session' => 'core#set_session'
+    get 'clear' => 'core#clear'
     get 'zbc' => "core#zbc"
     resources :products do
       member do
         post :off_shelf
         post :on_shelf
+        post :replenish
       end
     end    
     resources :orders do
@@ -49,7 +52,6 @@ Rails.application.routes.draw do
       post :realtime_notify
       post :non_realtime_customer
       post :non_realtime_notify
-      post :pay2go_atm_complete
       post :pay2go_cc_notify
       post :pay2go_cc_return
       post :pay2go_wa_notify

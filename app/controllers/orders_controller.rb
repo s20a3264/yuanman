@@ -107,10 +107,10 @@ class OrdersController < ApplicationController
   end
 
   def non_realtime_customer
-  	if @json_data['Status'] == "SUCCESS"
-  		#@order.take_a_number!
+  	if @json_data['Status'] == "SUCCESS" && @check_code == @result['CheckCode']
+  		@order.take_a_number!
 
-  		@order.store_payment_info(@result)
+  		@order.store_payment_info(@result, payment_type: @payment_type)
   		flash[:success] = "取號成功"
 
   	  redirect_to payment_info_account_order_path(@order.token)
@@ -126,23 +126,6 @@ class OrdersController < ApplicationController
   		 @order.complete_payment(@payment_type)
   	end    	
   end
-
-  def pay2go_atm_complete
-    @order = Order.find_by_token(params[:id])
-
-    json_data = JSON.parse(params["JSONData"])
-
-    if json_data["Status"] == "SUCCESS"
-
-      @order.set_payment_with!("atm")
-      @order.make_payment!
-
-      render text: "交易成功"
-    else
-      render text: "交易失敗"
-    end
-  end
-
 
 
 	private
@@ -182,17 +165,9 @@ class OrdersController < ApplicationController
 			@message = "WebATM付款完成"
 		when "CVS"	
 			@payment_type = "cvs"
+		when "VACC"
+			@payment_type = "vacc"	
 		end 	
-	end
-
-	def translate(payment_type)
-		case payment_type
-
-		when "CREDIT"
-			"credit_card"
-		when "WEBATM"
-			"web_atm"
-		end
 	end
 
 

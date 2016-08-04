@@ -1,0 +1,21 @@
+<div>
+  <span class="bold">排序方式：</span>
+  <%= session_link "order", "DESC",  "由大到小",  manager_set_session_path(order: "DESC")  %>  |
+  <%= session_link "order", "ASC" ,  "由小到大",  manager_set_session_path(order: "ASC") %>    |
+</div>
+<hr class="hr-2">
+<div>
+  <span class="bold">排序根據：</span>
+  <%= session_link "order_by", "quantity", "庫存數量", manager_set_session_path(order_by: "quantity") %> |
+  <%= session_link "order_by", "price",  "產品價格",  manager_set_session_path(order_by: "price") %> |  
+  <%= session_link "order_by", "id",  "建立時間",  manager_set_session_path(order_by: "id")  %>  |
+  <%= session_link "order_by", "updated_at", "更新時間", manager_set_session_path(order_by: "updated_at") %> |
+</div>
+<hr class="hr-2">
+<div>
+  <span class="bold">商品狀態：</span>
+  <%= active_link "all", "所有商品", manager_products_path(query_scope: "all"), default: true %> |
+  <%= active_link "selling", "商品上架中", manager_products_path(query_scope: "selling") %> |
+  <%= active_link "unselling", "商品下架中", manager_products_path(query_scope: "unselling") %> |
+</div>
+

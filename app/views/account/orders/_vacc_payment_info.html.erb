@@ -1,0 +1,36 @@
+
+<div class="row mt md mrf">
+  <div class="col-md-8 col-md-offset-2 border">
+		<h3>繳費資訊</h3>
+		<hr>
+    <div>
+    	<span>ATM轉帳金融機構代碼：</span>
+    	<div class="gray margin-top"><%= @payment_info["BankCode"] %></div>
+    </div>
+    <hr>
+    <div>
+      <span>ATM轉帳帳號：</span>
+      <div class="gray margin-top"><%= @payment_info["CodeNo"] %></div>
+    </div>
+    <hr>    
+    <div>
+    	<span>轉帳金額：</span>	
+    	<div class="gray margin-top"><span class="small">＄</span><%= @payment_info["Amt"] %></div>
+    </div>
+    <hr>
+    <div>
+    	<span>繳費期限：</span>
+    	<div class="gray margin-top"><%= @order.deadline.to_s(:normal) %></div>
+    </div>
+    <hr>
+	</div>
+	<div id="note" class="col-md-8 col-md-offset-2">
+  	<span id="note-title">ATM轉帳付款注意事項：</span>	<br>
+  	<div id="note-body">
+
+	    <span><i class="fa fa-caret-right" aria-hidden="true"></i>請在繳費期限前至ATM進行轉帳繳費</span><br>
+	    <span><i class="fa fa-caret-right" aria-hidden="true"></i>繳費期限為取得轉帳帳號後第3天的午夜12點以前</span><br>
+	    <span><i class="fa fa-caret-right" aria-hidden="true"></i>超過繳費截期限的未付款訂單將被系統取消</span>	<br>
+	  </div>
+  </div>
+</div>

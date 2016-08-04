@@ -1,7 +1,7 @@
 module OrdersHelper
 	#設定付款時限
-	def set_expire_date(order)
-		date = order.created_at.advance(days: 1)
+	def set_expire_date(order, days)
+		date = order.created_at.advance(days: days)
 		date.to_s(:Ymd)
 	end
 
@@ -59,6 +59,13 @@ module OrdersHelper
 		end			
 	end
 
+	#是否顯示取號資訊連結
+	def payment_info_link(order)
+		if  order.aasm_state == "number_received"
+			content_tag(:span, " | ") +
+			link_to("察看繳費資訊", payment_info_account_order_path(@order.token))
+		end
+	end
 
 
 end

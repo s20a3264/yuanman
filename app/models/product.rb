@@ -8,6 +8,11 @@ class Product < ActiveRecord::Base
 
 	scope :products_are_selling, -> { where(selling: true) }
 
+	#上架的商品
+	scope :selling, -> { where(selling: true) }
+	#下架的商品
+	scope :unselling, -> { where(selling: false)}
+
 	class << self 
 
 		def set_inventory!(current_cart)

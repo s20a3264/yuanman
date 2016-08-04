@@ -1,41 +1,50 @@
-<div class="row">
+<div class="row md">
 
-<div class="col-md-12 col xs-12">
-	<h2>商品列表</h2>
-
-<table class="table table-bordered table-striped table-hover">
-	<thead>
-		<tr>
-			<th>商品圖片</th>
-			<th>名稱</th>
-			<th>價格</th>
-			<th>庫存</th>
-			<th>選項</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @products.each do |product| %>
-			<tr>
-				<td width="120"><%= image_tag(product.photo.image.thumb.url, class: "manager-img") %></td>
-				<td><%= link_to product.title, product_path(product) %></td>
-				<td class=""><%= product.price %></td>
-				<td class=""><%= product.quantity %></td>
-				<td class="product-options">
-					<div>
-						<%= link_to "編輯", edit_manager_product_path(product) %>
-					</div>
-					<div>
-						<%= link_to "刪除", manager_product_path(product), method: :delete,
-					 		data: { confirm: "確定刪除 #{product.title}?"} %>
-					</div>
-					<div>
-						<%= render_shelf_option(product) %>
-					</div>
-					<div>補貨</div>
-				</td>
-			</tr>
-		<% end %>	
-	</tbody>
-</table>
-</div>
+  <div class="col-md-12 col xs-12">
+  	<%= render 'options' %>
+  	<h2>商品列表</h2>
+    <%= paginate @products %>
+    <table class="table table-bordered table-striped table-hover">
+    	<thead>
+    		<tr>
+    			<th>商品圖片</th>
+    			<th>名稱</th>
+    			<th>價格</th>
+    			<th>庫存</th>
+    			<th>選項</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<% @products.each do |product| %>
+    			<tr>
+    				<td width="120"><%= image_tag(product.photo.image.thumb.url, class: "manager-img") %></td>
+    				<td><%= link_to product.title, product_path(product) %></td>
+    				<td class=""><%= product.price %></td>
+    				<td class="">
+    					目前數量：<%= product.quantity %>
+    					<div>
+    						<%= form_tag(replenish_manager_product_path(product), method: "post") do %>
+    							<%= text_field_tag(:number, nil, class: "replenishment") %>
+    							<%= submit_tag("補貨") %>
+    						<% end %>	
+    					</div>				
+    				</td>
+    				<td class="product-options">
+    					<div>
+    						<%= link_to "編輯", edit_manager_product_path(product) %>
+    					</div>
+    					<div>
+    						<%= link_to "刪除", manager_product_path(product), method: :delete,
+    					 		data: { confirm: "確定刪除 #{product.title}?"} %>
+    					</div>
+    					<div>
+    						<%= render_shelf_option(product) %>
+    					</div>
+    				</td>
+    			</tr>
+    		<% end %>	
+    	</tbody>
+    </table>
+	  <%= paginate @products %>
+  </div>
 </div>

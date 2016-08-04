@@ -4,16 +4,19 @@
   <%= hidden_field_tag "LoginType",       "0" %>
   <%= hidden_field_tag "RespondType",     "JSON" %>
   <%= hidden_field_tag "Version",         "1.2" %>
+  <%= hidden_field_tag "TradeLimit",      "300" %>
+
+  <%= hidden_field_tag "ExpireDate",      set_expire_date(order, 3) %>
 
   <%= hidden_field_tag "ItemDesc",        "order_sample" %>
   <%= hidden_field_tag "MerchantOrderNo", order.order_number %>
+  <%= hidden_field_tag "Email",           current_user.email %>
   <%= hidden_field_tag "TimeStamp",       order.created_at.to_i %>
   <%= hidden_field_tag "Amt",             order.total %>
-
   <%= hidden_field_tag "VACC",            "1" %>
-  <%= hidden_field_tag "ReturnURL",       pay2go_atm_return_order_url(order.token)  %>
-<!--   <%= hidden_field_tag "NotifyURL",       pay2go_atm_notify_order_url(order.token) %> -->
+  <%= hidden_field_tag "CustomerURL",     non_realtime_customer_order_url(order.token) %>
+<!--   <%= hidden_field_tag "NotifyURL",       non_realtime_notify_order_url(order.token) %> -->
   <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>
 
-  <%= submit_tag "ATM轉帳", :class => "btn-sw" %>
+  <%= submit_tag "ATM轉帳", class: "btn-sw" %>
 <% end %>

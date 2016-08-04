@@ -4,6 +4,10 @@
 		<%= link_to("取消訂單",
 								message_of_cancel_manager_order_path(order),
 								class: "btn-small") %>
+	<% when "number_received" %>
+		<%= link_to("取消訂單",
+								message_of_cancel_manager_order_path(order),
+								class: "btn-small") %>	
 	<% when "paid" %>
 		<%= link_to("出貨",
 								shipped_manager_order_path(order),

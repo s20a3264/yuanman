@@ -1,0 +1,36 @@
+<div>
+  <span class="bold">排序方式：</span>
+  <%= session_link "order", "DESC",  "由新到舊",  manager_set_session_path(order: "DESC")  %>  |
+  <%= session_link "order", "ASC" ,  "由舊到新",  manager_set_session_path(order: "ASC") %>    |
+</div>
+<hr class="hr-2">
+<div>
+  <span class="bold">下單時間：</span>
+  <%= session_link "query_days", "7",  "最近7天",  manager_set_session_path(query_days: "7") %>  |
+  <%= session_link "query_days", "30", "最近30天", manager_set_session_path(query_days: "30") %> |
+  <%= session_link "query_days", "60", "最近60天", manager_set_session_path(query_days: "60") %> |
+  <%= session_link "query_days", "90", "最近90天", manager_set_session_path(query_days: "90") %> |
+
+  <%= link_to "clear", manager_clear_path %> |
+</div>
+<hr class="hr-2">
+<div>
+  <span class="bold">付款方式：</span>
+  <%= active_link "cc_orders", "信用卡", manager_index_path(query_scope: "cc_orders") %>      |
+  <%= active_link "wa_orders", "WebATM", manager_index_path(query_scope: "wa_orders") %>     | 
+  <%= active_link "cvs_orders", "超商代碼繳費", manager_index_path(query_scope: "cvs_orders") %>   |
+  <%= active_link "vacc_orders", "ATM轉帳", manager_index_path(query_scope: "vacc_orders") %> |
+</div>
+<hr class="hr-2">
+<div>
+  <span class="bold">訂單狀態：</span>
+  <%= active_link "all", "所有訂單", manager_index_path(query_scope: "all") %> |
+  <%= active_link "undone_orders","待處理訂單", manager_index_path(query_scope: "undone_orders"), default: true %> |
+  <%= active_link "paid_orders", "待出貨訂單", manager_index_path(query_scope: "paid_orders") %> |
+  <%= active_link "return_orders", "申請退貨訂單", manager_index_path(query_scope: "return_orders") %> |
+  <%= active_link "refund_orders", "待退款訂單", manager_index_path(query_scope: "refund_orders") %> |
+  <%= active_link "number_received_orders", "已取號訂單", 
+      manager_index_path(query_scope: "number_received_orders") %> |
+  <%= active_link "transfer_orders", "異動完成訂單", manager_index_path(query_scope: "transfer_orders") %> |
+</div>
+<hr class="hr-2">

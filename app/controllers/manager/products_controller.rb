@@ -2,12 +2,12 @@ class Manager::ProductsController < ManagerController
 
 
 	def index
-		session[:order] ||= "DESC"
+		session[:p_order] ||= "DESC"
 		session[:order_by] ||= "id"
-		o = session[:order]
+		po = session[:p_order]
 		ob = session[:order_by]
 		query_scope =  params["query_scope"] ? params["query_scope"] : "all"
-		@products = Product.includes(:photo).send(query_scope).order("#{ob} #{o}").page(params[:page]).per(10)
+		@products = Product.includes(:photo).send(query_scope).order("#{ob} #{po}").page(params[:page]).per(10)
 	end
 
 	def new
@@ -19,7 +19,7 @@ class Manager::ProductsController < ManagerController
 		@product = Product.new(product_params)
 
 		if @product.save
-			redirect_to products_path
+			redirect_to product_path(@product)
 		else
 			render :new
 		end		
@@ -34,7 +34,7 @@ class Manager::ProductsController < ManagerController
 		@product = Product.find(params[:id])
 
 		if @product.update(product_params)
-			redirect_to root_path
+			redirect_to product_path(@product)
 		else
 		 render :edit
 		end 	
@@ -71,17 +71,23 @@ class Manager::ProductsController < ManagerController
 	def replenish
 		@product = Product.find_by(id: params[:id])
 		@product.quantity += params[:number].to_i
-		@product.save
+		
+		if @product.save
+			flash[:success] = "#{@product.title}庫存數量增加 #{params[:number].to_i}，庫存變化 #{@product.quantity - params[:number].to_i} => #{@product.quantity} "
 
-		redirect_to :back
+		  redirect_to :back
+		end
+		rescue
+			flash[:warning] = "操作失敗，請重新嘗試，補貨數量請填入整數"  
+			redirect_to :back
 	end
 
 
 	private
 
 		def product_params
-			params.require(:product).permit(:title, :description, :quantity, :price,
-																			 photo_attributes: [:image, :id])
+			params.require(:product).permit(:title, :description, :quantity, :price, :category_name,
+																			 :category_id, photo_attributes: [:image, :id])
 		end
 
 end

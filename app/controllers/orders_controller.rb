@@ -133,7 +133,9 @@ class OrdersController < ApplicationController
 	def order_params
 		params.require(:order).permit(info_attributes: [
 																										:shipping_name, 
-																										:shipping_address] )
+																										:shipping_address,
+																										:postal_code,
+																										:phone_number] )
 	end
 
 	def error_message(hash)

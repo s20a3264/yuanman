@@ -1,3 +1,17 @@
+/* 雜 */
+
+.m-link {
+  background: $green;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  font-size: 22px;
+  &:hover {
+    color: $gray;
+    background: darken($green, 10%);
+  }
+}
+
 /* button */
 
 .btn {
@@ -6,7 +20,7 @@
 
 .btn-normal {
   border: 2px solid $mc;
-  padding: 5px 8px;
+  padding: 3px 10px;
   background:  $mc;
   color: #fff;
   font-size: 15px;
@@ -78,4 +92,53 @@
   opacity: 0.5;
   filter:alpha(opacity=50);
   font-weight: bold;
+}
+
+/* select */
+
+
+
+.styled-select select {
+   background: transparent;
+   width: 60px;
+   padding: 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+   -webkit-appearance: none; /*for chrome*/
+}
+
+
+/* hr */
+
+.hr-1 {
+  border:0; 
+  height:1px; 
+  background-color: #e9e8dd;
+  color: #e9e8dd; 
+}
+
+.hr-2 {
+  margin: 5px 0;
+}
+
+/* border */
+
+.border {
+  border: 2px solid $mc;
+  padding: 10px;
+  background: #fff;
+}
+
+.border-m {
+  border: 1px solid $mc;
+  padding: 10px;
+  background: #fff;
+  max-width: 400px;  
+}
+
+/* margin */
+
+.margin-td {
+  margin: 20px 0;
 }

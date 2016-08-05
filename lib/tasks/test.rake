@@ -28,4 +28,13 @@ task :q =>	:environment do
 		p.save
 		print "#{p.title} ok"
 	end
-end		
+end	
+
+task :z => :environment do
+	Product.all.each do |p|
+		if p.category.nil?
+			p.category_id =  2
+			p.save
+		end
+	end
+end			

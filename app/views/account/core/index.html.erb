@@ -1,0 +1,47 @@
+<div class=" row mt md">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="border">
+		  <h2 class="center margin-td">會員中心</h2>
+
+		    <div>
+		    	<%= link_to account_orders_path, class: "large" do %>
+		    		<i class="fa fa-circle-o" aria-hidden="true"></i>
+		    		<span>所有訂單</span>
+		    	<% end %>	
+		    	<p class="gray">察看過去三個月內的購買紀錄</p>
+		    </div>
+		    <hr class="hr-1">
+		    <div>
+		    	<%= link_to account_user_info_path, class: "large" do %>
+		    		<i class="fa fa-circle-o" aria-hidden="true"></i>
+		    		<span>資料變更</span>
+		    	<% end %>	
+		    	<p class="gray">新增或修改常用收件地址</p>
+		    </div>
+		    <hr class="hr-1">
+		    <div>
+		    	<%= link_to "#", class: "large" do %>
+		    		<i class="fa fa-circle-o" aria-hidden="true"></i>
+		    		<span>常見問題</span>
+		    	<% end %>	
+		    	<p class="gray">一般購物常見問題</p>
+		    </div>
+		    <hr class="hr-1">
+		    <div>
+		    	<%= link_to carts_path, class: "large" do %>
+		    		<i class="fa fa-circle-o" aria-hidden="true"></i>
+		    		<span>購物車</span>
+		    	<% end %>	
+		    	<p class="gray">檢視當前購物車</p>
+		    </div>
+		    <hr class="hr-1">
+		    <div>
+		    	<%= link_to "#", class: "large" do %>
+		    		<i class="fa fa-circle-o" aria-hidden="true"></i>
+		    		<span>聯絡客服</span>
+		    	<% end %>	
+		    	<p class="gray">電話，Email，或線上留言給我們</p>
+		    </div>
+		
+	</div>
+</div>

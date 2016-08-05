@@ -22,7 +22,7 @@ body {
     margin-top: 60px;
   }
   .md  {
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   .mrf {
     margin-left: 5px;
@@ -43,9 +43,6 @@ body {
   }
 }
 
-.hr-2 {
-  margin: 5px 0;
-}
 
 
 textarea {
@@ -122,15 +119,6 @@ table {
   border-left: none;
   border-right: none;
 }
-
-/* border */
-
-.border {
-  border: 1px solid $mc;
-  padding: 10px;
-  background: #fff;
-}
-
 
 
 

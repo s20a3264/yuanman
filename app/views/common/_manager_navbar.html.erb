@@ -10,7 +10,7 @@
 			  <li><%= link_to "Home", root_path %></li>
 			  <li><%= link_to "訂單管理", manager_index_path %></li>
 			  <li><%= link_to "產品列表", manager_products_path %></li>
-			  <li class="product-on-shelf"><%= link_to "產品上架", new_manager_product_path %></li>
+			  <li class="product-on-shelf"><%= link_to "新增商品", new_manager_product_path %></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right nav-list">
 			  <li><%= link_to("登出", destroy_manager_session_path, method: :delete) %></li>

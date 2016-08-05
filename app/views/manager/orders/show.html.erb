@@ -1,5 +1,8 @@
 <div class="checkout-order clearfix">
-  <h2>訂單明細 (<%= render_order_paid_state(@order) %>)</h2>
+  <h2>
+  	訂單明細
+  	<span class="gray">(<%= t("orders.order_state_manager.#{@order.aasm_state}")%>)</span>
+  </h2>
 
   <%= link_to "買賣留言板", message_board_manager_order_path(@order), class: "under-h2" %>
   

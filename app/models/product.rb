@@ -1,7 +1,10 @@
 class Product < ActiveRecord::Base
 
+	belongs_to :category
 	has_one :photo, dependent: :destroy
+
 	validates_presence_of :photo
+
 	accepts_nested_attributes_for :photo
 
 	validates :title, presence: { message: "請填寫商品名稱" }
@@ -12,6 +15,10 @@ class Product < ActiveRecord::Base
 	scope :selling, -> { where(selling: true) }
 	#下架的商品
 	scope :unselling, -> { where(selling: false)}
+
+	attr_accessor :category_name
+
+	before_save :find_or_create_category
 
 	class << self 
 
@@ -33,6 +40,18 @@ class Product < ActiveRecord::Base
 		self.selling = true
 		self.save		
 	end
+
+	private
+		def find_or_create_category
+			if @category_name && !category_name.empty?
+				category = Category.find_by(name: @category_name)
+				if category.nil?
+					self.create_category(name: @category_name)
+				else
+					self.category = category
+				end
+			end			
+		end
 
 
 end

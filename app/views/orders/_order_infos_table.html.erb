@@ -67,6 +67,16 @@
       </tr>
       <tr>
         <td class="high-table bold">
+          郵遞區號
+        </td>
+      </tr>
+      <tr>
+        <td class="high-table">
+          <%= @order_info.postal_code %>
+        </td>
+      </tr>            
+      <tr>
+        <td class="high-table bold">
           收件地址
         </td>
       </tr>
@@ -74,6 +84,16 @@
         <td class="high-table">
           <%= @order_info.shipping_address %>
         </td>
-      </tr>      
+      </tr>
+      <tr>
+        <td class="high-table bold">
+          聯絡電話
+        </td>
+      </tr>
+      <tr>
+        <td class="high-table">
+          <%= @order_info.phone_number %>
+        </td>
+      </tr>                 
     </tbody>
   </table>

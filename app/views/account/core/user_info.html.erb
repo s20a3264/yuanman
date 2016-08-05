@@ -1,0 +1,36 @@
+<div class=" row mt md">
+	<div class="col-md-8 col-md-offset-2 border">
+		  <h2 class="center margin-td">修改會員資料</h2>
+		  <%= form_tag(account_build_user_info_path, method: 'post') do %>
+		    <div class="form-group">
+		    	<%= label_tag(:shipping_name, "姓名：") %>
+    	  	<%= text_field_tag(:shipping_name, current_user.info["shipping_name"], class: "form-control") %>
+    	  </div>
+		    <div class="form-group">
+		    	<%= label_tag(:shipping_address, "地址：") %>
+    	  	<%= text_field_tag(:shipping_address, current_user.info["shipping_address"], class: "form-control") %>
+    	  </div>
+		    <div class="form-group">
+		    	<%= label_tag(:phone_number, "聯絡電話：") %>
+    	  	<%= text_field_tag(:phone_number, current_user.info["phone_number"], class: "form-control") %>
+    	  </div>
+		    <div class="form-group">
+		    	<%= label_tag(:postal_code, "郵遞區號：") %>
+    	  	<%= text_field_tag(:postal_code, current_user.info["postal_code"], class: "form-control") %>
+    	  </div>	
+			  <%= submit_tag("儲存資料", class: "btn-normal ") %>
+			  <hr class="hr-1">
+    	<% end %>	
+	</div>
+
+
+	<div id="note" class="col-md-8 col-md-offset-2">
+    <span id="note-title">注意事項：</span>	<br>
+    <div id="note-body">
+	  	<span><i class="fa fa-caret-right" aria-hidden="true"></i>此處資料將做為預設收件資料</span><br>
+	  	<span><i class="fa fa-caret-right" aria-hidden="true"></i>請勿填入虛假資訊</span><br>
+	  	<span><i class="fa fa-caret-right" aria-hidden="true"></i>填寫錯誤資料將影響物流配送</span>	<br>
+	  </div>
+	</div>
+
+</div>		  

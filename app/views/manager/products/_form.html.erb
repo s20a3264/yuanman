@@ -1,0 +1,39 @@
+
+  	<div class="form-group">
+  		<%= f.label(:title, "商品名稱 : ") %>
+  		<%= f.text_field(:title, class: "form-control") %>
+  	</div>
+
+    <div class="category-controller">
+      <p><%= link_to "點擊此處新增分類", "#", id: "new-category" %></p>
+      <p><%= link_to "選擇原有分類", "#", id: "old-category" %></p>
+    </div>
+
+
+  <div id="category-select" class="form-group">   
+    <%= f.label :category_id, "分類 : " %>
+    <%= collection_select(:product, :category_id, Category.all, :id, :name) %>
+  </div>
+
+  <div id="category-form" class="form-group">  
+    <%= f.label :category_name, "新分類名稱 : " %> <br>
+    <%= f.text_field :category_name, class: "form-control" %>
+  </div>    
+
+    <hr class="hr-1">
+  
+  	<div class="form-group">
+  		<%= f.label(:quantity, "數量 : ") %>
+  		<%= f.text_field(:quantity, class: "form-control") %>
+  	</div>
+  
+  	<div class="form-group">
+  		<%= f.label(:price, "價格 : ") %>
+  		<%= f.text_field(:price, class: "form-control") %>
+  	</div>
+  
+  
+  	<div class="form-group">
+  		<%= f.label(:description,"描述") %>
+  		<%= f.text_area(:description) %>
+  	</div>	

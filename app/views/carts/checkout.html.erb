@@ -70,8 +70,16 @@
 						 input_html: { value:  @user_info["shipping_name"], class: "form-group"} %>
 					</div>
 					<div class="checkout-form">
+						<%= info_form.input :postal_code, label: "郵遞區號",
+						 input_html: { value:  @user_info["postal_code"], class: "form-group"} %>
+					</div>					
+					<div class="checkout-form">
 						<%= info_form.input :shipping_address, label: "收件人地址",
 						 input_html: { value:  @user_info["shipping_address"], class: "form-group"} %>
+					</div>
+					<div class="checkout-form">
+						<%= info_form.input :phone_number, label: "聯絡電話",
+						 input_html: { value:  @user_info["phone_number"], class: "form-group"} %>
 					</div>
 				<% end %>
 				

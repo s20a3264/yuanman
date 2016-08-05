@@ -17,7 +17,7 @@
 					</li>
 					<% if user_signed_in? %>
 						<li>
-							<%= link_to account_orders_path  do %>
+							<%= link_to account_index_path  do %>
 								<i class="fa fa-user" aria-hidden="true"></i> 會員中心
 							<% end %>	
 						</li>
@@ -27,7 +27,8 @@
 							<% end %>	
 						</li>
 					<% else %>
-						<li><%= link_to "登入", new_user_session_path %></li>	
+						<li><%= link_to "登入", new_user_session_path %></li>
+						<li><%= link_to "註冊", new_user_registration_path  %></li>
 					<% end %>	
 				</ul>
 			</div>

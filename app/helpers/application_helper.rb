@@ -28,7 +28,7 @@ module ApplicationHelper
 
   def session_link(session_key, session_value, name, options, html_options = {})
     if session_value == session[session_key]
-      content_tag(:span, name)
+      content_tag(:span, name, class: "bold gray")
     else
       link_to(name, options, html_options)
     end     

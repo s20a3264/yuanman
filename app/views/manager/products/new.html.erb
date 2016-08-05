@@ -1,43 +1,25 @@
-<%= render "common/error_messages", var: @product %>
-<h2>商品上架</h2><HR>
-<%= form_for [:manager, @product] do |f| %>
-
-	<div class="form-group">
-		<%= f.fields_for :photo do |photo_form| %>
-			<%= photo_form.label :image, "商品圖片"%>
-			<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile(event)"  %>
-			<img id="output" />
-			<script>
-
-			</script>
-			<%= photo_form.hidden_field :image_cache %>
-		<% end %>	
-	</div>
-
-	<HR>
-
-
-	<div class="form-group">
-		<%= f.label(:title, "商品名稱 : ") %>
-		<%= f.text_field(:title, class: "form-control") %>
-	</div>
-
-	<div class="form-group">
-		<%= f.label(:quantity, "數量 : ") %>
-		<%= f.text_field(:quantity, class: "form-control") %>
-	</div>
-
-	<div class="form-group">
-		<%= f.label(:price, "價格 : ") %>
-		<%= f.text_field(:price, class: "form-control") %>
-	</div>
-
-
-	<div class="form-group">
-		<%= f.label(:description,"描述") %>
-		<%= f.text_area(:description) %>
-	</div>	
-
-	<%= f.submit "送出", data: { disable_with: "Submitting..." }, class: "btn btn-primary" %>
-
-<% end %>	
+<div class="md">  
+  <%= render "common/error_messages", var: @product %>
+  <h2>商品上架</h2><HR>
+  <%= form_for [:manager, @product] do |f| %>
+  
+  	<div class="form-group">
+  		<%= f.fields_for :photo do |photo_form| %>
+  			<%= photo_form.label :image, "商品圖片"%>
+  			<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile(event)"    %>
+  			<img id="output" />
+  			<script>
+  
+  			</script>
+  			<%= photo_form.hidden_field :image_cache %>
+  		<% end %>	
+  	</div>
+  
+  	<HR>
+  
+  	<%= render 'form', f: f %>
+  
+  	<%= f.submit "送出", data: { disable_with: "Submitting..." }, class: "btn-normal" %>
+  
+  <% end %>	
+</div>  

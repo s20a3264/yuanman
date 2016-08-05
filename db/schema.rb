@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804111041) do
+ActiveRecord::Schema.define(version: 20160805172837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 20160804111041) do
   end
 
   create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,6 +72,8 @@ ActiveRecord::Schema.define(version: 20160804111041) do
     t.string   "shipping_address"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "postal_code"
+    t.string   "phone_number"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -114,9 +122,10 @@ ActiveRecord::Schema.define(version: 20160804111041) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "selling",     default: false
-    t.string   "category"
+    t.integer  "category_id"
   end
 
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["selling"], name: "index_products_on_selling", using: :btree
 
   create_table "trade_infos", force: :cascade do |t|

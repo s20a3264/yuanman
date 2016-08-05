@@ -62,6 +62,9 @@ Rails.application.routes.draw do
   end   
 
   namespace :account do 
+    get 'index' => 'core#index'
+    get 'user_info' => 'core#user_info'
+    post 'build_user_info' => 'core#build_user_info'
     resources :orders do 
       member do
         post :cancel

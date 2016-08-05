@@ -10,11 +10,16 @@ class Manager::CoreController < ManagerController
 	end
 
 	def set_session
-		params.each do |key, value|
-			session[key] = value
+		array = ["p_order", "order_by", "order", "query_days"]
+		array.each do |key|
+			if params[key]
+				session[key] = params[key]
+			end
 		end	
 
 		redirect_to :back
+	  rescue
+	  	redirect_to manager_index_path
  	end
 
 	def clear

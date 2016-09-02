@@ -20,6 +20,7 @@
 
 .btn-normal {
   border: 2px solid $mc;
+  border-radius: 3px;
   padding: 3px 10px;
   background:  $mc;
   color: #fff;
@@ -33,6 +34,7 @@
 
 .button-1 {
   border: 2px solid $gray2;
+  border-radius: 3px;
   padding: 5px 8px;
   background: #fff;
   color: $gray2;
@@ -57,6 +59,7 @@
 
 .btn-small {
   border: 2px solid $mc;
+  border-radius: 3px;
   padding: 5px 8px;
   background:  $mc;
   color: #fff;
@@ -70,6 +73,7 @@
 
 .btn-sw {
   border: 2px solid $mc;
+  border-radius: 3px;
   padding: auto;
   height: 60px;
   text-align: center;
@@ -86,6 +90,7 @@
 
 .button-disabled {
   border: 2px solid $gray1;
+  border-radius: 3px;
   padding: 8px 10px;
   background: $gray1;
   color: #000;
@@ -128,6 +133,13 @@
   border: 2px solid $mc;
   padding: 10px;
   background: #fff;
+}
+
+.border-n {
+  border: 1px solid $mc;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 10px;
 }
 
 .border-m {

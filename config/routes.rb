@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'products#index'
 
   namespace :manager do
+    root to:  'core#index'
     get 'index' => 'core#index'
     get 'set_session' => 'core#set_session'
     get 'clear' => 'core#clear'

@@ -45,11 +45,12 @@ class Order < ActiveRecord::Base
 	end
 
 	def build_item_cache_from_cart(cart)
-		cart.items.each do |cart_item|
+		cart.items.each do |product|
 			item = self.items.build 
-			item.product_name = cart_item.title
-			item.quantity = cart.cart_items.find_by(product_id: cart_item).quantity
-			item.price = cart_item.price
+			item.product_name = product.title
+			item.product_id = product.id
+			item.quantity = cart.cart_items.find_by(product_id: product).quantity
+			item.price = product.price
 			item.save
 		end	
 	end
@@ -91,6 +92,15 @@ class Order < ActiveRecord::Base
   		self.cancel_order!
   	when "paid"
   		self.cancel_payment_order!
+  	end	
+  end
+
+  #取消訂單後庫存數量返還
+  def stock_update!
+  	self.items.each do |item|
+  		product = Product.find_by(id: item.product_id)
+  		product.quantity += item.quantity
+  		product.save
   	end	
   end
 
@@ -137,11 +147,11 @@ class Order < ActiveRecord::Base
 			transitions from: :paid,										to: :refund_processing 
 		end
 		
-		event :refund_completed, after_commit: :done!  do
+		event :refund_completed, after_commit: [:done!, :stock_update!]  do
 			transitions from: :refund_processing,				to: :order_cancelled
 		end	
 
-		event :cancel_order do 
+		event :cancel_order, after_commit: :stock_update! do 
 			transitions from: [:order_placed, :number_received], 	to: :order_cancelled
 		end	
 

@@ -13,6 +13,9 @@ gem 'httpclient'
 gem "figaro"
 gem 'kaminari'
 
+gem "rb-readline"
+
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

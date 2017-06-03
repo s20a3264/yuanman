@@ -166,6 +166,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.2.2)
+    rb-readline (0.5.3)
     rdoc (4.2.2)
       json (~> 1.4)
     responders (2.1.0)
@@ -235,6 +236,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.3)
   rails_12factor
+  rb-readline
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form
@@ -244,4 +246,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.6
+   1.12.5

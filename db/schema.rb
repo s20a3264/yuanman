@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927084959) do
+ActiveRecord::Schema.define(version: 20170616163318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,14 @@ ActiveRecord::Schema.define(version: 20160927084959) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["selling"], name: "index_products_on_selling", using: :btree
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "carousel1"
+    t.string   "carousel2"
+    t.string   "carousel3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trade_infos", force: :cascade do |t|
     t.jsonb    "pay_info",   default: {}

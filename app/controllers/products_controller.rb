@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
 	def index
 		@products = Product.products_are_selling.includes(:photo).order(created_at: :DESC)
+		@setting = Setting.last ? Setting.last : Setting.create
 	end
 
 	def show

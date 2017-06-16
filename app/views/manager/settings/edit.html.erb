@@ -1,0 +1,7 @@
+<%= form_for([:manager, @setting], html: {multipart: true}) do |f| %>
+
+	<%= f.file_field :carousel1 %>
+	<%= f.file_field :carousel2 %>
+	<%= f.file_field :carousel3 %>
+	<%= f.submit "送出" %>
+<% end %>

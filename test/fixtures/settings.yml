@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  carousel1: MyString
+  carousel2: MyString
+  carousel3: MyString
+
+two:
+  carousel1: MyString
+  carousel2: MyString
+  carousel3: MyString

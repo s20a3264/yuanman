@@ -29,7 +29,8 @@ Rails.application.routes.draw do
         get  :message_of_cancel
         post :create_message        
       end
-    end 
+    end
+    resources :settings
   end 
 
   resources :products do

@@ -14,7 +14,7 @@ gem "figaro"
 gem 'kaminari'
 
 gem "rb-readline"
-
+gem "fog"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

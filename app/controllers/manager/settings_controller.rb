@@ -1,4 +1,4 @@
-class Manager::SettingsController < ApplicationController
+class Manager::SettingsController < ManagerController
 
 	def create
 		@setting = Setting.new(setting_params)
@@ -18,7 +18,7 @@ class Manager::SettingsController < ApplicationController
 		@setting = Setting.last ? Setting.last : Setting.new(setting_params)
 
 		if @setting.update(setting_params)
-			redirect_to root_path(@setting)
+			redirect_to root_path
 		else
 		 render :edit
 		end 		

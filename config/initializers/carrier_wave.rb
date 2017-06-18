@@ -5,7 +5,9 @@ CarrierWave.configure do |config|
       provider:              'AWS',                        
       aws_access_key_id:     'AKIAJC3H75I6Z3GMQMAA',           
 
-      aws_secret_access_key: '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'   
+      aws_secret_access_key: 'IrCnDyY6DrISq9Rrb9K2DPnoTxM9XZrxSB83E6hy',
+
+      region:                'ap-northeast-1'  
 
     }
     config.fog_directory  = 'forestore' 

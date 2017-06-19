@@ -1,36 +1,60 @@
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navar-header">
+
+
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-list">
 				<i class="fa fa-th-list" aria-hidden="true"></i>
 			</button>
-			<%= link_to root_path, class: "navbar-brand" do %>	
+
+
+ 			<%= link_to root_path, class: "navbar-brand" do %>	
 				<%= image_tag("brand.jpg", class: "brand") %>
 			<% end %>	
+
+			
+			<span class="visible-xs nav-cart">
+				<%= link_to carts_path do %>
+					<i class="fa fa-shopping-cart gray2"></i>
+					<span class="inline-block">  <%= render_cart_items_count(current_cart) %>  </span> 
+				<% end %>	
+			</span>
 		</div>
-			<div class="collapse navbar-collapse" id="nav-list">
-				<ul class="nav navbar-nav navbar-right">
+
+		<div class="collapse navbar-collapse" id="nav-list">
+			<ul class="nav navbar-nav navbar-left">
+				<li><%= link_to "品牌故事", "#"  %></li>
+				<li><%= link_to "Q＆A", "#"  %></li>
+				<li>
+					<%= link_to "#" do %>
+						<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+					<% end %>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<%= link_to carts_path do %>
+						<i class="fa fa-shopping-cart gray2"></i>
+						購物車
+						<span> ( <%= render_cart_items_count(current_cart) %> ) </span> 
+					<% end %>	
+				</li>
+				<% if user_signed_in? %>
 					<li>
-						<%= link_to carts_path do %>
-							<i class="fa fa-shopping-cart"></i> 購物車 ( <%= render_cart_items_count(current_cart) %> ) 
+						<%= link_to account_index_path  do %>
+							<i class="fa fa-user" aria-hidden="true"></i> 會員中心
 						<% end %>	
 					</li>
-					<% if user_signed_in? %>
-						<li>
-							<%= link_to account_index_path  do %>
-								<i class="fa fa-user" aria-hidden="true"></i> 會員中心
-							<% end %>	
-						</li>
-						<li>
-							<%= link_to destroy_user_session_path, method: :delete do %>
-								<i class="fa fa-sign-out" aria-hidden="true"></i> 登出
-							<% end %>	
-						</li>
-					<% else %>
-						<li><%= link_to "登入", new_user_session_path %></li>
-						<li><%= link_to "註冊", new_user_registration_path  %></li>
-					<% end %>	
-				</ul>
-			</div>
+					<li>
+						<%= link_to destroy_user_session_path, method: :delete do %>
+							<i class="fa fa-sign-out" aria-hidden="true"></i> 登出
+						<% end %>	
+					</li>
+				<% else %>
+					<li><%= link_to "會員登入", new_user_session_path %></li>
+					<li><%= link_to "註冊", new_user_registration_path  %></li>
+				<% end %>	
+			</ul>
+		</div>
 	</div>	
 </nav>	

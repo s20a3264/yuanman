@@ -1,9 +1,9 @@
 <div class="products-page">
 
 
+
 <!-- 輪撥 -->
 
-<%= link_to "edit", edit_manager_setting_path(id: Setting.last.id)  %>
 <div id="myCarousel" class="carousel slide">
     <!-- 轮播（Carousel）指标 -->
     <ol class="carousel-indicators">
@@ -33,28 +33,17 @@
     </a>
 </div>
 
+<%= link_to "edit", edit_manager_setting_path(id: Setting.last.id)  %>
+
 <!-- 輪撥測試 -->
 		
 
-	<div class="home-options">
-		<ol>
-			<li class="home-option"><%= link_to  "Home", "#" %></li>
-			<li class="home-option"><%= link_to  "News", "#" %></li>
-			<li class="home-option"><%= link_to  "品牌故事", "#" %></li>
-			<li class="home-option"><%= link_to  "購物須知", "#" %></li>
-			<li class="home-option"><%= link_to  "Q&A ", "#" %></li>
-			<li class="home-option">
-				<%= link_to "#" do %>
-				<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
-				<% end %>
-			</li>
-		</ol>
-	</div>
-	<div class="home-bg"></div>
-	
+
 	<div class="category">
 		<%= link_to "所有商品 \\ All Product", "#" %> 
 	</div>
+
+
 
 	<div class="product-items">
 		<% @products.each do |product| %>
@@ -71,5 +60,6 @@
 		<% end %>
 	</div>
 	<div class=" clearfix"></div>
+
 </div>
 

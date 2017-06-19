@@ -4,48 +4,7 @@
 	font-size: 14px;
 	font-weight: bold;
 	margin-bottom: 0;
-	border: none;
-}
-
-.navbar-brand {
-	height: 70px;
-	.brand {
-		height: 50px;
-		width: 170px;
-	}
-}
-
-@media screen and (min-width: 768px) {
-	.navbar {
-		background:rgba(0,0,0,0);
-		filter:Alpha(opacity=0);
-	}
-	.navbar > .container-fluid > #nav-list > .nav {
-		margin-right: 5px;
-		padding-top: 10px;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.navbar {
-		.navbar-nav {
-			li {
-				padding-left:15px;
-			}
-		}
-		#nav-list {
-			margin-top: 56px;
-		}
-	}
-	.navbar-brand {
-		height: 56px;
-		line-height: 20px;
-		padding: 10px;
-		.brand {
-			height: 40px;
-			width: 136px;
-		}
-	}
+	border-bottom: 1px solid darken(#f1f2f3, 15%);
 }
 
 .navbar-default .navbar-toggle {
@@ -61,18 +20,56 @@
 	}
 }
 
+
+@media screen and (min-width: 768px) {
+	.navbar {
+		min-height: 50px ;
+		background: #fff;
+		filter:Alpha(opacity=0);
+	}
+	.navbar > .container-fluid > #nav-list > .nav {
+	}
+	.navbar-brand {
+		height: 50px;
+		padding: 10px 20px;
+		.brand {
+			height: 30px;
+			width: 146px;
+		}
+	}
+
+}
+
+
+
+
+
+
 @media screen and (min-width: 768px) {
 	.navbar-default .navbar-nav {
 		li {
-			margin-left: 5px;
-			border: 1px solid $gray1;
-			border-radius: 3px;
+			display: inline-block;
+			height: 50px;
+			&:hover {
+				border-left: 2px solid $gray2;
+			}
 			a {
-				padding:5px 10px;
-				color: $gray1;
+				color: #111;
+				height: 50px;
+				line-height: 50px;
+				padding: 0px 15px;
+				font-weight: 400;
+				font-size: 13px;
 				&:hover {
 					color: #fff;
-					background: $gray1;
+					background: $gray2;
+					i {
+						color: #fff;
+					}
+				}
+				i {
+					color: #111;
+					font-size: 19px;
 				}
 			}
 		}
@@ -87,5 +84,51 @@
 			}
 		}
 	}
+	.navbar-right {
+		li {
+			border-left: 2px dotted darken(#f1f2f3, 15%);
+		}
+	}
 }
 
+
+
+/* phone */
+
+
+@media screen and (max-width: 768px) {
+	.navbar {
+		.navbar-nav {
+			li {
+				padding-left:15px;
+			}
+		}
+		#nav-list {
+		}
+	}
+	.navar-header {
+		display: flex;
+		justify-content: space-between;
+	}
+	.navbar-brand {
+		height: 56px;
+		line-height: 20px;
+		padding: 10px;
+		.brand {
+			height: 40px;
+			width: 136px;
+		}
+	}
+}
+
+.nav-cart {
+	line-height: 66px;
+	height: 56px;
+	i {
+		font-size: 26px;
+		color: #111;
+	}
+	span {
+		padding: 0 5px;
+	}
+}

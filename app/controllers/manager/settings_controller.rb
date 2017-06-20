@@ -11,11 +11,11 @@ class Manager::SettingsController < ManagerController
 
 
 	def edit
-		@setting = Setting.last ? Setting.last : Setting.new
+		@setting = Setting.last
 	end
 
 	def update
-		@setting = Setting.last ? Setting.last : Setting.new(setting_params)
+		@setting = Setting.last
 
 		if @setting.update(setting_params)
 			redirect_to root_path

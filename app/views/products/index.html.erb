@@ -47,14 +47,22 @@
 
 	<div class="product-items">
 		<% @products.each do |product| %>
-			<div class="product-itme">
+			<div class="product-itme thumbnail ">
 				<%= link_to product_path(product),class: "item-image" do %>
 				<%= image_tag(product.photo.image.thumb.url, alt: product.title, title: product.title) %>
 				<% end %>	</br>
 				<div class="product-item-info">
 					<%= link_to product.title, product_path(product), class: "product-item-title" %>
-					<div class="product-item-description"><%= product.description.truncate(60) %></div>
-					<div class="product-item-price"><em class="red"><%= "NT$#{product.price}" %></em></div>
+<!-- 					<div class="product-item-description"><%= product.description.truncate(60) %></div>
+ -->					
+				<div class="gray2"><%= product.category.name %></div>
+ 				<div class="product-item-price"><span class="red bold"><%= "NT$#{product.price}" %></span></div>
+ 				<div class="center">
+ 					<%= link_to  "view", product_path(product), class: "normal-link" %> / 
+ 					<%= link_to add_to_cart_product_path(id: product.id, quantity: 1), method: "post" do %>
+ 						<i class="fa fa-shopping-cart green large"></i>
+					<% end %>
+ 				</div>
 				</div>
 			</div>
 		<% end %>

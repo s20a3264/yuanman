@@ -42,7 +42,14 @@ body {
   }
 }
 
-
+.normal-link {
+  color: #333;
+  font-weight: 400;
+  &:hover {
+    color: #000;
+    font-weight: bolder;
+  }
+}
 
 textarea {
 	display: block;

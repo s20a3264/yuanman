@@ -1,55 +1,35 @@
 <div class="products-page">
 
 
-
-<!-- 輪撥 -->
-
-<div id="myCarousel" class="carousel slide">
-    <!-- 轮播（Carousel）指标 -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>   
-    <!-- 轮播（Carousel）项目 -->
-    <div class="carousel-inner carousel-size">
-        <div class="item active">
-					<%= image_tag(@setting.carousel1, alt: "First slide", class: "carousel-img" ) %>
-        </div>
-        <div class="item">
-					<%= image_tag(@setting.carousel2, alt: "Second slide", class: "carousel-img" ) %>
-        </div>
-        <div class="item">
-					<%= image_tag(@setting.carousel3, alt: "Third slide", class: "carousel-img" ) %>
-        </div>
-
-    </div>
-    <!-- 轮播（Carousel）导航 -->
-    <a class="carousel-control left" href="#myCarousel" 
-        data-slide="prev">&lsaquo;
-    </a>
-    <a class="carousel-control right" href="#myCarousel" 
-        data-slide="next">&rsaquo;
-    </a>
-</div>
-
-<%= link_to "edit", edit_manager_setting_path(id: Setting.last.id)  %>
-
-<!-- 輪撥測試 -->
-		
-
-
+	<%= render 'carousel' %>
+<!-- 
 	<div class="category">
 		<%= link_to "所有商品 \\ All Product", "#" %> 
 	</div>
+ -->
+
+	<div class="row">
+
+		<div class="categories col-md-2 col-sm-2 hidden-xs">
+			<% @categories.each do |category| %>
+				<div>
+					<%= link_to category.name ,products_path(category_id: "#{category.id}"), class: "normal-link bold"  %>
+				</div>
+			<% end %>
+		</div>
 
 
 
-	<div class="product-items">
+
+
+	<div class="product-items col-md-10  col-sm-10 col-xs-12">
+
+		<h2 class="background width100"><span><%= @category_name %></span></h2>
+
 		<% @products.each do |product| %>
 			<div class="product-itme thumbnail ">
 				<%= link_to product_path(product),class: "item-image" do %>
-				<%= image_tag(product.photo.image.thumb.url, alt: product.title, title: product.title) %>
+				<%= image_tag(product.photo.image.medium.url, alt: product.title, title: product.title) %>
 				<% end %>	</br>
 				<div class="product-item-info">
 					<%= link_to product.title, product_path(product), class: "product-item-title" %>
@@ -68,6 +48,8 @@
 		<% end %>
 	</div>
 	<div class=" clearfix"></div>
+	</div>
+
 
 </div>
 

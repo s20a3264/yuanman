@@ -26,7 +26,7 @@
 				<li><%= link_to "品牌故事", "#"  %></li>
 				<li><%= link_to "Q＆A", "#"  %></li>
 				<li>
-					<%= link_to "#" do %>
+					<%= link_to "#", class: "hidden-xs" do %>
 						<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
 					<% end %>
 				</li>
@@ -36,7 +36,7 @@
 					<%= link_to carts_path do %>
 						<i class="fa fa-shopping-cart gray2"></i>
 						購物車
-						<span> ( <%= render_cart_items_count(current_cart) %> ) </span> 
+						<span id="as"> ( <%= render_cart_items_count(current_cart) %> ) </span> 
 					<% end %>	
 				</li>
 				<% if user_signed_in? %>

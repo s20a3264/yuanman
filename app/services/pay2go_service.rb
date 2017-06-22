@@ -1,3 +1,4 @@
+
 class Pay2goService
 
   def initialize(order, hash={})
@@ -10,6 +11,54 @@ class Pay2goService
     @merchant_id = ENV['merchant_id']
     @hash = hash
   end
+
+  def aes_encrypt
+    str = "MerchantID=#{@merchant_id}&TimeStamp=#{@timestamp}&Version=1.0&MerchantOrderNo=#{@merchant_order_no}&Amt=#{@total_price}&ItemDesc=sample"
+    cipher = OpenSSL::Cipher::AES.new(256, :CBC)
+    cipher.encrypt
+    cipher.key = ENV['hash_key']
+    cipher.iv  = ENV['hash_iv']
+    encrypted = cipher.update(str) << cipher.final
+    encoded = encrypted.unpack('H*')[0]
+  end
+
+  class << self
+  def aes_decrypt(key, decrypted_string)
+    aes = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+    aes.decrypt
+    aes.key = key
+    str = aes.update([decrypted_string].pack('H*')) << aes.final
+    str.force_encoding('UTF-8')
+  end
+  end
+
+    class << self
+      def test
+        s = "MerchantID=PG300000000055&TimeStamp=1489630207&Version=1.0&MerchantOrderNo=S_1489630207&Amt=30&ItemDesc=UnitTest"
+        cipher = OpenSSL::Cipher::AES.new(128, :CBC)
+        cipher.encrypt
+        cipher.key = "12345678901234567890123456789012"
+        cipher.iv  = "1234567890123456"
+        encrypted = cipher.update(s) << cipher.final
+      end
+      end
+
+    def decrypt(data)
+      cipher = OpenSSL::Cipher::AES.new(128, :CBC)
+      cipher.decrypt
+      cipher.key = ENV['hash_key']
+      cipher.iv  = ENV['hash_iv']
+      cipher.update(data) << cipher.final
+    end
+
+    def sha256_encrypt
+      str = self.aes_encrypt
+
+      encrypted = "HashKey=#{ENV['hash_key']}&#{str}&HashIV=#{ENV['hash_iv']}"
+      Digest::SHA256.hexdigest(encrypted).upcase
+    end
+
+
 
   def check(code)
     @code = self.send(code)

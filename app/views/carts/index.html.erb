@@ -1,10 +1,13 @@
-<div class="mt cart-page row">
-	<div class="col-md-offset-1 col-md-10 col-sm-12">
+<div class="cart-page row">
+	<div class="mt col-md-offset-1 col-md-10 col-sm-12">
 		<div class="center">
 			<div class="cart-page-title">
-				<span class="ur-cart">你的購物車</span> 
-				<%= link_to "(清空購物車)", clean_carts_path, method: :delete,
-				 class: "small clean-cart", data: { confirm: "確定清空購物車？"} %>
+				<h2 class="background">
+					<span class="ur-cart">購物車
+					<%= link_to "(清空購物車)", clean_carts_path, method: :delete,
+				 	class: "small clean-cart", data: { confirm: "確定清空購物車？"} %>
+				 </span>
+				</h2> 	
 			</div>
 		</div>
   	

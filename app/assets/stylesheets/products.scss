@@ -2,7 +2,6 @@
 
 .products-page {
 	padding:0px;
-	margin: 0 -15px 0 -15px;
 }
 
 @media screen and (min-width: 768px) {
@@ -10,34 +9,24 @@
 	}	
 }
 
-.home-options {
-	height: 130px;
-	width: 100%;
-	display:flex;
-	justify-content: space-around;
-  align-items:center;
-	.home-option {
-		display: inline-block;
-		margin-right: 35px;
-		font-size: 16px;
+/* categories */
+
+.categories {
+	margin-top: 60px;
+	padding-left: 20px;
+	div {
+		margin-top: 10px;
 		a {
-			color: #000;
-		}
+			font-size: 14px;
+		}	
 	}
 }
 
-@media screen and (max-width: 768px) {
-	.home-options {
-		background: darken(#9ed5de, 10%);	
-		opacity: 0.8;
-		.home-option {
-			margin-top: 20px;
-			a {
-				font-weight: 200;
-				color: #fff;
-			}
-		}
-	}
+
+/* carousel */
+
+#myCarousel {
+	margin: 0 -15px;
 }
 
 .carousel-size {
@@ -61,13 +50,6 @@
 	background-size: 100% 40vmax;
 }
 
-@media screen and (max-width: 768px) {
-	.home-bg {
-		margin-top: -150px;
-		height: 260px;
-		background-size: 100% 260px;
-	}
-}
 
 
 .category {
@@ -92,13 +74,14 @@
 
 .product-items {
 	margin-top: 0px;
-	padding-left: 15px;
 	display:flex;
+	justify-content: flex-start;
 	flex-wrap:wrap;
 }
 
 @media screen and (min-width: 768px) {
 	.product-items {
+		padding-left: 40px;
 	}
 }
 
@@ -106,7 +89,6 @@
 	display: inline-block;
 	width: 220px;
 	margin: 0px 10px 30px 10px;
-	float:left;
 	&:hover {
 		.product-item-info {
 		}
@@ -136,34 +118,23 @@
 	}
 }
 
-@media screen and (min-width: 768px) and (max-width: 992px) {
-	.product-itme {
-		width: 180px;
-		img {
-			width: 180px;
-			height: 135px;
-		}
-		.product-item-info {
-			width: 180px;
-			.product-item-description {
-				height: 100px;
-			}
-		}
-	}
-}
+
 
 @media screen and (max-width: 768px) {
 	.product-items {
-		padding-left: 40px;
+		justify-content: space-around;
 	}
 	.product-itme {
-		width: 132px;
+		width: 100%;
+		max-width: 400px;
 		img {
-			width: 132px;
-			height: 99px;
+			width: 100%;
+			max-width: 400px;
+			height: auto;
 		}
 		.product-item-info {
-			width: 132px;
+			width: 100%;
+			max-width: 400px;
 			.product-item-title {
 				font-size: 14px;
 				line-height: 1.1;

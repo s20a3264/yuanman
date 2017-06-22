@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
 	before_action :authenticate_user!, except: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
 																							:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
-																						  :realtime_notify, :non_realtime_customer, :non_realtime_notify]
+																						  :realtime_notify, :non_realtime_customer, :non_realtime_notify,
+																						  #新版智付寶
+																							:pay2go_return, :pay2go_notify]
 
 	before_action :set_pay2go_json, only: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
 		                                     :pay2go_wa_notify, :realtime_return, :realtime_notify,
@@ -11,7 +13,9 @@ class OrdersController < ApplicationController
 
 	protect_from_forgery except: [:pay2go_cc_notify, :pay2go_cc_return, :pay2go_wa_return,
 																:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
-																:realtime_notify, :non_realtime_customer, :non_realtime_notify]
+																:realtime_notify, :non_realtime_customer, :non_realtime_notify,
+																#新版智付寶
+																:pay2go_return, :pay2go_notify]
 
 
 	def create
@@ -42,6 +46,18 @@ class OrdersController < ApplicationController
 		@order_items = @order.items
 	end
 
+	def pay2go_notify
+		
+	end
+
+	def pay2go_return
+		params['Status'] = "SUCCESS"
+		tradeinfo = params['TradeInfo']
+		@a = Pay2goService.aes_decrypt(ENV['hash_key'], tradeinfo)
+
+	end
+
+	#pay2go舊版
 	def pay2go_cc_return
 		if @json_data['Status'] == "SUCCESS" && @order.is_paid == false && @check_code == @result['CheckCode']
 			@order.complete_payment("credit_card", @json_data['Result'])

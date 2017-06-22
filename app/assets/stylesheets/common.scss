@@ -23,9 +23,18 @@ body {
   .md  {
     margin-bottom: 60px;
   }
+  .mr {
+    margin-right: 10px;
+  }
+  .ml {
+    margin-left: 10px;
+  }
   .mrf {
     margin-left: 5px;
     margin-right: 5px;
+  }
+  .padding-rl {
+    padding: 0 15px;
   }
 }
 
@@ -38,7 +47,6 @@ body {
 
 @media screen and (max-width: 768px) {
   .container-fluid  {
-    padding:0 10px 0 10px;
   }
 }
 
@@ -50,6 +58,8 @@ body {
     font-weight: bolder;
   }
 }
+
+
 
 textarea {
 	display: block;
@@ -64,6 +74,15 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+
+/* 換行 */
+
+.break-word {
+  word-wrap:break-word;
+}
+
+
 
 /* table */
 
@@ -193,6 +212,10 @@ table {
   margin-top: 10px;
 }
 
+.width100 {
+  width: 100%;
+}
+
 /* color */
 .green {
   color: $green;
@@ -215,6 +238,27 @@ table {
 .monospace {
   font-family: 'Monaco', 'Andale Mono';
 }
+
+.lighter {
+  font-weight: lighter;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bolder {
+  font-weight: bolder;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
 
 /* paginate */
 

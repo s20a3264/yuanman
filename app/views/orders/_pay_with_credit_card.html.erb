@@ -1,22 +1,25 @@
 <%= form_tag ENV['pay2go_service_url'], method: :post do  %>
 
-  <%= hidden_field_tag "MerchantID",      Pay2go.merchant_id %>
-  <%= hidden_field_tag "LoginType",       "0" %>
-  <%= hidden_field_tag "RespondType",     "JSON" %>
-  <%= hidden_field_tag "Version",         "1.2" %>
+  <%= hidden_field_tag "MerchantID",      ENV['merchant_id'] %>
+  <%= hidden_field_tag "Version",         "1.0" %>
   <%= hidden_field_tag "TradeLimit",      "300" %>
 
-  <%= hidden_field_tag "ItemDesc",        "order_sample" %>
+  <!-- new -->
+  <%= hidden_field_tag "TradeInfo",      Pay2goService.new(order).aes_encrypt %>
+  <%= hidden_field_tag "TradeSha",       Pay2goService.new(order).sha256_encrypt %>
+
+
+  <%= hidden_field_tag "ItemDesc",        "sample" %>
   <%= hidden_field_tag "MerchantOrderNo", order.order_number %>
-  <%= hidden_field_tag "Email",           current_user.email %>
   <%= hidden_field_tag "TimeStamp",       order.created_at.to_i %>
   <%= hidden_field_tag "Amt",             order.total %>
 
-  <%= hidden_field_tag "CREDIT",          "1" %>
+  <%= hidden_field_tag "CREDIT",          1 %>
+  <%= hidden_field_tag "WEBATM",          1 %>
+  <%= hidden_field_tag "P2GEACC",         0 %>
+  <%= hidden_field_tag "CVS",             0 %>
+  <%= hidden_field_tag "VACC",            0 %>
   <%= hidden_field_tag "ReturnURL",       realtime_return_order_url(order.token) %>
-<!--   <%= hidden_field_tag "NotifyURL",       pay2go_cc_notify_order_url(order.token) %>
- -->  
-  <%= hidden_field_tag "CheckValue",      Pay2goService.new(order).check("check_value") %>
 
   <%= submit_tag "信用卡一次付清", class: "btn-sw" %>
 <% end %>

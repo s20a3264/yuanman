@@ -1,8 +1,18 @@
 class ProductsController < ApplicationController
 
+
 	def index
-		@products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
-		@setting = Setting.last
+		@categories = Category.all
+		@setting = Setting.last		
+		if params[:category_id]
+			id = params[:category_id].to_i
+			category = @categories.find_by(id: id)
+			@products = category.products.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
+		else
+				@products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
+		end
+
+		@category_name = category ? category.name : "所有商品"
 	end
 
 	def show

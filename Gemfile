@@ -15,6 +15,9 @@ gem 'kaminari'
 
 gem "rb-readline"
 gem "fog"
+gem 'jquery-turbolinks'
+
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

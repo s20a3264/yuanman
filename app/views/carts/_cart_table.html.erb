@@ -1,38 +1,52 @@
-<table class="cart-table table table-striped table-bordered">
+<table class="cart-table table table-striped">
   <thead>
-    <tr>
-      <th colspan="2" class="th center">商品資訊</th>
-      <th class="th">單價</th>
-      <th class="th">小計</th>
+    <tr class="lighter small">
+      <th class="th"><span class="visible-xs-inline">PRODUCT</span></th>
+      <th class="th"><span class="hidden-xs ">PRODUCT</span></th>
+      <th class="th ">PRICE</th>
+      <th class="th ">AMOUNT</th>
     </tr>
   </thead>
   <tbody class="td-body">
     <% @items.each do |product| %>
+      <tr class="visible-xs xs-tr">
+        <td colspan="4">
+         <h4 class="center"> 
+          <%= link_to(product.title, product_path(product), class: "normal-link bold") %>
+         </h4> 
+        </td>
+      </tr>
       <tr>
         <td class="td-image">
           <%= link_to delete_cart_item_carts_path(product_id: product.id, product_title: product.title), 
           method: :delete, class: "remove-cart-item" do %>
             <i class="fa fa-times" aria-hidden="true"></i>
           <% end %>  
-          <%= image_tag(product.photo.image.thumb.url, class: "thumbnail cart-image") %>
+          <%= image_tag(product.photo.image.thumb.url, class: "cart-image") %>
         </td>
         <td class="td-item-info">
-          <%= link_to(product.title, product_path(product)) %> <br>
+          <%= link_to(product.title, product_path(product), class: "normal-link bold hidden-xs") %>
           <%= form_tag({ controller: "carts", action: "refresh"}, method: :post, remote: true) do %>
-            <span>
-            	數量 ： <%= select_tag(:quantity, options_for_select(product_quantity_range(product),
-            							find_cart_items_quantity(@cart_items_hash, product)), onchange: "this.form.submit()" ) %>
-					  <span>
+            <div class="lighter">
+
+            	<span class="hidden-xs">數量 ： </span>
+              <span> <span class="visible-xs-inline small gray">x</span>
+                <%= select_tag(:quantity, options_for_select(product_quantity_range(product),
+            	  find_cart_items_quantity(@cart_items_hash, product)),
+                 onchange: "this.form.submit()") %>
+              </span>  
+					  </div>
 					  <%= hidden_field_tag :product_id, product.id %>
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <%=  %>
 					<% end %>  	
         </td>
-        <td class="td-price">
-          <%= product.price %>
+        <td class="td-price ">
+          <div class="inline-block small lighter mr gray">$</div> 
+          <div class="break-word inline-block"><%= product.price %></div>
         </td>
         <td class="td-sum">
-          <span class="small">NT$</span> <%= sum(@cart_items_hash, product) %>
+          <div class="inline-block small lighter mr gray">$</div>
+          <div class="inline-block break-word"><%= sum(@cart_items_hash, product) %></div>
         </td>
       </tr>
     <% end %>

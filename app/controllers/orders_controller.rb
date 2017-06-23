@@ -47,13 +47,36 @@ class OrdersController < ApplicationController
 	end
 
 	def pay2go_notify
-		
+		data = Pay2goService.aes_decrypt(params['TradeInfo'])
+		tradeinfo = JSON.parse(data)
+		result = tradeinfo['Result']
+		@order = Order.find_by(order_number: result['MerchantOrderNo'])
+
+  	@order.store_trade_info(result)
+  	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false	
+			@order.complete_payment(result['PaymentType'])
+		end			
 	end
 
 	def pay2go_return
-		params['Status'] = "SUCCESS"
-		tradeinfo = params['TradeInfo']
-		@a = Pay2goService.aes_decrypt(ENV['hash_key'], tradeinfo)
+		data = Pay2goService.aes_decrypt(params['TradeInfo'])
+		tradeinfo = JSON.parse(data)
+		result = tradeinfo['Result']
+		@order = Order.find_by(order_number: result['MerchantOrderNo'])
+
+  	@order.store_trade_info(tradeinfo) if @order.trade_info.empty?
+  	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == true
+			flash[:success] = "#{tradeinfo['Message']}"
+			redirect_to order_path(@order.token)  		
+
+		elsif params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false
+			@order.complete_payment(result['PaymentType'])
+			flash[:success] = "#{tradeinfo['Message']}"
+			redirect_to order_path(@order.token)
+		else
+			flash[:warning] = "交易失敗,#{tradeinfo['Message']}"
+			redirect_to order_path(@order.token)
+		end				
 
 	end
 

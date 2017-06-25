@@ -9,12 +9,12 @@ body {
   .container-fluid  {
   }
   a {
-    color: $brown;
+    color: #5482ab;
     font-family:  Helvetica, sans-serif;
-    font-weight: bold;
+    font-weight: 400;
     &:hover {
       text-decoration: none;
-      color: darken($brown, 10%);
+      color: darken(#5482ab, 10%);
     }
   }
   .mt {
@@ -34,9 +34,31 @@ body {
     margin-right: 5px;
   }
   .padding-rl {
-    padding: 0 15px;
+    padding-left:15px;
+    padding-right: 15px;
+  }
+  .padding-tb {
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
+
+.min-height {
+  min-height: 700px;
+}
+
+.border-radius {
+  border-radius: 8px;
+}
+
+.background-gray {
+  background: #eee;
+}
+
+.background-white {
+  background: #fff;
+}
+
 
 @media screen and (min-width: 768px) {
   body {

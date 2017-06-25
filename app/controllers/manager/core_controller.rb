@@ -27,6 +27,7 @@ class Manager::CoreController < ManagerController
 		redirect_to :back 
 	end
 
+
 	def zbc
 
 		clnt = HTTPClient.new

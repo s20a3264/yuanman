@@ -10,13 +10,19 @@
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner carousel-size">
         <div class="item active">
-					<%= image_tag(@setting.carousel1, alt: "First slide", class: "carousel-img" ) %>
+		  <a href=<%= @setting.carousel1_link %> >
+            <%= image_tag(@setting.carousel1, alt: "First slide", class: "carousel-img" ) %>
+          </a>
         </div>
         <div class="item">
-					<%= image_tag(@setting.carousel2, alt: "Second slide", class: "carousel-img" ) %>
+          <a href=<%= @setting.carousel2_link %> >
+		        <%= image_tag(@setting.carousel2, alt: "Second slide", class: "carousel-img" ) %>
+          </a>              
         </div>
         <div class="item">
-					<%= image_tag(@setting.carousel3, alt: "Third slide", class: "carousel-img" ) %>
+          <a href=<%= @setting.carousel3_link %> >
+		        <%= image_tag(@setting.carousel3, alt: "Third slide", class: "carousel-img" ) %>
+           </a> 
         </div>
 
     </div>
@@ -28,7 +34,5 @@
         data-slide="next">&rsaquo;
     </a>
 </div>
-
-<%= link_to "edit", edit_manager_setting_path(id: Setting.last.id)  %>
 
 <!-- 輪撥測試 -->

@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
 
 	def index
 		@categories = Category.all
-		@setting = Setting.last		
 		if params[:category_id]
 			id = params[:category_id].to_i
 			category = @categories.find_by(id: id)

@@ -1,11 +1,54 @@
-<%= form_for([:manager, @setting], html: {multipart: true}) do |f| %>
+<!-- 標籤分頁 -->
+<script>
+	$('#myTab a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+</script>
 
-	<%= f.file_field :carousel1 %>
-	<%= f.hidden_field :carousel1_cache %>
-	
-	<%= f.file_field :carousel2 %>
-	<%= f.file_field :carousel3 %>
+<div class="row padding-tb min-height  background-gray" role="tabpanel">
+	<div class="col-md-10 col-md-offset-1 col-xs-12 background-white border-radius">
 
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+    	<a href="#home" aria-controls="home" role="tab" data-toggle="tab">網站設定</a>
+    </li>
+    <li role="presentation" class="active">
+    	<a href="#carousel_setting" aria-controls="carousel_setting" role="tab" data-toggle="tab">輪播圖設定</a>
+    </li>
+    <li role="presentation">
+    	<a href="#about_us_setting" aria-controls="about_us_setting" role="tab" data-toggle="tab">編輯關於我們</a>
+    </li>
+    <li role="presentation">
+    	<a href="#q_and_a_setting" aria-controls="q_and_a_setting" role="tab" data-toggle="tab">編輯 Q ＆ A</a>
+    </li>
+  </ul>
 
-	<%= f.submit "送出" %>
-<% end %>
+  <!-- Tab panes -->
+
+  <div class="tab-content">
+
+    <div role="tabpanel" class="tab-pane" id="home">.1</div>
+    <div role="tabpanel" class="tab-pane active" id="carousel_setting">
+			<%= render 'carousel_setting' %>   	
+    </div>
+    <div role="tabpanel" class="tab-pane" id="about_us_setting">
+    	<%= render 'about_setting' %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="q_and_a_setting">
+    	<%= render 'q_and_a_setting' %>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 編輯器toolbar -->
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+  })
+</script>

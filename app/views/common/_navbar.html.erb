@@ -1,3 +1,6 @@
+<%= render 'common/about_us' %>
+<%= render 'common/q_and_a' %>
+
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navar-header">
@@ -23,8 +26,10 @@
 
 		<div class="collapse navbar-collapse" id="nav-list">
 			<ul class="nav navbar-nav navbar-left">
-				<li><%= link_to "品牌故事", "#"  %></li>
-				<li><%= link_to "Q＆A", "#"  %></li>
+				<li>
+					<%= link_to "認識圓滿生機", "#", data: {toggle: "modal", target: "#about_us_modal"}  %>
+				</li>
+				<li><%= link_to "Q＆A", "#", data: {toggle: "modal", target: "#q_and_a_modal"}  %></li>
 				<li>
 					<%= link_to "#", class: "hidden-xs" do %>
 						<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>

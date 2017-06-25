@@ -24,15 +24,31 @@ class Pay2goService
   end
 
   class << self
-    def aes_decrypt(decrypted_string)
+    def aes_decrypt(data)
       aes = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
       aes.decrypt
       aes.key = ENV['hash_key']
       aes.iv  = ENV['hash_iv']
-      
-      str = aes.update([decrypted_string].pack('H*')) << aes.final
-      str.force_encoding('UTF-8')
+      aes.padding = 0
+
+      decrypted_data = aes.update([data].pack('H*')) << aes.final
+      decrypted_data.force_encoding('UTF-8')
+
+      self.strippadding(decrypted_data)
+
     end
+
+    def strippadding(decrypted_data)
+        padding_num = decrypted_data[-1].ord
+        padding_chr = decrypted_data[-1]
+      if /#{padding_chr}{#{padding_num}}/i.match(decrypted_data)
+        decrypted_data_length = decrypted_data.size - padding_num -1
+        decrypted_data[0..decrypted_data_length]
+      else
+        decrypted_data  
+      end      
+    end
+
   end
 
 

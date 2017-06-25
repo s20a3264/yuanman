@@ -1,0 +1,27 @@
+	<%= render 'products/carousel' %>
+<%= form_for([:manager, @setting], html: {multipart: true}) do |f| %>
+<hr>
+  <div class="form-group">
+  	<h4 class="red">輪播圖一</h4>	
+		<div><%= f.file_field :carousel1, :"data-filename-placement" => "inside" %></div><br>
+		<div><%= f.hidden_field :carousel1_cache %></div>
+		<div><%= f.label  :carousel1_link ,"導向頁面" %></div>
+		<div><%= f.text_field :carousel1_link, class: "form-control" %></div>
+		<hr>
+		
+  	<h4 class="red">輪播圖二</h4>	
+		<%= f.file_field :carousel2 %>
+		<div><%= f.label  :carousel2_link ,"導向頁面" %></div>
+		<div><%= f.text_field :carousel2_link, class: "form-control" %></div>
+		<hr>
+		
+  	<h4 class="red">輪播圖三</h4>	
+		<%= f.file_field :carousel3 %>
+		<div><%= f.label  :carousel3_link ,"導向頁面" %></div>
+		<div><%= f.text_field :carousel3_link, class: "form-control" %></div>
+		<hr>				
+
+
+		<%= f.submit "送出", class: "btn btn-normal", data: { disable_with: "上傳並更新設定中..."} %>
+	</div>	
+<% end %> 

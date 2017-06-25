@@ -16,6 +16,7 @@ gem 'kaminari'
 gem "rb-readline"
 gem "fog"
 gem 'jquery-turbolinks'
+gem 'bootstrap-wysihtml5-rails'
 
 
 
@@ -70,5 +71,6 @@ end
 
 group :production do 
 	gem "rails_12factor"
+  gem 'puma'
 end	
 

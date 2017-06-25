@@ -1,0 +1,37 @@
+<%= link_to "設定", edit_manager_setting_path(id: Setting.last.id)  %>
+
+<!-- 標籤分頁 -->
+<script>
+	$('#myTab a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+</script>
+
+<div class="row padding-tb min-height  background-gray" role="tabpanel">
+  <div class="col-md-10 col-md-offset-1 col-xs-12 background-white border-radius">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+      	<a href="#home" aria-controls="home" role="tab" data-toggle="tab">網站設定</a>
+      </li>
+      <li role="presentation">
+        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+      </li>
+      <li role="presentation">
+        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+      </li>
+      <li role="presentation">
+        <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home">.1</div>
+      <div role="tabpanel" class="tab-pane" id="profile">.2.</div>
+      <div role="tabpanel" class="tab-pane" id="messages">..3</div>
+      <div role="tabpanel" class="tab-pane" id="settings">...</div>
+    </div>
+  </div>
+</div>

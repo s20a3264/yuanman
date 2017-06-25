@@ -1,7 +1,10 @@
 class Manager::SettingsController < ManagerController
 
+	def index
+		
+	end
+
 	def create
-		@setting = Setting.new(setting_params)
 		if @setting.save
 			redirect_to root_path(@setting)
 		else
@@ -11,22 +14,21 @@ class Manager::SettingsController < ManagerController
 
 
 	def edit
-		@setting = Setting.last
 	end
 
 	def update
-		@setting = Setting.last
 
 		if @setting.update(setting_params)
-			redirect_to root_path
+			redirect_to manager_settings_path
 		else
-		 render :edit
+		 render :back
 		end 		
 	end
 
 	private
 
 		def setting_params
-			params.require(:setting).permit(:carousel1, :carousel2, :carousel3)
+			params.require(:setting).permit(:carousel1, :carousel2, :carousel3, 
+				:carousel1_link, :carousel2_link, :carousel3_link, :about_us, :q_and_a, :notice)
 		end
 end

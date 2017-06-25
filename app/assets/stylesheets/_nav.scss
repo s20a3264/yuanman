@@ -75,12 +75,8 @@
 		}
 	}
 	.product-on-shelf {
-		border: 1px solid $green !important;
 		a {
-			color: $green !important;
 			&:hover {
-				background: $green !important;
-				color: #fff !important;
 			}
 		}
 	}
@@ -130,5 +126,6 @@
 	}
 	span {
 		padding: 0 5px;
+		color: $brown;
 	}
 }

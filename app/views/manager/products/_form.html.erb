@@ -34,6 +34,16 @@
   
   
   	<div class="form-group">
-  		<%= f.label(:description,"描述") %>
-  		<%= f.text_area(:description) %>
-  	</div>	
+  		<%= f.label(:description,"描述") %>生機
+  		<%= f.text_area(:description, class: "wysihtml5") %>
+  	</div>
+
+    <!-- 編輯器toolbar -->
+    <script type="text/javascript">
+      $(document).ready(function(){
+    
+        $('.wysihtml5').each(function(i, elem) {
+          $(elem).wysihtml5({'toolbar': {'color': true}});
+        });
+      })
+    </script>

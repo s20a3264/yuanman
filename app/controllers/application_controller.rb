@@ -5,10 +5,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_cart
 
+  before_action :setting
+
 
   def current_cart
   	@current_cart ||= find_cart
   end
+
+
 
   private
 
@@ -30,6 +34,10 @@ class ApplicationController < ActionController::Base
       @cart_items_hash[item.product_id] = item.quantity 
     end
     @cart_items_hash
+  end
+
+  def setting
+    @setting = Setting.last
   end
 	
 end

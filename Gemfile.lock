@@ -57,6 +57,8 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
     builder (3.2.2)
     byebug (9.0.4)
     callsite (0.0.11)
@@ -276,6 +278,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    puma (3.9.1)
     rack (1.6.4)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
@@ -373,6 +376,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bootstrap-wysihtml5-rails
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)
@@ -389,6 +393,7 @@ DEPENDENCIES
   mini_magick
   pay2go
   pg
+  puma
   rails (= 4.2.3)
   rails_12factor
   rb-readline

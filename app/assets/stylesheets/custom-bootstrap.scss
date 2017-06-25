@@ -2,3 +2,35 @@
 	margin: 0;
 	display: inline;
 }
+
+
+/* 頁籤 */
+
+
+.tab-pane {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	#myCarousel {
+		margin: 0;
+	}
+}
+
+/* 編輯器 */
+
+.wysihtml5 {
+	img {
+		max-width: 100%;
+	}
+}
+
+
+/* 互動視窗 */
+
+.modal-body {
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+  }
+}

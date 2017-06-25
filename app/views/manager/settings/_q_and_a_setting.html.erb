@@ -1,0 +1,7 @@
+<%= form_for([:manager, @setting]) do |f| %>
+	<div class="form-group">
+  		<%= f.text_area(:q_and_a, class: "wysihtml5") %>
+  		<hr>
+		  <%= f.submit "送出", data: { disable_with: "上傳並更新設定中..." }, class: "btn btn-normal" %>
+ 	</div>
+<% end %>

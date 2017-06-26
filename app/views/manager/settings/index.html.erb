@@ -1,29 +1,59 @@
-<%= link_to "設定", edit_manager_setting_path(id: Setting.last.id)  %>
 
 <div class="row padding-tb min-height  background-gray" role="tabpanel">
   <div class="col-md-10 col-md-offset-1 col-xs-12 background-white border-radius">
+    <%= link_to  edit_manager_setting_path(id: Setting.last.id), 
+     class: "black grow-link large bold mtd-small block" do %>
+      <i class="fa fa-cog" aria-hidden="true"></i> 更改設定
+    <% end %>    
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active">
+      <li role="presentation">
       	<a href="#home" aria-controls="home" role="tab" data-toggle="tab">網站設定</a>
       </li>
-      <li role="presentation">
-        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+      <li role="presentation"  class="active">
+        <a href="#carousel" aria-controls="carousel" role="tab" data-toggle="tab">首頁輪播圖</a>
       </li>
       <li role="presentation">
-        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+        <a href="#about" aria-controls="about" role="tab" data-toggle="tab">關於圓滿生機</a>
       </li>
       <li role="presentation">
-        <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+        <a href="#Q-and-A" aria-controls="Q-and-A" role="tab" data-toggle="tab">Q ＆ A</a>
       </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="home">.1</div>
-      <div role="tabpanel" class="tab-pane" id="profile">.2.</div>
-      <div role="tabpanel" class="tab-pane" id="messages">..3</div>
-      <div role="tabpanel" class="tab-pane" id="settings">...</div>
+      <div role="tabpanel" class="tab-pane" id="home">.1</div>
+      <div role="tabpanel" class="tab-pane active" id="carousel" >
+        <%= render 'products/carousel' %>
+        <div class="inline-flex">
+          <div class="small-carousel center">
+            <h3>IMAGE 1</h3>
+            <%= image_tag(@setting.carousel1) %>
+            <h4><%= link_to "連結", "#{@setting.carousel1_link}", class: "red"  %></h4>
+          </div>
+          <div class="small-carousel center">
+            <h3>IMAGE 2</h3>
+            <%= image_tag(@setting.carousel2) %>
+            <h4><%= link_to "連結", "#{@setting.carousel2_link}", class: "red"  %></h4>
+          </div>
+          <div class="small-carousel center">
+            <h3>IMAGE 3</h3>
+            <%= image_tag(@setting.carousel3) %>
+            <h4><%= link_to "連結", "#{@setting.carousel3_link}", class: "red"  %></h4>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="about">
+        <div class="img-100">
+          <%= raw(@setting.about_us) %>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="Q-and-A">
+        <div class="img-100">
+          <%= raw(@setting.q_and_a) %>
+        </div>        
+      </div>
     </div>
   </div>
 </div>
@@ -35,4 +65,20 @@
     e.preventDefault()
     $(this).tab('show')
   })
+</script>
+
+
+<!-- 修復tap分頁時輪播圖寬高不正確問題 -->
+<script>
+  $(document).on('ready page:load', function() {
+    var width = $('#myCarousel').width();
+    var height = width * 0.34;
+    $('#myCarousel').height(height);
+
+    $( window ).resize(function() {
+      var width = $('#myCarousel').width();
+      var height = width * 0.34;
+      $('#myCarousel').height(height);
+    });
+  }); 
 </script>

@@ -39,7 +39,7 @@
       </tr>
       <tr>
         <td class="high-table">
-          <%= order.trade_info["PayTime"] %>
+          <%= order.trade_info["Result"]["PayTime"] %>
         </td>
       </tr>
       <tr>
@@ -49,7 +49,7 @@
       </tr>
       <tr>
         <td class="high-table">
-          <span class="small">NTD</span><%= order.trade_info["Amt"] %>
+          <span class="small"> NTD </span> <%= order.trade_info["Result"]["Amt"] %>
         </td>
       </tr>                  
     <% end %>

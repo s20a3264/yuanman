@@ -47,7 +47,7 @@ module OrdersHelper
 
 	#付款方式翻譯
 	def render_payment_method(method)
-		t("payment_method.#{method}")
+		I18n.t("payment_method.#{method}")
 	end
 
 	#顯示取號付款資訊

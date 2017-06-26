@@ -21,8 +21,8 @@ zh-TW:
       good_returned: 退貨成功
       good_return_failed: 不符合退貨條件      
   payment_method:
-    web_atm: WebATM
-    credit_card: 信用卡一次付清
+    WEBATM: WebATM
+    CREDIT: 信用卡一次付清
     vacc: ATM轉帳
     cvs: 超商代碼繳費
 

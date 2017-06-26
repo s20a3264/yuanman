@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
   	@order.store_trade_info(result)
   	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false	
 			@order.complete_payment(result['PaymentType'])
-		end			
+		end
 	end
 
 	def pay2go_return
@@ -64,13 +64,13 @@ class OrdersController < ApplicationController
 		result = tradeinfo['Result']
 		@order = Order.find_by(order_number: result['MerchantOrderNo'])
 
-  	@order.store_trade_info(tradeinfo) if @order.trade_info.empty?
+  	# @order.store_trade_info(tradeinfo) if @order.trade_info.empty?
   	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == true
 			flash[:success] = "#{tradeinfo['Message']}"
 			redirect_to order_path(@order.token)  		
 
 		elsif params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false
-			@order.complete_payment(result['PaymentType'])
+			# @order.complete_payment(result['PaymentType'])
 			flash[:success] = "#{tradeinfo['Message']}"
 			redirect_to order_path(@order.token)
 		else

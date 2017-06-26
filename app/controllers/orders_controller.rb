@@ -90,7 +90,7 @@ class OrdersController < ApplicationController
 		  @order.store_payment_info(result, payment_type: result['PaymentType'])
   		flash[:success] = "取號成功"
 
-  		redirect_to payment_info_account_order_path(@order.token)
+  		# redirect_to payment_info_account_order_path(@order.token)
   	end
 
   	rescue

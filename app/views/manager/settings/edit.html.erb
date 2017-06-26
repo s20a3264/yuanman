@@ -1,11 +1,3 @@
-<!-- 標籤分頁 -->
-<script>
-	$('#myTab a').click(function (e) {
-	  e.preventDefault()
-	  $(this).tab('show')
-	})
-</script>
-
 <div class="row padding-tb min-height  background-gray" role="tabpanel">
 	<div class="col-md-10 col-md-offset-1 col-xs-12 background-white border-radius">
 
@@ -21,7 +13,9 @@
     	<a href="#about_us_setting" aria-controls="about_us_setting" role="tab" data-toggle="tab">編輯關於我們</a>
     </li>
     <li role="presentation">
-    	<a href="#q_and_a_setting" aria-controls="q_and_a_setting" role="tab" data-toggle="tab">編輯 Q ＆ A</a>
+    	<a href="#q_and_a_setting" aria-controls="q_and_a_setting" role="tab" data-toggle="tab" id="edit_q_and_q">
+    		編輯 Q ＆ A
+    	</a>
     </li>
   </ul>
 
@@ -43,12 +37,37 @@
 </div>
 </div>
 
-<!-- 編輯器toolbar -->
+<!-- tap分頁 -->
+<script>
+	$('#myTab a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+</script>
+
+
+<!-- 啟用編輯器toolbar -->
 <script type="text/javascript">
-  $(document).ready(function(){
+  $(document).on('ready page:load', function(){
 
     $('.wysihtml5').each(function(i, elem) {
       $(elem).wysihtml5();
     });
   })
+</script>
+
+
+<!-- 修復tap分頁時輪播圖寬高不正確問題 -->
+<script>
+	$(document).on('ready page:load', function() {
+		var width = $('#myCarousel').width();
+		var height = width * 0.34;
+		$('#myCarousel').height(height);
+
+		$( window ).resize(function() {
+			var width = $('#myCarousel').width();
+			var height = width * 0.34;
+		 	$('#myCarousel').height(height);
+		});
+	});	
 </script>

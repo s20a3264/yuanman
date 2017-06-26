@@ -1,5 +1,6 @@
 <%= form_tag ENV['pay2go_service_url'], method: :post do  %>
 
+  <%= hidden_field_tag "CustomerURL",     pay2go_customer_url %>
   <%= hidden_field_tag "MerchantID",      ENV['merchant_id'] %>
   <%= hidden_field_tag "Version",         "1.0" %>
   <%= hidden_field_tag "TradeLimit",      "300" %>
@@ -19,9 +20,6 @@
   <%= hidden_field_tag "P2GEACC",         1 %>
   <%= hidden_field_tag "CVS",             1 %>
   <%= hidden_field_tag "VACC",            1 %>
-  <%= hidden_field_tag "CustomerURL",     pay2go_customer_url %>
 
-<!--   <%= hidden_field_tag "ReturnURL",       realtime_return_order_url(order.token) %>
- -->
   <%= submit_tag "信用卡一次付清", class: "btn-sw" %>
 <% end %>

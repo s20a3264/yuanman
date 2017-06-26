@@ -86,6 +86,7 @@ class OrdersController < ApplicationController
 		@order = Order.find_by(order_number: result['MerchantOrderNo'])	
 
 		if  params['Status'] == "SUCCESS" 
+			@order.take_a_number!
 		  @order.store_payment_info(result, payment_type: result['PaymentType'])
   		flash[:success] = "取號成功"
 

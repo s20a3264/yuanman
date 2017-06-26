@@ -1,13 +1,5 @@
 <%= link_to "設定", edit_manager_setting_path(id: Setting.last.id)  %>
 
-<!-- 標籤分頁 -->
-<script>
-	$('#myTab a').click(function (e) {
-	  e.preventDefault()
-	  $(this).tab('show')
-	})
-</script>
-
 <div class="row padding-tb min-height  background-gray" role="tabpanel">
   <div class="col-md-10 col-md-offset-1 col-xs-12 background-white border-radius">
     <!-- Nav tabs -->
@@ -35,3 +27,12 @@
     </div>
   </div>
 </div>
+
+
+<!-- bootstrap tap分頁 -->
+<script>
+  $('#myTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+</script>

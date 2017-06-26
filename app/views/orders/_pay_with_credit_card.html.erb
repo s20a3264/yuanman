@@ -1,6 +1,7 @@
 <%= form_tag ENV['pay2go_service_url'], method: :post do  %>
 
   <%= hidden_field_tag "CustomerURL",     pay2go_customer_url %>
+  <%= hidden_field_tag "ClientBackURL",   root_url %>
   <%= hidden_field_tag "MerchantID",      ENV['merchant_id'] %>
   <%= hidden_field_tag "Version",         "1.0" %>
   <%= hidden_field_tag "TradeLimit",      "300" %>

@@ -22,13 +22,14 @@
       <div class="pay-with">
         <%= render "pay_with_credit_card", order: @order %>
       </div>
-      <div class="pay-with">
+
+      <div class="pay-with hide">
         <%= render "pay_with_webatm", order: @order %>
       </div>
-      <div class="pay-with">
+      <div class="pay-with hide">
         <%= render "pay_with_cvs", order: @order %>
       </div>
-      <div class="pay-with">
+      <div class="pay-with hide">
         <%= render "pay_with_atm", order: @order %>
       </div>     
     <% end %> 

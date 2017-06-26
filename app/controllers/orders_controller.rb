@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 																							:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
 																						  :realtime_notify, :non_realtime_customer, :non_realtime_notify,
 																						  #新版智付寶
-																							:pay2go_return, :pay2go_notify]
+																							:pay2go_return, :pay2go_notify, :pay2go_customer]
 
 	before_action :set_pay2go_json, only: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
 		                                     :pay2go_wa_notify, :realtime_return, :realtime_notify,
@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 																:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
 																:realtime_notify, :non_realtime_customer, :non_realtime_notify,
 																#新版智付寶
-																:pay2go_return, :pay2go_notify]
+																:pay2go_return, :pay2go_notify, :pay2go_customer]
 
 
 	def create
@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
 		result = tradeinfo['Result']
 		@order = Order.find_by(order_number: result['MerchantOrderNo'])
 
-  	@order.store_trade_info(result)
+  	@order.store_trade_info(tradeinfo)
   	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false	
 			@order.complete_payment(result['PaymentType'])
 		end
@@ -77,8 +77,30 @@ class OrdersController < ApplicationController
 			flash[:warning] = "交易失敗,#{tradeinfo['Message']}"
 			redirect_to order_path(@order.token)
 		end				
+	end
+
+	def pay2go_customer
+		data = Pay2goService.aes_decrypt(params['TradeInfo'])
+		tradeinfo = JSON.parse(data)
+		result = tradeinfo['Result']
+		@order = Order.find_by(order_number: result['MerchantOrderNo'])	
+
+		if  params['Status'] == "SUCCESS" 
+		  @order.store_payment_info(result, payment_type: result['PaymentType'])
+  		flash[:success] = "取號成功"
+
+  		redirect_to payment_info_account_order_path(@order.token)
+  	end
+
+  	rescue
+  		flash[:warning] = "取號失敗，請重新嘗試或選擇其他付款方式" 
+  		redirect_to order_path(@order.token)
 
 	end
+
+
+
+
 
 	#pay2go舊版
 	def pay2go_cc_return

@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   root 'products#index'
 
       #新版智付寶
-  post "pay2go_return" => 'orders#pay2go_return'
-  post "pay2go_notify" => 'orders#pay2go_notify'
+  post "pay2go_return"   => 'orders#pay2go_return'
+  post "pay2go_notify"   => 'orders#pay2go_notify'
+  post "pay2go_customer" => 'orders#pay2go_customer'
 
 
   namespace :manager do

@@ -71,7 +71,7 @@ class Order < ActiveRecord::Base
 
 	#儲存非即時支付取號資訊以及繳費期限
 	def store_payment_info(info, hash={})
-		if hash[:payment_type] == "cvs"
+		if hash[:payment_type] == "CVS"
 		  deadline = Time.zone.now.advance(days: 1)
 		else
 		  deadline = Time.zone.now.advance(days: 3).end_of_day

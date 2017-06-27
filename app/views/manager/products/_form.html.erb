@@ -38,15 +38,10 @@
   		<%= f.text_area(:description, class: "wysihtml5") %>
   	</div>
 
-    <!-- 編輯器toolbar -->
-    <script type="text/javascript">
-      $(document).on('ready page:load', function(){
-    
-        $('.wysihtml5').each(function(i, elem) {
-          $(elem).wysihtml5({'toolbar': {'color': true}});
-        });
-      })
-    </script>
+    <%= render 'js/wysihtml5_fix' %>
+
+    <%= render 'js/wysihtml5' %>
+
 
     <script>
       var loadFile = function(event) {
@@ -66,5 +61,9 @@
           $('#new-category').toggle();
           $('#old-category').toggle();
         });
+      // 確保modal被移除
+       $('[data-wysihtml5-dialog]').on('hidden.bs.modal', function(){
+          $('.modal-backdrop').remove();
+        })
       });
     </script>

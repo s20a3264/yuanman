@@ -37,13 +37,11 @@
 </div>
 </div>
 
+
 <!-- bootstrap tap分頁 -->
-<script>
-	$('#myTab a').click(function (e) {
-	  e.preventDefault()
-	  $(this).tab('show')
-	})
-</script>
+<!-- 修復tab分頁時輪播圖寬高不正確問題 -->
+<%= render 'js/bootstrap_tab' %>
+
 
 
 <!-- 啟用編輯器toolbar -->
@@ -56,18 +54,8 @@
   })
 </script>
 
+<!-- 修復編輯器modal問題 -->
+<%= render 'js/wysihtml5_fix' %>
 
-<!-- 修復tap分頁時輪播圖寬高不正確問題 -->
-<script>
-	$(document).on('ready page:load', function() {
-		var width = $('#myCarousel').width();
-		var height = width * 0.34;
-		$('#myCarousel').height(height);
 
-		$( window ).resize(function() {
-			var width = $('#myCarousel').width();
-			var height = width * 0.34;
-		 	$('#myCarousel').height(height);
-		});
-	});	
-</script>
+

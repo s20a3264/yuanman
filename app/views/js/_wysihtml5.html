@@ -1,0 +1,40 @@
+<script type="text/javascript">
+  $(document).on('ready page:load', function(){
+
+
+		// 編輯器toolbar
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+    // wysihtml5關閉modal有時有問題
+    // 確保modal被移除
+    $('[data-wysihtml5-dialog]').on('hidden.bs.modal', function(){
+      $('.modal-backdrop').remove();
+    })    
+
+    // 將編輯器圖片寬度設為100%
+    $('.wysihtml5-sandbox:eq(0)').attr('id', 'IFrame0'); // $('.wysihtml5-sandbox') is the WYSIHTML5 <iframe>
+    var iframe = document.getElementById('IFrame0');
+    var doc = iframe.contentDocument || iframe.contentWindow.document;
+
+    doc.body.innerHTML = iframe.textContent || iframe.innerHTML;
+
+    function set_width() {
+      $("#IFrame0").contents().find("img").each(function (i, img) {
+        if ($(img).width() != '100%') {
+          $(img).attr('width', '100%');
+        }
+      });
+    }
+
+    $('#edit_q_and_q').on('click', function() {
+      set_width();
+    });
+
+    $(doc).on('scroll click', function() {
+      set_width();
+    });
+
+  });
+</script>

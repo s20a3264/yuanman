@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales/zh-CN
 //= require_tree .
 
 

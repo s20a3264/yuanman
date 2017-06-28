@@ -4,6 +4,6 @@ class Photo < ActiveRecord::Base
 
 	mount_uploader :image, ImageUploader
 
-	validates :image, presence: { message: "請上傳相片"}
+	# validates :image, presence: { message: "請上傳相片"}
 
 end

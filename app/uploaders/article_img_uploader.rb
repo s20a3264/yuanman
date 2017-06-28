@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class CarouselUploader < CarrierWave::Uploader::Base
+class ArticleImgUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
@@ -13,13 +13,13 @@ class CarouselUploader < CarrierWave::Uploader::Base
     storage :fog
   else  
     storage :file
-  end  
+  end
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -41,6 +41,13 @@ class CarouselUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process :resize_to_fit => [50, 50]
   # end
+
+  process resize_to_limit: [1600, 1000]
+
+  version :thumb do
+    process resize_to_limit: [320, 200]
+  end  
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

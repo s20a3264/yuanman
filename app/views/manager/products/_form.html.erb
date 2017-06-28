@@ -37,19 +37,14 @@
   		<%= f.label(:description,"描述") %>
   		<%= f.text_area(:description, class: "wysihtml5") %>
   	</div>
-
+    
+    <!-- 修復編輯器modal問題 -->
     <%= render 'js/wysihtml5_fix' %>
 
     <%= render 'js/wysihtml5' %>
 
 
     <script>
-      var loadFile = function(event) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-      };
-
-
       /* 新增或顯示原來分類 */
       $(document).on('ready page:load', function() {
         $("#category-form").hide();

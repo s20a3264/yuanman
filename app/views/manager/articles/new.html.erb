@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1 border-n mt md">
+  <%= render "common/error_messages", var: @article %>
+		<h2>發表新文章</h2>
+		<%= form_for([:manager, @article]) do |f| %>
+
+  		<div class="form-group">
+  				<%= f.label :article_img, "文章圖片"%>
+  				<%= f.file_field :article_img, accept: 'image/jpeg,image/gif,image/png', 
+  				onchange: "loadFile(event)", style: "width:320 height: 200"  %>
+  				<img id="article-output" />
+    	      
+    	    <!-- 顯示欲上傳圖片 -->  
+  				<script>
+    	      var loadFile = function(event) {
+    	        var output = document.getElementById('article-output');
+    	        output.src = URL.createObjectURL(event.target.files[0]);
+    	      };  
+  				</script>
+	
+  				<%= f.hidden_field :article_img_cache %>
+  		</div>
+
+      <div class="form-group">
+        <%= f.label(:title, "文章標題 : ") %>
+        <%= f.text_field(:title, class: "form-control") %>
+      </div> 
+
+      <div class="form-group">
+        <%= f.label(:description,"描述") %>
+        <%= f.text_area(:description, class: "wysihtml5") %>
+      </div>
+    
+      <!-- 修復編輯器modal問題 -->
+      <%= render 'js/wysihtml5_fix' %>
+  
+      <%= render 'js/wysihtml5' %>
+      <%= f.submit "送出", data: { disable_with: "上傳中..." }, class: "btn-normal" %>
+		<% end %>
+	</div>
+</div>

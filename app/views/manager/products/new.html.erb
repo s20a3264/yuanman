@@ -9,9 +9,15 @@
   			<%= photo_form.label :image, "商品圖片"%>
   			<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile(event)"    %>
   			<img id="output" />
+          
+        <!-- 顯示欲上傳圖片 -->  
   			<script>
-  
+          var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+          };  
   			</script>
+
   			<%= photo_form.hidden_field :image_cache %>
   		<% end %>	
   	</div>
@@ -20,7 +26,7 @@
   
   	<%= render 'form', f: f %>
   
-  	<%= f.submit "送出", data: { disable_with: "Submitting..." }, class: "btn-normal" %>
+  	<%= f.submit "送出", data: { disable_with: "上傳中..." }, class: "btn-normal" %>
   
   <% end %>	
 </div>  

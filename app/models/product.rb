@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 	belongs_to :category
 	has_one :photo, dependent: :destroy
 
-	validates_presence_of :photo
+	# validates_presence_of :photo
 
 	accepts_nested_attributes_for :photo
 

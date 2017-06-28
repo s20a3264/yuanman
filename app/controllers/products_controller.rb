@@ -12,6 +12,8 @@ class ProductsController < ApplicationController
 		end
 
 		@category_name = category ? category.name : "所有商品"
+
+		@articles = Article.all
 	end
 
 	def show

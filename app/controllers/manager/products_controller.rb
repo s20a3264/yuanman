@@ -45,7 +45,7 @@ class Manager::ProductsController < ManagerController
 
 		if @product.destroy
 
-			flash[:warning] = "#{@product.title} 已被刪除"
+			flash[:success] = "#{@product.title} 已被刪除"
 			redirect_to :back
 		else
 			render :index

@@ -16,8 +16,8 @@ class ProductsController < ApplicationController
 		@articles = Article.all
 	end
 
-	def articles
-		@articles = Article.all
+	def total_articles
+		@articles = Article.page(params[:page]).per(4)
 	end
 
 	def show

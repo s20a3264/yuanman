@@ -1,7 +1,7 @@
 class Manager::ArticlesController < ApplicationController
 
 	def index
-		@articles = Article.all
+		@articles = Article.page(params[:page]).per(10)
 	end
 
 	def new
@@ -34,8 +34,20 @@ class Manager::ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find(params[:id])
-
 	end
+
+
+	def destroy
+		@article = Article.find(params[:id])
+
+		if @article.destroy
+
+			flash[:success] = "#{@article.title} 已被刪除"
+			redirect_to :back
+		else
+			render :index
+		end	
+	end	
 
 	private
 

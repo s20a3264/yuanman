@@ -1,6 +1,7 @@
 <div class="row">
+	<%= manager_link("編輯", edit_manager_article_path(@article), class: "center block m-link") %>
 	<div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
-		<div class="modal-body article-description">
+		<div class="article-description">
       <%= image_tag(@article.article_img) %></br>
       <%= raw(@article.description) %>
     </div>

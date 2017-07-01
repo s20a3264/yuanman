@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   resources :products do
     collection do
-      get :articles
+      get :total_articles
     end  
     member do 
       post :add_to_cart

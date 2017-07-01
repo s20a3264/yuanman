@@ -3,7 +3,10 @@
   <div class="col-md-12 col xs-12">
   	<%= render 'options' %>
   	<h2>商品列表</h2>
+
+    <!-- 分頁 -->
     <%= paginate @products %>
+
     <table class="table table-bordered table-striped table-hover">
     	<thead>
     		<tr>
@@ -46,6 +49,7 @@
     		<% end %>	
     	</tbody>
     </table>
-	  <%= paginate @products %>
+    <!-- 分頁 -->
+	<%= paginate @products %>
   </div>
 </div>

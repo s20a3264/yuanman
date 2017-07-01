@@ -2,6 +2,10 @@
 
   <div class="col-md-12 col xs-12">
   	<h2>文章列表</h2>
+
+		<!-- 分頁 -->
+    <%= paginate @articles %>
+
     <table class="table  table-hover">
     	<thead>
     		<tr>
@@ -29,6 +33,8 @@
     			</tr>
     		<% end %>	
     	</tbody>			  	
-    </table>	
+    </table>
+		<!-- 分頁 -->
+    <%= paginate @articles %>    	
   </div>
 </div>    

@@ -16,6 +16,10 @@ class ProductsController < ApplicationController
 		@articles = Article.all
 	end
 
+	def articles
+		@articles = Article.all
+	end
+
 	def show
 		@product = Product.find(params[:id])
 	end

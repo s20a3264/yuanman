@@ -1,0 +1,34 @@
+<div class="row md">
+
+  <div class="col-md-12 col xs-12">
+  	<h2>文章列表</h2>
+    <table class="table  table-hover">
+    	<thead>
+    		<tr>
+    			<th>文章主圖</th>
+    			<th>標題</th>
+    			<th>選項</th>
+    		</tr>
+    	</thead>
+			<tbody>
+    		<% @articles.each do |article| %>
+    			<tr>
+    				<td width="112"><%= image_tag(article.article_img.thumb.url, class: "manager-article-img") %></td>
+    				<td><%= link_to article.title, manager_article_path(article), class: "normal-link small" %></td>
+
+    				<!-- options -->
+    				<td class="product-options">
+    					<div>
+    						<%= link_to "編輯", edit_manager_article_path(article) %>
+    					</div>
+    					<div>
+    						<%= link_to "刪除", manager_article_path(article), method: :delete,
+    					 		data: { confirm: "確定刪除 #{article.title}?"} %>
+    					</div>
+    				</td>
+    			</tr>
+    		<% end %>	
+    	</tbody>			  	
+    </table>	
+  </div>
+</div>    

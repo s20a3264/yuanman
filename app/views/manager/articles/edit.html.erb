@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1 border-n mt md">
   <%= render "common/error_messages", var: @article %>
-		<h2>發表新文章</h2>
+		<h2>編輯文章</h2>
 		<%= form_for([:manager, @article]) do |f| %>
 
   		<div class="form-group">
@@ -9,8 +9,11 @@
           <h5 class="red">建議圖片比例為 16:10</h5>
   				<%= f.file_field :article_img, accept: 'image/jpeg,image/gif,image/png', 
   				onchange: "loadFile(event)", style: "width:320px height: 200px"  %>
-  				<img id="article-output" />
-    	      
+          <%= image_tag(@article.article_img.url, id: "article-output") %>
+
+
+  				<!-- <img id="article-output" />
+ -->    	      
     	    <!-- 顯示欲上傳圖片 -->  
   				<script>
     	      var loadFile = function(event) {

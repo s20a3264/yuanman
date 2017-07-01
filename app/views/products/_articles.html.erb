@@ -1,0 +1,22 @@
+
+<div id="articles" class="row">
+	<% @articles.each do |article| %>
+		<div class="article col-md-6 col-sm-12 col-xs-12">
+			<div class="row">
+				<%= link_to "#", data: {toggle: "modal", target: "#article_#{article.id}"} do %>
+					<div class="col-md-5 col-xs-12 col-sm-4 article-img" style="background:url(<%= image_url(article.article_img) %>)"></div>
+				<% end %>				
+				<div class="col-md-7 col-xs-12 col-sm-8 article-content">
+					<div class="article-title"><%= link_to article.title, "#", 
+						data: {toggle: "modal", target: "#article_#{article.id}"}, class: "normal-link" %></div>
+					<div class="article-created small gray"><%= article.created_at.to_s(:simple) %></div>
+				</div>
+			</div>
+			<%= render partial: 'article_content', locals: {id: article.id, article: article} %>
+			<div class="clearfix"></div>
+			<hr>
+		</div>
+	<% end %>	
+</div>
+
+<div class="clearfix"></div>

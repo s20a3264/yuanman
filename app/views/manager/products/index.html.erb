@@ -9,7 +9,7 @@
     		<tr>
     			<th>商品圖片</th>
     			<th>名稱</th>
-    			<th>價格</th>
+    			<th class="hidden-xs">價格</th>
     			<th>庫存</th>
     			<th>選項</th>
     		</tr>
@@ -19,16 +19,17 @@
     			<tr>
     				<td width="120"><%= image_tag(product.photo.image.thumb.url, class: "manager-img") %></td>
     				<td><%= link_to product.title, product_path(product) %></td>
-    				<td class=""><%= product.price %></td>
-    				<td class="">
-    					目前數量：<%= product.quantity %>
-    					<div>
+    				<td class="hidden-xs"><%= product.price %></td>
+    				<td class="" style="min-width: 60px">
+    					<%= product.quantity %>
+    					<div class="hidden-xs">
     						<%= form_tag(replenish_manager_product_path(product), method: "post") do %>
     							<%= text_field_tag(:number, nil, class: "replenishment") %>
     							<%= submit_tag("補貨") %>
     						<% end %>	
     					</div>				
     				</td>
+                    <!-- options -->
     				<td class="product-options">
     					<div>
     						<%= link_to "編輯", edit_manager_product_path(product) %>

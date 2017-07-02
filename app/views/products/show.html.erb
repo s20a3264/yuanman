@@ -1,53 +1,65 @@
 
+<div class="padding-rl-40">
 
-<div class="md row">
-	<%= manager_link("編輯", edit_manager_product_path(@product), class: "center block m-link") %>
-	<div class="col-md-12 col-xs-12 margin-td">
-		<%= link_to "首頁", root_path, class: "black-link"  %>
-		<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-		<%= link_to @product.category.name, "#", class: "black-link"  %>
-		<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-		<%= @product.title %>
-	</div>
-	<div class="col-md-5 col-xs-12 margin-td">
-		<%= image_tag(@product.photo.image.medium.url, alt: @product.title, title: @product.title) %>
-		<div class="mt border-m">
-			<p class="bold">付款方式</p>
-			<p>信用卡一次付清 / ATM / WebATM / 超商代碼繳費</p>
-			<p class="bold">運送方式</p>
-			<p>郵寄 / 宅配 (NTD100)</p>
-		</div>
-	</div>
+	<div class="md row">
+		<%= manager_link("編輯", edit_manager_product_path(@product), class: "center block m-link") %>
 
-	<div class="col-md-6 col-xs-12">
-		<h2><%= @product.title %></h2>
-		<hr class="hr-1">
-		<div class="article-description"><%= simple_format(@product.description) %></div>
-
-		<hr class="hr-1">
-
-		<div class="product-price">
-			<span id="product-price-nt"> NT$</span>
-			<span id="product-price-number"><%= @product.price %></span>
+		<div class="col-md-12 col-xs-12 margin-td">
+			<%= link_to "首頁", root_path, class: "black-link"  %>
+			<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+			<%= link_to @product.category.name, "#", class: "black-link"  %>
+			<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+			<%= @product.title %>
 		</div>
 
-		<% if @product.quantity == 0 %>
-			<span class="button-disabled pull-right">
-				此商品目前缺貨中
-			</span>
-			
-		<% else %>
-			<%= form_tag({ controller: "products", action: "add_to_cart"}, method: "post") do %>
-			
-				<span>數量：</span>
-				<div class="styled-select inline-block">
-				  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
-				</div>
-				<%= button_tag(type: "submit", class: "pull-right btn-normal") do %>
-					<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
-					<span> 加入購物車</span>
-				<% end %>
-			<% end %>	
-		<% end %>
+
+		<!-- 產品圖 -->
+		<div class="col-md-5 col-xs-12 margin-td border img-100">
+			<%= image_tag(@product.photo.image.url, alt: @product.title, title: @product.title) %>
+		</div>
+
+	
+		<div class="col-md-6 col-xs-12">
+			<h2><%= @product.title %></h2>
+			<hr class="hr-1">
+	
+			<div class="product-price">
+				<span id="product-price-nt"> NT$</span>
+				<span id="product-price-number"><%= @product.price %></span>
+			</div>
+	
+			<% if @product.quantity == 0 %>
+				<span class="button-disabled pull-right">
+					此商品目前缺貨中
+				</span>
+				
+			<% else %>
+				<%= form_tag({ controller: "products", action: "add_to_cart"}, method: "post") do %>
+				
+					<span>數量：</span>
+					<div class="styled-select inline-block">
+					  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
+					</div>
+					<%= button_tag(type: "submit", class: "pull-right btn-normal") do %>
+						<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+						<span> 加入購物車</span>
+					<% end %>
+				<% end %>	
+			<% end %>
+		</div>
+
+
+		<!-- 商品訊息 -->
+		<div class=" col-md-8 col-xs-12 border">
+			<%= render 'product_tabs' %>
+		</div>
+
+		<div class="col-md-3 col-md-offset-1 col-xs-12 border-m">
+				<p class="bold">付款方式</p>
+				<p>信用卡一次付清 / ATM / WebATM / 超商代碼繳費</p>
+				<p class="bold">運送方式</p>
+				<p>郵寄 / 宅配 (NTD100)</p>
+		</div>
+
 	</div>
 </div>

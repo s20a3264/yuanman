@@ -21,7 +21,51 @@
   			<%= photo_form.hidden_field :image_cache %>
   		<% end %>	
   	</div>
+
+    <hr>
+
+    <!-- 營養成分 -->
+    <div class="form-group">
+      <%= f.label :nutrition_facts, "營養成分"%>
+      <h5 class="red">建議圖片比例為 16:10</h5>
+      <%= f.file_field :nutrition_facts, accept: 'image/jpeg,image/gif,image/png', 
+      onchange: "loadFile1(event)"  %>
+      <%= image_tag(@product.nutrition_facts.url, id: "nutrition-output") %>
+
+      <!-- 顯示欲上傳圖片 -->  
+      <script>
+        var loadFile1 = function(event) {
+          var output1 = document.getElementById('nutrition-output');
+          output1.src = URL.createObjectURL(event.target.files[0]);
+        };  
+      </script>
   
+      <%= f.hidden_field :nutrition_facts_cache %>      
+    </div>
+
+
+    <hr>
+
+    <!-- 認證 -->
+    <div class="form-group">
+      <%= f.label :certification, "認證"%>
+      <h5 class="red">建議圖片比例為 16:10</h5>
+      <%= f.file_field :certification, accept: 'image/jpeg,image/gif,image/png', 
+      onchange: "loadFile2(event)"  %>
+      <%= image_tag(@product.certification.url, id: "certification-output") %>
+
+      <!-- 顯示欲上傳圖片 -->  
+      <script>
+        var loadFile2 = function(event) {
+          var output2 = document.getElementById('certification-output');
+          output2.src = URL.createObjectURL(event.target.files[0]);
+        };  
+      </script>
+  
+      <%= f.hidden_field :certification_cache %>      
+    </div>  
+
+
   	<HR>
   
   	<%= render 'form', f: f %>

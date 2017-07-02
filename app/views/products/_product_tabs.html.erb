@@ -1,0 +1,31 @@
+<div>
+  <h4>商品情報</h4>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#discription" aria-controls="discription" role="tab" data-toggle="tab">產品詳情</a>
+    </li>
+    <li role="presentation">
+      <a href="#nutrition" aria-controls="nutrition" role="tab" data-toggle="tab">營養成分</a>
+    </li>
+    <li role="presentation">
+      <a href="#certification" aria-controls="certification" role="tab" data-toggle="tab">認證標章</a>
+    </li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="discription">
+      <div class="article-description"><%= raw(@product.description) %></div>
+    </div>
+    <div role="tabpanel" class="tab-pane tab-product" id="nutrition">
+      <%= image_tag(@product.nutrition_facts.url) %>
+    </div>
+    <div role="tabpanel" class="tab-pane tab-product" id="certification">
+      <%= image_tag(@product.certification.url) %>
+    </div>
+    <div role="tabpanel" class="tab-pane tab-product" id="settings">...</div>
+  </div>
+
+</div>

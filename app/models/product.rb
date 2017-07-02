@@ -1,5 +1,8 @@
 class Product < ActiveRecord::Base
 
+	mount_uploader :certification, CertificationUploader
+	mount_uploader :nutrition_facts,  NutritionFactsUploader
+
 	belongs_to :category
 	has_one :photo, dependent: :destroy
 

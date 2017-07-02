@@ -1,14 +1,14 @@
 /* 雜 */
 
 .m-link {
-  background: $green;
-  color: #fff;
+  background: $gray;
+  color: #555;
   height: 50px;
   line-height: 50px;
   font-size: 22px;
   &:hover {
-    color: $gray;
-    background: darken($green, 10%);
+    color: #333;
+    background: darken($gray, 10%);
   }
 }
 
@@ -130,7 +130,7 @@
 /* border */
 
 .border {
-  border: 2px solid $mc;
+  border: 1px solid $border;
   padding: 10px;
   background: #fff;
 }

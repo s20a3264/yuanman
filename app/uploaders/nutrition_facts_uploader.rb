@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class ImageUploader < CarrierWave::Uploader::Base
+class NutritionFactsUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -11,8 +11,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     storage :fog
   else  
     storage :file
-  end  
-
+  end
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -35,20 +35,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  process resize_to_limit: [800, 500]
+
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :resize_to_fit => [50, 50]
   # end
-
-  process resize_to_limit: [1000, 1000]
-
-  version :thumb do
-    process resize_to_fit: [300, 300]
-  end  
-
-  version :medium do
-    process resize_to_fit: [600, 600]
-  end  
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

@@ -3,20 +3,66 @@
 <h2>商品編輯</h2>
 <%= form_for [:manager, @product] do |f| %>
 
-	<% if @photo.present? %>
-		<span>目前商品圖片</span>
-		<%= image_tag(@photo.image.thumb.url) %>	
-	<% end %>	
-
 	<div class="form-group">
 		<%= f.fields_for :photo do |photo_form| %>
 			<%= photo_form.label :image, "更換或上傳商品圖片" %>
-			<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
-			<%= photo_form.hidden_field :image_cache %>
+  		<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile(event)" %>
+      <%= image_tag(@product.photo.image.medium.url, id: "output") %>
+          
+      <!-- 顯示欲上傳圖片 -->  
+  		<script>
+        var loadFile = function(event) {
+          var output = document.getElementById('output');
+          output.src = URL.createObjectURL(event.target.files[0]);
+        };  
+  		</script>
+
+  		<%= photo_form.hidden_field :image_cache %>
 		<% end %>	
 	</div>
 
 	<HR>
+
+    <!-- 營養成分 -->
+    <div class="form-group">
+      <%= f.label :nutrition_facts, "營養成分"%>
+      <h5 class="red">建議圖片比例為 16:10</h5>
+      <%= f.file_field :nutrition_facts, accept: 'image/jpeg,image/gif,image/png', 
+      onchange: "loadFile1(event)"  %>
+      <%= image_tag(@product.nutrition_facts.url, id: "nutrition-output") %>
+
+      <!-- 顯示欲上傳圖片 -->  
+      <script>
+        var loadFile1 = function(event) {
+          var output1 = document.getElementById('nutrition-output');
+          output1.src = URL.createObjectURL(event.target.files[0]);
+        };  
+      </script>
+  
+      <%= f.hidden_field :nutrition_facts_cache %>      
+    </div>
+
+
+    <hr>
+
+    <!-- 認證 -->
+    <div class="form-group">
+      <%= f.label :certification, "認證"%>
+      <h5 class="red">建議圖片比例為 16:10</h5>
+      <%= f.file_field :certification, accept: 'image/jpeg,image/gif,image/png', 
+      onchange: "loadFile2(event)"  %>
+      <%= image_tag(@product.certification.url, id: "certification-output") %>
+
+      <!-- 顯示欲上傳圖片 -->  
+      <script>
+        var loadFile2 = function(event) {
+          var output2 = document.getElementById('certification-output');
+          output2.src = URL.createObjectURL(event.target.files[0]);
+        };  
+      </script>
+  
+      <%= f.hidden_field :certification_cache %>      
+    </div> 		
 
   <%= render 'form', f: f %>
 

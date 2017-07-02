@@ -18,8 +18,9 @@
 
     function set_width() {
       $("#IFrame1").contents().find("img").each(function (i, img) {
-       	if ($(img).width() != '100%') {
-        	$(img).attr('width', '100%');
+       	if ($(img).width() != '50%') {
+        	$(img).attr('width', '50%');
+          $(img).attr('height', 'auto')
         }
       });
     }

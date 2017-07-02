@@ -46,7 +46,11 @@ class ArticleImgUploader < CarrierWave::Uploader::Base
 
   version :thumb do
     process resize_to_limit: [320, 200]
-  end  
+  end
+
+  version :medium do
+    process resize_to_limit: [640, 400]
+  end    
 
 
   # Add a white list of extensions which are allowed to be uploaded.

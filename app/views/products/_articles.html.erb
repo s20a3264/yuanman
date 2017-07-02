@@ -5,7 +5,7 @@
 		<div class="article col-md-6 col-sm-12 col-xs-12">
 			<div class="row">
 				<%= link_to "#", data: {toggle: "modal", target: "#article_#{article.id}"} do %>
-					<div class="col-md-5 col-xs-12 col-sm-4 article-img" style="background:url(<%= image_url(article.article_img) %>)"></div>
+					<div class="col-md-5 col-xs-12 col-sm-4 article-img" style="background:url(<%= image_url(article.article_img.medium) %>)"></div>
 				<% end %>				
 				<div class="col-md-7 col-xs-12 col-sm-8 article-content">
 					<div class="article-title"><%= link_to article.title, "#", 

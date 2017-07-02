@@ -87,7 +87,8 @@ class Manager::ProductsController < ManagerController
 
 		def product_params
 			params.require(:product).permit(:title, :description, :quantity, :price, :category_name,
-																			 :category_id, photo_attributes: [:image, :id])
+																			 :category_id, :nutrition_facts, :certification, 
+																			 photo_attributes: [:image, :id])
 		end
 
 end

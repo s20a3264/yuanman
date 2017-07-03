@@ -3,7 +3,9 @@ class OrdersController < ApplicationController
 																							:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
 																						  :realtime_notify, :non_realtime_customer, :non_realtime_notify,
 																						  #新版智付寶
-																							:pay2go_return, :pay2go_notify, :pay2go_customer]
+																							:pay2go_return, :pay2go_notify, :pay2go_customer,
+																							#智付通
+																							:spgateway_notify, :spgateway_return, :spgateway_customer]
 
 	before_action :set_pay2go_json, only: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
 		                                     :pay2go_wa_notify, :realtime_return, :realtime_notify,
@@ -15,7 +17,9 @@ class OrdersController < ApplicationController
 																:pay2go_wa_notify, :pay2go_atm_complete, :realtime_return,
 																:realtime_notify, :non_realtime_customer, :non_realtime_notify,
 																#新版智付寶
-																:pay2go_return, :pay2go_notify, :pay2go_customer]
+																:pay2go_return, :pay2go_notify, :pay2go_customer,
+																#智付通
+																:spgateway_notify, :spgateway_return, :spgateway_customer]
 
 
 	def create
@@ -46,8 +50,8 @@ class OrdersController < ApplicationController
 		@order_items = @order.items
 	end
 
-	def pay2go_notify
-		data = Pay2goService.aes_decrypt(params['TradeInfo'])
+	def spgateway_notify
+		data = SpgatewayService.aes_decrypt(params['TradeInfo'])
 		tradeinfo = JSON.parse(data)
 		result = tradeinfo['Result']
 		@order = Order.find_by(order_number: result['MerchantOrderNo'])
@@ -58,29 +62,30 @@ class OrdersController < ApplicationController
 		end
 	end
 
-	def pay2go_return
-		data = Pay2goService.aes_decrypt(params['TradeInfo'])
+	def spgateway_return
+		data = SpgatewayService.aes_decrypt(params['TradeInfo'])
 		tradeinfo = JSON.parse(data)
 		result = tradeinfo['Result']
 		@order = Order.find_by(order_number: result['MerchantOrderNo'])
 
-  	# @order.store_trade_info(tradeinfo) if @order.trade_info.empty?
+  	@order.store_trade_info(tradeinfo) if @order.trade_info.empty?
   	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == true
 			flash[:success] = "#{tradeinfo['Message']}"
 			redirect_to order_path(@order.token)  		
 
 		elsif params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false
-			# @order.complete_payment(result['PaymentType'])
-			flash[:success] = "#{tradeinfo['Message']}"
+			@order.complete_payment(result['PaymentType']) if !@order.payment_method
+			flash[:success] = "#{tradeinfo['Message']}, 付款完成"
 			redirect_to order_path(@order.token)
 		else
-			flash[:warning] = "交易失敗,#{tradeinfo['Message']}"
+			flash[:warning] = "交易失敗,#{tradeinfo['Message']}，請建立新訂單重新購買"
+			@order.fail_to_pay!
 			redirect_to order_path(@order.token)
 		end				
 	end
 
-	def pay2go_customer
-		data = Pay2goService.aes_decrypt(params['TradeInfo'])
+	def spgateway_customer
+		data = SpgatewayService.aes_decrypt(params['TradeInfo'])
 		tradeinfo = JSON.parse(data)
 		result = tradeinfo['Result']
 		@order = Order.find_by(order_number: result['MerchantOrderNo'])	
@@ -90,7 +95,7 @@ class OrdersController < ApplicationController
 		  @order.store_payment_info(result, payment_type: result['PaymentType'])
   		flash[:success] = "取號成功"
 
-  		# redirect_to payment_info_account_order_path(@order.token)
+  		redirect_to payment_info_account_order_path(@order.token)
   	end
 
   	rescue

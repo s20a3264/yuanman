@@ -127,6 +127,15 @@ class Order < ActiveRecord::Base
 		state :good_returned
 		state :good_return_failed
 
+		#結帳失敗訂單	
+		state :payment_fail
+
+
+		#結帳失敗
+		event :fail_to_pay do
+			transitions from: :order_placed,          to: :payment_fail
+		end
+
 		event :take_a_number do
 			transitions from: :order_placed,						to: :number_received
 		end

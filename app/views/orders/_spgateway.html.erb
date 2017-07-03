@@ -1,0 +1,12 @@
+<%= form_tag ENV['s_service_url'], method: :post do  %>
+
+  <%= hidden_field_tag "MerchantID",     ENV["s_merchant_id"] %>
+  <%= hidden_field_tag "Version",        "1.4" %>
+  <!-- new -->
+  <%= hidden_field_tag "TradeInfo",
+    SpgatewayService.new(order, email: current_user.email, return_url: spgateway_return_url, notify_url: spgateway_notify_url, customer_url: spgateway_customer_url, client_back_url: root_url ).aes_encrypt %>
+  <%= hidden_field_tag "TradeSha", 
+    SpgatewayService.new(order, email: current_user.email, return_url: spgateway_return_url, notify_url: spgateway_notify_url, customer_url: spgateway_customer_url, client_back_url: root_url ).sha256_encrypt %>
+
+  <%= submit_tag "智付通", class: "btn-sw" %>
+<% end %>

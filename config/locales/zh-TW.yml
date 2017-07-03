@@ -4,6 +4,7 @@ zh-TW:
       order_placed: 已下單
       number_received: 等待繳費
       paid: 已付款
+      payment_fail: 付款失敗
       shipped: 已出貨
       order_cancelled: 訂單已取消
       refund_processing: 退款作業處理中
@@ -14,6 +15,7 @@ zh-TW:
       order_placed: 已下單
       number_received: "已取號，尚未付款"
       paid: 已付款 - 等待出貨
+      payment_fail: 付款失敗
       shipped: 已出貨
       order_cancelled: 訂單已取消
       refund_processing: 訂單取消 - 等待退款

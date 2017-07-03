@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   post "pay2go_notify"   => 'orders#pay2go_notify'
   post "pay2go_customer" => 'orders#pay2go_customer'
 
+  
+      #新版智付通
+  post "spgateway_return"   => 'orders#spgateway_return'
+  post "spgateway_notify"   => 'orders#spgateway_notify'
+  post "spgateway_customer" => 'orders#spgateway_customer'
 
   namespace :manager do
     root to:  'core#index'

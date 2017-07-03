@@ -30,6 +30,9 @@
 		<span class="label label-default">已出貨</span>				
 	<% when "order_cancelled" %>
 		<span class="label label-default">此訂單已被取消</span>
+	<% when "payment_fail" %>
+		<span class="label label-default">付款失敗</span>	
+		<span class="red"><%= @order.trade_info["Message"] %></span>			
 	<% when "good_returned" %>
 		<span class="label label-default">退貨處理完成</span>
 	<% when "good_return_failed" %>

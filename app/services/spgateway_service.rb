@@ -6,14 +6,15 @@ class SpgatewayService
     @timestamp = order.created_at.to_i
     @merchant_order_no = order.order_number
     @total_price = order.total
+    @expiredate = order.deadline.to_s(:Ymd)
 
     @hash = hash
   end
 
   def aes_encrypt
-    data = "MerchantID=#{@merchant_id}&RespondType=JSON&TimeStamp=#{@timestamp}&Version=1.4&MerchantOrderNo=#{@merchant_order_no}&Amt=#{@total_price}&ItemDesc=sample&TradeLimit=300&Email=#{@hash[:email]}&LoginType=0"
+    data = "MerchantID=#{@merchant_id}&RespondType=JSON&TimeStamp=#{@timestamp}&Version=1.4&MerchantOrderNo=#{@merchant_order_no}&Amt=#{@total_price}&ItemDesc=sample&TradeLimit=300&ExpireDate=#{@expiredate}&Email=#{@hash[:email]}&LoginType=0"
     
-    url = "&ReturnURL=#{@hash[:return_url]}&Noti_urlfyURL=#{@hash[:notify_url]}&CustomerURL=#{@hash[:spgateway_customer_url]}&ClientBackURL=#{@hash[:client_back_url]}"
+    url = "&ReturnURL=#{@hash[:return_url]}&Noti_urlfyURL=#{@hash[:notify_url]}&CustomerURL=#{@hash[:customer_url]}&ClientBackURL=#{@hash[:client_back_url]}"
 
     payment_type = "&CREDIT=1&WEBATM=1&VACC=1&CVS=1"
 

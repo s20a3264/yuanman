@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
 			if @order.save
 				Product.set_inventory!(current_cart)
 				@order.build_item_cache_from_cart(current_cart)
-				@order.calculate_total!(current_cart)
+				@order.calculate_total_and_deadline!(current_cart)
 				
 				current_cart.clean!
 				redirect_to order_path(@order.token)
@@ -92,7 +92,8 @@ class OrdersController < ApplicationController
 
 		if  params['Status'] == "SUCCESS" 
 			@order.take_a_number!
-		  @order.store_payment_info(result, payment_type: result['PaymentType'])
+			#儲存非即時支付取號資訊以及繳費期限
+		  @order.store_payment_info(result)
   		flash[:success] = "取號成功"
 
   		redirect_to payment_info_account_order_path(@order.token)

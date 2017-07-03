@@ -55,8 +55,9 @@ class Order < ActiveRecord::Base
 		end	
 	end
 
-	def calculate_total!(cart)
+	def calculate_total_and_deadline!(cart)
 		self.total = cart.total_price + 100
+		self.deadline = Time.zone.now.advance(days: 3).end_of_day
 		self.save
 	end
 
@@ -70,12 +71,7 @@ class Order < ActiveRecord::Base
 	end
 
 	#儲存非即時支付取號資訊以及繳費期限
-	def store_payment_info(info, hash={})
-		if hash[:payment_type] == "CVS"
-		  deadline = Time.zone.now.advance(days: 1)
-		else
-		  deadline = Time.zone.now.advance(days: 3).end_of_day
-		end 
+	def store_payment_info(info)
 		self.update_columns(payment_info: info, deadline: deadline)
 	end
 

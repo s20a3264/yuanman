@@ -31,9 +31,9 @@ task :q =>	:environment do
 end	
 
 task :z => :environment do
-	Product.all.each do |p|
-		if p.category.nil?
-			p.category_id =  2
+	Order.all.each do |p|
+		if p.deadline.nil?
+			p.deadline = DateTime.now
 			p.save
 		end
 	end

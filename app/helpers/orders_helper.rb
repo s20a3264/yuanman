@@ -67,5 +67,8 @@ module OrdersHelper
 		end
 	end
 
-
+	#超過繳費期限，訂單失效
+	def dead?(order)
+		order.deadline < DateTime.now && ( order.aasm_state == "number_received" || order.aasm_state == "order_placed" )
+	end
 end

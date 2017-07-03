@@ -8,43 +8,33 @@
 
   <%= render 'order_infos_table' %>
 
+
+  <% if dead?(@order) %>
+    <p class="red center">超過付款期限，訂單已失效</p>
+  <% else %>  
+    <% if !@order.is_paid? %>
+      <% case  @order.aasm_state %>
+      <% when "order_cancelled" %>
+        <p class="text-center">此訂單已被取消</p>
+      <% when "number_received" %>
+        <p class="text-center">已取號，等待付款.....</p>
+      <% when "payment_fail" %>
+        <p class="text-center">付款失敗，請建立新訂單重新購買</p>
+      <% else %>
+        <div class="select-pay center">
+          請選擇付款方式
+        </div>
+
+        <div class="pay-with">
+          <%= render "pay_with_credit_card", order: @order %>
+        </div>
   
-  <% if !@order.is_paid? %>
-    <% if @order.aasm_state == "order_cancelled" %>
-      <p class="text-center">此訂單已被取消</p>
-    <% elsif @order.aasm_state == "number_received" %> 
-      <p class="text-center">已取號，等待付款.....</p>
-    <% elsif @order.aasm_state == "payment_fail" %>
-      <p class="text-center">付款失敗，請建立新訂單重新購買</p>
+        <div class="pay-with">
+          <%= render "spgateway", order: @order %>
+        </div>      
+      <% end %> 
     <% else %>
-      <div class="select-pay center">
-        請選擇付款方式
-      </div>
-
-      <div class="pay-with">
-        <%= render "pay_with_credit_card", order: @order %>
-      </div>
-
-      <div class="pay-with">
-        <%= render "spgateway", order: @order %>
-      </div>      
-
-
-      <!-- 以下為舊版 -->
-      <div class="pay-with hide">
-        <%= render "pay_with_webatm", order: @order %>
-      </div>
-      <div class="pay-with hide">
-        <%= render "pay_with_cvs", order: @order %>
-      </div>
-      <div class="pay-with hide">
-        <%= render "pay_with_atm", order: @order %>
-      </div>
-      <!-- -->
-
-
-    <% end %> 
-  <% else %>
-    <p class="text-center">此訂單已完成付款</p>
+      <p class="text-center">此訂單已完成付款</p>
+    <% end %>  
   <% end %>
 </div>

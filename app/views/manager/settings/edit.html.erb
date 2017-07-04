@@ -4,7 +4,7 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation">
-    	<a href="#home" aria-controls="home" role="tab" data-toggle="tab">網站設定</a>
+    	<a href="#info_setting" aria-controls="info_setting" role="tab" data-toggle="tab">網站設定</a>
     </li>
     <li role="presentation" class="active">
     	<a href="#carousel_setting" aria-controls="carousel_setting" role="tab" data-toggle="tab">輪播圖設定</a>
@@ -23,7 +23,9 @@
 
   <div class="tab-content">
 
-    <div role="tabpanel" class="tab-pane" id="home">.1</div>
+    <div role="tabpanel" class="tab-pane" id="info_setting">
+      <%= render 'info_setting' %>
+    </div>
     <div role="tabpanel" class="tab-pane active" id="carousel_setting">
 			<%= render 'carousel_setting' %>   	
     </div>

@@ -13,9 +13,10 @@ class ProductsController < ApplicationController
 
 		@category_name = category ? category.name : "所有商品"
 
-		@articles = Article.all
+		@articles = Article.order(created_at: :DESC).limit(4)
 
-		@a = Article.last
+		@sticky_1 = Article.find_by(sticky: 1)
+		@sticky_2 = Article.find_by(sticky: 2)
 	end
 
 	def total_articles

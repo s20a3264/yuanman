@@ -1,0 +1,33 @@
+<%= form_for([:manager, @setting], html: {multipart: true}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label(:shipping_cost, "運費 : ") %>
+    <%= f.number_field(:shipping_cost, class: "form-control") %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:shipping_free, "免運門檻 : ") %>
+    <%= f.number_field(:shipping_free, class: "form-control") %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label(:phone, "聯絡電話 : ") %>
+    <%= f.text_field(:phone, class: "form-control") %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label(:email, "e-mail : ") %>
+    <%= f.text_field(:email, class: "form-control") %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label(:line, "LINE : ") %>
+    <%= f.text_field(:line, class: "form-control") %>
+  </div>
+
+  <%= f.submit "送出", data: { disable_with: "上傳中..." }, class: "btn-normal" %>
+
+<% end %>

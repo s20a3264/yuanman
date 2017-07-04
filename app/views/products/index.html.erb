@@ -5,32 +5,39 @@
 </div>
 
 
+<div class="hidden hidden-box"></div>
+
 <!-- 置頂資訊 -->
+<% if @sticky_1 && @sticky_2 %>
 <div id="top-articles-box">
 	<div class="row">
 	
 		<!-- 置頂1 -->
-		<%= link_to '#', class: "white-link opacity-link" do %>
-			<div class="col-md-7 col-xs-12 article-1 top-articles" style="background:url(<%= image_url(@a.article_img.url) if @a.present? %>)">
-				<span class="date"><%= @a.created_at.to_s(:zh) %></span>
-				<span class="article-1-title"><%= @a.title %></span>
+		<%= link_to "#", 
+		data: {toggle: "modal", target: "#article_#{@sticky_1.id}"}, class: "white-link opacity-link" do %>
+			<div class="col-md-7 col-xs-12 article-1 top-articles" style="background:url(<%= image_url(@sticky_1.	article_img.url) %>)">
+				<span class="date"><%= @sticky_1.created_at.to_s(:zh) %></span>
+				<span class="article-1-title"><%= @sticky_1.title %></span>
 			</div>
 		<% end %>
+		<%= render partial: 'article_content', locals: {id: @sticky_1.id, article: @sticky_1} %>
 
 
 		<div class="col-md-5 col-xs-12">
 			<div class="row">
 
 				<!-- 置頂2 -->
-				<%= link_to '#', class: "white-link opacity-link" do %>
-					<div class="col-md-11 col-md-offset-1 col-xs-12 article-2 top-articles" style="background:url(<%= image_url(Article.first.article_img.url) if Article.first.present? %>)">
-						<span class="date"><%= Article.first.created_at.to_s(:zh) %></span>
-						<span class="article-2-title"><%= Article.first.title %></span>
+				<%= link_to '#', 
+				data: {toggle: "modal", target: "#article_#{@sticky_2.id}"}, class: "white-link opacity-link" do %>
+					<div class="col-md-11 col-md-offset-1 col-xs-12 article-2 top-articles" style="background:url(<%= 	image_url(@sticky_2.article_img.url) %>)">
+						<span class="date"><%= @sticky_2.created_at.to_s(:zh) %></span>
+						<span class="article-2-title"><%= @sticky_2.title %></span>
 					</div>
 				<% end %>	
+				<%= render partial: 'article_content', locals: {id: @sticky_2.id, article: @sticky_2} %>
 
 				<div class="col-md-11 col-md-offset-1 col-xs-12">
-					<%= link_to "#", class: "block-link" do %>
+					<%= link_to total_articles_products_path, class: "block-link" do %>
 						<span>觀看更多資訊</span>
 						<i class="fa fa-angle-double-right" aria-hidden="true"></i>
 					<% end %>	
@@ -40,6 +47,10 @@
 		</div>
 	</div>
 </div>
+<% end %>
+<!-- 置頂資訊end -->
+
+
 
 
 <div class="padding-rl-40">
@@ -47,14 +58,19 @@
 	<!-- 資訊 -->
 	<div class="mtd-small ">
 		<h4 class="inline-block">資訊</h4>
+		<%= render 'articles' %>
+	</div>
+
+	<div class="">
 		<h5 class="inline-bloc pull-right"><%= link_to total_articles_products_path, class: "gray-link" do %>
 			<span>看更多</span>
 			<i class="fa fa-chevron-right" aria-hidden="true"></i>
 		<% end %>
-		</h5>
-		<%= render 'articles' %>
+		</h5>		
 	</div>
  
+
+	<h4 class="inline-block">商城</h4>
 
 	<div class="row">
 		
@@ -75,16 +91,14 @@
 		<h2 class="background width100"><span><%= @category_name %></span></h2>
 
 		<% @products.each do |product| %>
-			<div class="product-itme thumbnail ">
+			<div class="product-itme  ">
 				<%= link_to product_path(product),class: "item-image" do %>
 				<%= image_tag(product.photo.image.medium.url, alt: product.title, title: product.title) %>
 				<% end %>	</br>
-				<div class="product-item-info">
+				<div class="product-item-info center">
 					<%= link_to product.title, product_path(product), class: "product-item-title" %>
-<!-- 					<div class="product-item-description"><%= product.description.truncate(60) %></div>
- -->					
-				<div class="gray2"><%= product.category.name %></div>
- 				<div class="product-item-price"><span class="red bold"><%= "NT$#{product.price}" %></span></div>
+<!-- 				<div class="gray2"><%= product.category.name %></div>
+ --> 				<div class="product-item-price"><span class=" bold small"><%= "NT$#{product.price}" %></span></div>
  				<div class="center">
  					<%= link_to  "view", product_path(product), class: "normal-link" %> / 
  					<%= link_to add_to_cart_product_path(id: product.id, quantity: 1), method: "post" do %>

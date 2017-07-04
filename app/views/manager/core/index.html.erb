@@ -1,14 +1,15 @@
+<div class="mtd-small">
 <%= render 'options' %>
 <div class="paginate">
   <%= paginate @orders %>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-striped">
   <thead>
     <tr>
       <th class="high-table">訂單編號</th>
-      <th class="high-table">聯繫買家</th>
-      <th class="hidden-xs high-table">下單時間</th>
+<!--       <th class="high-table">聯繫買家</th>
+ -->      <th class="hidden-xs high-table">下單時間</th>
       <th width="80" class="high-table">收件人</th>
       <th class="hidden-xs high-table">信箱</th>
       <th class="high-table center">訂單狀態</th>
@@ -20,8 +21,8 @@
       <td class="high-table">
         <%= link_to(order.order_number, manager_order_path(order), class: "monospace" ) %> 
       </td>
-      <td class="high-table"><%= link_to "買賣留言板", message_board_manager_order_path(order) %></td>
-      <td class="hidden-xs high-table"> <%= order.created_at.localtime.to_s(:normal) %> </td>
+<!--       <td class="high-table"><%= link_to "買賣留言板", message_board_manager_order_path(order) %></td>
+ -->      <td class="hidden-xs high-table"> <%= order.created_at.localtime.to_s(:normal) %> </td>
       <td class="high-table"> <%= order.user.info["shipping_name"] %></td>
       <td class="hidden-xs high-table"><%= order.user.email %></td>
       <td class="high-table"> <%= render_order_state_manager(order) %> </td>
@@ -32,3 +33,4 @@
 </table>
 
 <%= paginate @orders %>
+</div>

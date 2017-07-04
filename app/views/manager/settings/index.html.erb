@@ -22,7 +22,16 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane" id="home">.1</div>
+      <!-- 目前設定 -->
+      <div role="tabpanel" class="tab-pane" id="home">
+        <h3>目前設定：</h3><br>
+        <div>運費： <%= @setting.shipping_cost %></div><br>
+        <div>免運門檻： <%= @setting.shipping_free %></div><br>
+        <div>聯絡電話： <%= @setting.phone %></div><br>
+        <div>客服信箱： <%= @setting.email %></div><br>
+        <div>LINE： <%= @setting.line %></div><br>
+      </div>
+      <!-- 目前輪播圖 -->
       <div role="tabpanel" class="tab-pane active" id="carousel" >
         <%= render 'products/carousel' %>
         <div class="inline-flex">
@@ -43,11 +52,13 @@
           </div>
         </div>
       </div>
+      <!-- 目前關於我們內容 -->
       <div role="tabpanel" class="tab-pane" id="about">
         <div class="article-description">
           <%= raw(@setting.about_us) %>
         </div>
       </div>
+      <!-- 目前Q & A -->
       <div role="tabpanel" class="tab-pane" id="Q-and-A">
         <div class="article-description">
           <%= raw(@setting.q_and_a) %>

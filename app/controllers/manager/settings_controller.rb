@@ -29,6 +29,7 @@ class Manager::SettingsController < ManagerController
 
 		def setting_params
 			params.require(:setting).permit(:carousel1, :carousel2, :carousel3, 
-				:carousel1_link, :carousel2_link, :carousel3_link, :about_us, :q_and_a, :notice)
+				:carousel1_link, :carousel2_link, :carousel3_link, :about_us, :q_and_a, :notice,
+				:email, :line, :phone, :shipping_cost, :shipping_free)
 		end
 end

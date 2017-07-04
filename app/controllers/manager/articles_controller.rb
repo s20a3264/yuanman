@@ -1,7 +1,7 @@
 class Manager::ArticlesController < ApplicationController
 
 	def index
-		@articles = Article.page(params[:page]).per(10)
+		@articles = Article.page(params[:page]).per(10).order(created_at: :DESC)
 	end
 
 	def new
@@ -48,6 +48,34 @@ class Manager::ArticlesController < ApplicationController
 			render :index
 		end	
 	end	
+
+
+	def sticky
+		@article = Article.find_by(id: params[:id])
+
+		position = params[:position].to_i
+		now_sticky = Article.find_by(sticky: position)
+
+
+		if now_sticky
+			now_sticky.sticky = 0
+			now_sticky.save
+		end
+		
+		@article.sticky = position
+		@article.save
+
+		redirect_to :back			
+
+	end
+
+	def sticky_cancel
+		@article = Article.find_by(id: params[:id])
+		@article.sticky = 0
+		@article.save
+		redirect_to :back			
+	end
+
 
 	private
 

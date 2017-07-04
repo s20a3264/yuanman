@@ -1,6 +1,7 @@
 <%= render 'products/carousel' %>
 <%= form_for([:manager, @setting], html: {multipart: true}) do |f| %>
 <hr>
+  <h5 class="red">建議圖片為 1600 X 592 或以上 </h5>
   <div class="form-group">
   	<h4 class="red">輪播圖一</h4>	
 		<%= f.file_field :carousel1, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile1(event)" %><br>

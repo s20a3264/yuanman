@@ -29,6 +29,21 @@
     						<%= link_to "刪除", manager_article_path(article), method: :delete,
     					 		data: { confirm: "確定刪除 #{article.title}?"} %>
     					</div>
+                <% if article.sticky != 0 %>
+                  <div class="red">已置頂(<%= article.sticky %>)</div>
+                  <div><%= link_to "取消置頂", sticky_cancel_manager_article_path(article), 
+                  method: :post %></div>
+                <% else %>
+                  <div>
+                    <%= link_to "置頂1", sticky_manager_article_path(article, position: 1), 
+                        method: :post %>                                           
+                  </div>
+                  <div>
+                   <%= link_to "置頂2", sticky_manager_article_path(article, position: 2), 
+                      method: :post %>                           
+                  </div>
+                <% end %>  
+
     				</td>
     			</tr>
     		<% end %>	

@@ -30,9 +30,8 @@ body {
   .container-fluid  {
   }
   a {
-    color: #5482ab;
-    font-family:  Helvetica, sans-serif;
-    font-weight: 200;
+    color: #444;
+    font-weight: bold;
     &:hover {
       text-decoration: none;
       color: inherit;
@@ -263,7 +262,7 @@ table {
 
 #output {
   width: 320px;
-  height: 320px;
+  height: 240px;
   max-width: 100%;
 }
 

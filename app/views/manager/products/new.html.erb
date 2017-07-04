@@ -7,6 +7,7 @@
   	<div class="form-group">
   		<%= f.fields_for :photo do |photo_form| %>
   			<%= photo_form.label :image, "商品圖片"%>
+        <h5 class="red">建議圖片比例為 4:3</h5>
   			<%= photo_form.file_field :image, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile(event)"    %>
   			<img id="output" />
           

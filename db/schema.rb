@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704133739) do
+ActiveRecord::Schema.define(version: 20170704230343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20170704133739) do
     t.string   "title"
     t.text     "description"
     t.string   "article_img"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "sticky",      default: 0
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -155,6 +156,11 @@ ActiveRecord::Schema.define(version: 20170704133739) do
     t.text     "about_us"
     t.text     "q_and_a"
     t.text     "notice"
+    t.string   "email"
+    t.string   "line"
+    t.string   "phone"
+    t.integer  "shipping_cost"
+    t.integer  "shipping_free"
   end
 
   create_table "trade_infos", force: :cascade do |t|

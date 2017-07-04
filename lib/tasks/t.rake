@@ -7,3 +7,12 @@ task :pp => :environment do
 		puts "#{product.title} done!"
 	end
 end			
+
+task :sticky => :environment do
+	Article.all.each do |article|
+		article.sticky = 0
+
+		article.save
+		puts "#{article.title} done!"
+	end
+end			

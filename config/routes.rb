@@ -41,7 +41,12 @@ Rails.application.routes.draw do
         post :create_message        
       end
     end
-    resources :articles
+    resources :articles do
+      member do
+        post :sticky
+        post :sticky_cancel
+      end
+    end    
     resources :settings
   end 
 

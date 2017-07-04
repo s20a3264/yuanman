@@ -14,8 +14,8 @@
 
 
 		<!-- 產品圖 -->
-		<div class="col-md-5 col-xs-12 margin-td border img-100">
-			<%= image_tag(@product.photo.image.url, alt: @product.title, title: @product.title) %>
+		<div class="col-md-5 col-xs-12 margin-td border img-100 product-img">
+			<%= image_tag(@product.photo.image.medium.url, alt: @product.title, title: @product.title) %>
 		</div>
 
 	
@@ -25,7 +25,6 @@
 
 			<!-- 簡述 -->
 
-			<p>麵粉的主要成分有澱粉、蛋白質、脂肪、水、礦物質以及少量的維生素和酶類。</p>
 
 	
 
@@ -44,10 +43,9 @@
 				<div class="col-md-5">運費： <%= "xxx滿xxx免運" %></div>
 			</div>
 			
-			<div class=" clearfix"></div>
 
 			<!-- 數量與購物車 -->
-			<div class="row">
+			<div class="row cart_and_number">
 				<% if @product.quantity == 0 %>
 					<span class="button-disabled col-md-5 col-md-offset-7">
 						此商品目前缺貨中
@@ -58,14 +56,14 @@
 					<!-- 加入購物車form -->
 					<%= form_tag({ controller: "products", action: "add_to_cart"}, method: "post") do %>
 						
-						<div class="col-md-7">
+						<div class="col-md-7 col-xs-5">
 							<span class="black6">數量：</span>
 							<div class="styled-select inline-block">
 							  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
 							</div>
 						</div>
 
-						<div class="col-md-5">
+						<div class="col-md-5 col-xs-5 pull-right">
 							<%= button_tag(type: "submit", class: "btn-normal") do %>
 								<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
 								<span> 加入購物車</span>
@@ -78,19 +76,18 @@
 			<!-- 數量與購物車end -->
 		</div>
 
-
 		<!-- 商品訊息 -->
-		<div class=" col-md-8 col-xs-12">
+		<div class=" col-md-11 col-xs-12">
 			<%= render 'product_tabs' %>
 		</div>
 
-		<div class="col-md-3 col-md-offset-1 col-xs-12 border-m">
+<!-- 		<div class="col-md-3 col-md-offset-1 col-xs-12 border-m">
 				<p class="bold">付款方式</p>
 				<p>信用卡一次付清 / ATM / WebATM / 超商代碼繳費</p>
 				<p class="bold">運送方式</p>
 				<p>郵寄 / 宅配 (NTD100)</p>
 		</div>
-
+ -->
 		<div class=" clearfix"></div>
 
 		<%= manager_link("編輯", edit_manager_product_path(@product), class: "center block m-link mt") %>

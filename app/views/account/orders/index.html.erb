@@ -3,12 +3,12 @@
 
   <%= paginate @orders %>
   
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th class="high-table">訂單編號</th>
-        <th class="high-table">留言</th>
-        <th class="high-table">下單時間</th>
+<!--         <th class="high-table">留言</th>
+ -->        <th class="high-table">下單時間</th>
         <th class="high-table center">訂單狀態</th>
       </tr>
     </thead>
@@ -17,8 +17,8 @@
       <tr>
         <td class="high-table"> <%= link_to(order.order_number, order_path(order.token), 
         class: "monospace") %> </td>
-        <td class="high-table"> <%= link_to "買賣留言板", message_board_account_order_path(order.token) %></td>
-        <td class="high-table"> <%= order.created_at.localtime.to_s(:normal) %> </td>
+<!--         <td class="high-table"> <%= link_to "買賣留言板", message_board_account_order_path(order.token) %></td>
+ -->        <td class="high-table"> <%= order.created_at.localtime.to_s(:normal) %> </td>
         <td class="high-table center"> 
           <%= render_order_state(order)  %>
           <% if dead?(order) %>

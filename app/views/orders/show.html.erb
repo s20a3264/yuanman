@@ -1,8 +1,8 @@
 <div class="checkout-order clearfix">
   <h2> 訂單明細 </h2>
 
-  <%= link_to "買賣留言板", message_board_account_order_path(@order.token), class: "under-h2" %>
-  <%= payment_info_link(@order) %>
+<!--   <%= link_to "買賣留言板", message_board_account_order_path(@order.token), class: "under-h2" %>
+ -->  <%= payment_info_link(@order) %>
 
   <%= render 'state_option', order: @order %>
 

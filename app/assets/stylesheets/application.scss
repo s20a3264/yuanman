@@ -14,6 +14,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
 @import "font-awesome";
 @import "global";
 @import "element";
@@ -21,6 +22,7 @@
 @import "common";
 @import "partial";
 @import "custom-bootstrap";
+@import "rwd";
 @import "nav";
 @import "products";
 @import "article";

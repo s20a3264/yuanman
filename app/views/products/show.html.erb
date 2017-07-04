@@ -1,4 +1,4 @@
-
+<div class="for-lg">
 <div class="padding-rl-40">
 
 	<div class="md row">
@@ -19,38 +19,68 @@
 		</div>
 
 	
-		<div class="col-md-6 col-xs-12">
-			<h2><%= @product.title %></h2>
-			<hr class="hr-1">
+		<div class="col-md-7 col-xs-12">
+			<!-- 商品名 -->
+			<h3 class=""><%= @product.title %></h3>
+
+			<!-- 簡述 -->
+
+			<p>麵粉的主要成分有澱粉、蛋白質、脂肪、水、礦物質以及少量的維生素和酶類。</p>
+
 	
+
+			<!-- 商品價格 -->
 			<div class="product-price">
-				<span id="product-price-nt"> NT$</span>
-				<span id="product-price-number"><%= @product.price %></span>
+				<span id="product-price-nt" class="lighter"> NT$</span>
+				<span id="product-price-number" class="lighter"><%= @product.price %></span>
 			</div>
-	
-			<% if @product.quantity == 0 %>
-				<span class="button-disabled pull-right">
-					此商品目前缺貨中
-				</span>
-				
-			<% else %>
-				<%= form_tag({ controller: "products", action: "add_to_cart"}, method: "post") do %>
-				
-					<span>數量：</span>
-					<div class="styled-select inline-block">
-					  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
-					</div>
-					<%= button_tag(type: "submit", class: "pull-right btn-normal") do %>
-						<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
-						<span> 加入購物車</span>
-					<% end %>
-				<% end %>	
-			<% end %>
+
+
+			<!-- 產地，資訊等等.. -->
+			<div class="product-info row ">
+				<div class="col-md-7">產地： <%= @product.origin %></div>
+				<div class="col-md-5">重量： <%= @product.weight %></div>
+				<div class="col-md-7">保存期限： <%= @product.expiration_date %></div>
+				<div class="col-md-5">運費： <%= "xxx滿xxx免運" %></div>
+			</div>
+			
+			<div class=" clearfix"></div>
+
+			<!-- 數量與購物車 -->
+			<div class="row">
+				<% if @product.quantity == 0 %>
+					<span class="button-disabled col-md-5 col-md-offset-7">
+						此商品目前缺貨中
+					</span>
+					
+				<% else %>
+
+					<!-- 加入購物車form -->
+					<%= form_tag({ controller: "products", action: "add_to_cart"}, method: "post") do %>
+						
+						<div class="col-md-7">
+							<span class="black6">數量：</span>
+							<div class="styled-select inline-block">
+							  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
+							</div>
+						</div>
+
+						<div class="col-md-5">
+							<%= button_tag(type: "submit", class: "btn-normal") do %>
+								<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+								<span> 加入購物車</span>
+							<% end %>
+						</div>
+
+					<% end %>	
+				<% end %>
+			</div>
+			<!-- 數量與購物車end -->
 		</div>
 
 
 		<!-- 商品訊息 -->
-		<div class=" col-md-8 col-xs-12 border">
+		<div class=" col-md-8 col-xs-12">
 			<%= render 'product_tabs' %>
 		</div>
 
@@ -66,4 +96,6 @@
 		<%= manager_link("編輯", edit_manager_product_path(@product), class: "center block m-link mt") %>
 
 	</div>
+</div>
+
 </div>

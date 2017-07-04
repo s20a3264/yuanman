@@ -4,7 +4,7 @@ html, body{ margin:0; height:100%; }
 .article-description {
   margin: 20px auto;
   line-height: 1.8em;
-  padding: 0 80px;                 
+  padding: 0 50px;                 
   img {
     width:100%; 
     height:auto;
@@ -24,7 +24,7 @@ html, body{ margin:0; height:100%; }
 body {
 	padding: 57px 0px 0 0px;
   color: $gray2;
-  font-family:  Helvetica, sans-serif;
+  font-family:  'Noto Sans TC', sans-serif;
   font-size: 15px;
   word-wrap: break-all;
   .container-fluid  {
@@ -95,13 +95,6 @@ body {
 
 .background-white {
   background: #fff;
-}
-
-
-@media screen and (min-width: 768px) {
-  body {
-    padding-top:51px;
-  }
 }
 
 

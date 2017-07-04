@@ -150,6 +150,11 @@
   background: #fff;
 }
 
+.border-no-top {
+  border: 1px solid $border;
+  border-top: 1px solid #fff ;
+}
+
 .border-n {
   border: 1px solid $mc;
   padding: 30px 20px;

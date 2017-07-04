@@ -1,7 +1,6 @@
 /* home */
 
 .products-page {
-	padding:0px;
 }
 
 @media screen and (min-width: 768px) {
@@ -364,12 +363,28 @@
 
 .product-price {
 	margin: 30px 0 30px 0;
+	color: #7f8c8d;
+	background: $gray;
+	font-size: 33px;
+	padding: 25px;
   #product-price-nt {
-  	color: #dc4e41;
   }
   #product-price-number {
-		font-size: 22px;
-		color: #dc4e41;
+  	margin-left: 10px;
+		color: #7f8c8d;
 	}
 }
+
+.product-info {
+	font-size: 0.9em;
+	color: #666;
+	div	{
+		margin-bottom: 10px;
+	}
+}
+
+
+
+
+
 

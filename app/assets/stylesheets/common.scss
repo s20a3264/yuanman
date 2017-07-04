@@ -232,13 +232,14 @@ table {
 }
 
 .alert-success {
-  background: $blue;
-  color: #fff;
+  background: $gray;
+  color: #333;
+  font-weight: bold;
 }
 
 .alert-warning {
-  background: $red1;
-  color:#fff;
+  background: $gray;
+  color: $red;
 }
 
 

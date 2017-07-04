@@ -22,6 +22,7 @@
 		<div class="col-md-7 col-xs-12">
 			<!-- 商品名 -->
 			<h3 class=""><%= @product.title %></h3>
+			<span class="small red"><%= "單筆訂單滿#{@setting.shipping_free}免運" %></span class="small red">
 
 			<!-- 簡述 -->
 
@@ -38,9 +39,13 @@
 			<!-- 產地，資訊等等.. -->
 			<div class="product-info row ">
 				<div class="col-md-7">產地： <%= @product.origin %></div>
-				<div class="col-md-5">重量： <%= @product.weight %></div>
-				<div class="col-md-7">保存期限： <%= @product.expiration_date %></div>
-				<div class="col-md-5">運費： <%= "xxx滿xxx免運" %></div>
+				<div class="col-md-5">保存期限： <%= @product.expiration_date %></div>
+				<div class="col-md-7">重量： <%= @product.weight %></div>
+				<div class="col-md-5">運費： 
+					<%= "$#{@setting.shipping_cost}" %>
+				</div>				
+
+
 			</div>
 			
 

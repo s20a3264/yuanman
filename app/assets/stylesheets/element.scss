@@ -34,15 +34,15 @@
 }
 
 .btn-normal {
-  border: 2px solid $blue;
+  border: 2px solid #444;
   border-radius: 3px;
   padding: 3px 10px;
-  background:  $blue;
+  background:  #444;
   color: #fff;
   font-size: 15px;
   &:hover {
-    border: 2px solid darken($blue, 10%);
-    background:darken($blue, 10%);
+    border: 2px solid darken(#444, 10%);
+    background:darken(#444, 10%);
     color: #fff;
   }
 }

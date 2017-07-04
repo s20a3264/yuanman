@@ -4,7 +4,6 @@
 	<%= render 'carousel' %>
 </div>
 
-<%= render 'js/bootstrap_tab' %>
 
 <!-- 置頂資訊 -->
 <div id="top-articles-box">
@@ -12,7 +11,7 @@
 	
 		<!-- 置頂1 -->
 		<%= link_to '#', class: "white-link opacity-link" do %>
-			<div class="col-md-7 col-xs-12 article-1 top-articles" style="background:url(<%= image_url(@a.article_img) %>)">
+			<div class="col-md-7 col-xs-12 article-1 top-articles" style="background:url(<%= image_url(@a.article_img.url) if @a.present? %>)">
 				<span class="date"><%= @a.created_at.to_s(:zh) %></span>
 				<span class="article-1-title"><%= @a.title %></span>
 			</div>
@@ -24,7 +23,7 @@
 
 				<!-- 置頂2 -->
 				<%= link_to '#', class: "white-link opacity-link" do %>
-					<div class="col-md-11 col-md-offset-1 col-xs-12 article-2 top-articles" style="background:url(<%= image_url(Article.first.article_img) %>)">
+					<div class="col-md-11 col-md-offset-1 col-xs-12 article-2 top-articles" style="background:url(<%= image_url(Article.first.article_img.url) if Article.first.present? %>)">
 						<span class="date"><%= Article.first.created_at.to_s(:zh) %></span>
 						<span class="article-2-title"><%= Article.first.title %></span>
 					</div>
@@ -103,3 +102,6 @@
 </div>
 
 </div>
+
+<!-- 修正輪播圖寬高 -->
+<%= render 'js/bootstrap_tab' %>

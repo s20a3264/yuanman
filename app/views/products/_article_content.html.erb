@@ -6,7 +6,7 @@
         <h4 class="modal-title center"><%= article.title %></h4>
       </div>
       <div class="modal-body article-description">
-        <%= image_tag(article.article_img, alt: article.title, title: article.title) %></br>
+        <%= image_tag(article.article_img.url, alt: article.title, title: article.title) %></br>
         <%= raw(article.description) %>
       </div>
       <div class="modal-footer">

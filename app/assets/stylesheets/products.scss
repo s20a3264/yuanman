@@ -31,13 +31,21 @@
 
 .carousel-size {
   width: 100%;
-  height: 34vw;	
+  height: 37vw;	
 }
 
 .carousel-img {
 	width: 100%;
- 	height: 100%;
- 	object-fit: fill;
+ 	max-height: 100%;
+}
+
+
+.carousel-control {
+	i {
+		font-size: 45px;
+		position: absolute;
+    bottom: 46%;
+	}
 }
 
 .home-bg {
@@ -60,6 +68,111 @@
 		color: #000;
 	}
 }
+
+
+
+/* 置頂文章 */
+
+#top-articles-box {
+  height: auto;
+  padding: 40px 70px;
+  background: $gray;
+  color: #fff;
+  .article-1 {
+    height: 0;
+    padding-bottom: 36.45%;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+    .date {
+      position: absolute;
+      top: 10%;
+      margin: 0 8%;
+      width: 85%;
+      text-align: left;
+      font-size: 1em;
+      letter-spacing: 2px;
+      font-weight: normal;
+      line-height: 20px;        	
+    }
+    span {
+      position: absolute;
+      bottom: 10%;
+      margin: 0 8%;
+      width: 85%;
+      text-align: left;
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 45px;
+    }
+  }
+  .article-2 {
+    height: 0;
+    padding-bottom: 57.29%;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+    .date {
+      position: absolute;
+      top: 10%;
+      margin: 0 8%;
+      width: 85%;
+      text-align: left;
+      font-size: 0.8em;
+      letter-spacing: 1px;
+      font-weight: normal;
+      line-height: 20px;
+    }      
+    span {
+      position: absolute;
+      bottom: 10%;
+      margin: 0 8%;
+      width: 85%;
+      text-align: left;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 25px;
+
+    }
+  }
+  .block-link {
+  	display: block;
+  	padding: 10px 20px;
+  	margin: 12% -15px 0 -15px;
+  	background: #333;
+  	color: #fff;
+  	text-align: center;
+  	&:hover {
+  		background: #555;
+  	}
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #top-articles-box {
+    margin: 0 -15px ;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #top-articles-box {
+	  padding: 0;
+  	.top-articles {
+  		margin-top: 2px;
+	    padding-bottom: 62.5%;
+	    span {
+	    	font-size: 20px;
+	    	line-height: 1.2em;
+	    	font-weight: normal;
+	    }
+	    .date {
+      	font-size: 0.7em;
+	    }
+  	}
+  	.block-link {
+  		margin-top: 1px;
+  	}
+  }
+}
+
 
 
 /* articles */

@@ -14,6 +14,8 @@ class ProductsController < ApplicationController
 		@category_name = category ? category.name : "所有商品"
 
 		@articles = Article.all
+
+		@a = Article.last
 	end
 
 	def total_articles

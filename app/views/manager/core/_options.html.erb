@@ -25,12 +25,13 @@
 <div>
   <span class="bold">訂單狀態：</span>
   <%= active_link "all", "所有訂單", manager_index_path(query_scope: "all") %>                           |
-  <%= active_link "undone_orders","待處理訂單", manager_index_path(query_scope: "undone_orders"), default: true %>                                                                                                  |
+  <%= active_link "undone_orders","待處理訂單", manager_index_path(query_scope: "undone_orders"), default: true %>                                                                                                      |
   <%= active_link "paid_orders", "待出貨訂單", manager_index_path(query_scope: "paid_orders") %>          |
   <%= active_link "return_orders", "申請退貨訂單", manager_index_path(query_scope: "return_orders") %>    |
   <%= active_link "refund_orders", "待退款訂單", manager_index_path(query_scope: "refund_orders") %>      |
   <%= active_link "number_received_orders", "已取號訂單", 
       manager_index_path(query_scope: "number_received_orders") %>                                       |
   <%= active_link "transfer_orders", "異動完成訂單", manager_index_path(query_scope: "transfer_orders") %> |
+  <%= active_link "fail_orders", "交易失敗訂單", manager_index_path(query_scope: "fail_orders") %>         |
 </div>
 <hr class="hr-2">

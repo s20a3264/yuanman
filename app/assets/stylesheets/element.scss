@@ -12,6 +12,21 @@
   }
 }
 
+.white-link {
+  color: #fff;
+}
+
+.opacity-link {
+  &:hover {
+    filter: opacity(0.6);
+    -webkit-filter:opacity(0.6);
+    transition-duration: 1s;
+    -moz-transition-duration: 1s; /* Firefox 4 */
+    -webkit-transition-duration: 1s; /* Safari 和 Chrome */
+  }
+
+}
+
 /* button */
 
 .btn {

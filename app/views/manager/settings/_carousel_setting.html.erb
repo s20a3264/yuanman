@@ -3,20 +3,52 @@
 <hr>
   <div class="form-group">
   	<h4 class="red">輪播圖一</h4>	
-		<div><%= f.file_field :carousel1, :"data-filename-placement" => "inside" %></div><br>
+		<%= f.file_field :carousel1, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile1(event)" %><br>
+    <%= image_tag(@setting.carousel1.url, id: "carousel1", style: "width:200px; height: 74px;") %>
+    <!-- 顯示欲上傳圖片 -->  
+    <script>
+      var loadFile1 = function(event) {
+        var output1 = document.getElementById('carousel1');
+        output1.src = URL.createObjectURL(event.target.files[0]);
+      };  
+    </script>
+
 		<div><%= f.hidden_field :carousel1_cache %></div>
 		<div><%= f.label  :carousel1_link ,"導向頁面" %></div>
 		<div><%= f.text_field :carousel1_link, class: "form-control" %></div>
 		<hr>
-		
+
+
+		<!-- 圖二 -->
   	<h4 class="red">輪播圖二</h4>	
-		<%= f.file_field :carousel2 %>
+		<%= f.file_field :carousel2, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile2(event)" %>
+    <%= image_tag(@setting.carousel2.url, id: "carousel2", style: "width:200px; height: 74px;") %>
+    <!-- 顯示欲上傳圖片 -->  
+    <script>
+      var loadFile2 = function(event) {
+        var output2 = document.getElementById('carousel2');
+        output2.src = URL.createObjectURL(event.target.files[0]);
+      };  
+    </script>
+
 		<div><%= f.label  :carousel2_link ,"導向頁面" %></div>
 		<div><%= f.text_field :carousel2_link, class: "form-control" %></div>
 		<hr>
 		
+
+
+		<!-- 圖三 -->
   	<h4 class="red">輪播圖三</h4>	
-		<%= f.file_field :carousel3 %>
+		<%= f.file_field :carousel3, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile3(event)" %>
+    <%= image_tag(@setting.carousel3.url, id: "carousel3", style: "width:200px; height: 74px;") %>
+    <!-- 顯示欲上傳圖片 -->  
+    <script>
+      var loadFile3 = function(event) {
+        var output3 = document.getElementById('carousel3');
+        output3.src = URL.createObjectURL(event.target.files[0]);
+      };  
+    </script>
+
 		<div><%= f.label  :carousel3_link ,"導向頁面" %></div>
 		<div><%= f.text_field :carousel3_link, class: "form-control" %></div>
 		<hr>				

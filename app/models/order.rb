@@ -14,6 +14,8 @@ class Order < ActiveRecord::Base
 	scope  :undone_orders, 	-> {where(undone: true)}
 	#已付款訂單
 	scope  :paid_orders,   	-> {where(aasm_state: "paid")}
+	#付款失敗訂單
+	scope  :fail_orders,    -> {where(aasm_state: "payment_fail")}
 	#訂單需退款
 	scope  :refund_orders, 	-> {where(aasm_state: ["refund_processing", "return_processing"])}
 	#申請退貨訂單
@@ -23,13 +25,13 @@ class Order < ActiveRecord::Base
 	#異動完成訂單
 	scope  :transfer_orders, -> {where(aasm_state: [:order_cancelled, :good_returned, :good_return_failed])}
 	#信用卡付款訂單
-	scope  :cc_orders, 			-> {where(payment_method: "credit_card")}
+	scope  :cc_orders, 			-> {where(payment_method: "CREDIT")}
 	#WebATM訂單
-	scope  :wa_orders, 			-> {where(payment_method: "web_atm")}
+	scope  :wa_orders, 			-> {where(payment_method: "WEBATM")}
 	#超商繳費訂單
-	scope  :cvs_orders, 			-> {where(payment_method: "cvs")}
+	scope  :cvs_orders, 			-> {where(payment_method: "CVS")}
 	#ATM轉帳訂單
-	scope  :vacc_orders, 			-> {where(payment_method: "vacc")}
+	scope  :vacc_orders, 			-> {where(payment_method: "VACC")}
 
 	accepts_nested_attributes_for :info
 

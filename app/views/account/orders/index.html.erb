@@ -18,7 +18,7 @@
         <td class="high-table"> <%= link_to(order.order_number, order_path(order.token), 
         class: "monospace") %> </td>
 <!--         <td class="high-table"> <%= link_to "買賣留言板", message_board_account_order_path(order.token) %></td>
- -->        <td class="high-table"> <%= order.created_at.localtime.to_s(:normal) %> </td>
+ -->        <td class="high-table"> <%= order.created_at.to_s(:normal) %> </td>
         <td class="high-table center"> 
           <%= render_order_state(order)  %>
           <% if dead?(order) %>

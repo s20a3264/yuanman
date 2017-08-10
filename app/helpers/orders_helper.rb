@@ -12,6 +12,7 @@ module OrdersHelper
 		seconds = total_seconds % 60
 		"#{hours}#{minutes}#{seconds}"
 	end
+	
 	#單項商品小計
 	def order_item_sum(item)
 		item.price * item.quantity

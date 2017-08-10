@@ -25,11 +25,9 @@
           請選擇付款方式
         </div>
 
-        <div class="pay-with">
-          <%= render "pay_with_credit_card", order: @order %>
-        </div>
+
   
-        <div class="pay-with">
+        <div class="pay-with pull-right">
           <%= render "spgateway", order: @order %>
         </div>      
       <% end %> 

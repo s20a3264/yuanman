@@ -7,10 +7,12 @@ class ProductsController < ApplicationController
 
     @products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
 
-		@articles = Article.order(created_at: :DESC).limit(6)
+		@articles = Article.order(created_at: :DESC).limit(4)
 
 		@sticky_1 = Article.find_by(sticky: 1)
 		@sticky_2 = Article.find_by(sticky: 2)
+
+		@marked_product = Product.be_marked.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
 	end
 
 	def total_articles

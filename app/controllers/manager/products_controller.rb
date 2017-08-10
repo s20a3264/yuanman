@@ -82,6 +82,33 @@ class Manager::ProductsController < ManagerController
 			redirect_to :back
 	end
 
+	#商品置頂
+	def mark
+		if Product.be_marked.count < 5
+
+			product = Product.find_by(id: params[:id])
+			product.mark = true
+			product.save
+	
+			flash[:success] = "#{product.title} 已置頂"
+	
+			redirect_to :back
+		else
+			flash[:warning] = "置頂數量已滿，請先將部分產品取消置頂"
+			redirect_to :back
+		end		
+	end
+
+	#取消置頂
+	def unmark
+		product = Product.find_by(id: params[:id])
+		product.mark = false
+		product.save
+
+		flash[:success] = "#{product.title} 已取消置頂"
+
+		redirect_to :back		
+	end
 
 
 

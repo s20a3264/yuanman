@@ -1,7 +1,8 @@
+<div class="cener">			
 			<% @products.each do |product| %>
-				<div class="product-itme  ">
+				<div class="product-itme ">
 					<%= link_to product_path(product),class: "item-image" do %>
-					<%= image_tag(product.photo.image.medium.url, alt: product.title, title: product.title) %>
+						<%= image_tag(product.photo.image.medium.url, alt: product.title, title: product.title) %>
 					<% end %>	</br>
 					<div class="product-item-info center">
 						<%= link_to product.title, product_path(product), class: "product-item-title" %>
@@ -20,3 +21,4 @@
 					</div>
 				</div>
 			<% end %>
+</div>

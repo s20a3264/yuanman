@@ -1,0 +1,60 @@
+
+<%= form_for([:manager, @setting], html: {multipart: true}) do |f| %>
+<hr>
+  <h5 class="red">建議圖片為 400 X 500 或以上 </h5>
+  <div class="form-group">
+  	<h4 class="red">輪播圖一</h4>	
+		<%= f.file_field :carousel1_p, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile1_p(event)" %><br>
+    <%= image_tag(@setting.carousel1_p.url, id: "carousel1_p", style: "width:80px; height: 100px;") %>
+    <!-- 顯示欲上傳圖片 -->  
+    <script>
+      var loadFile1_p = function(event) {
+        var output1_p = document.getElementById('carousel1_p');
+        output1_p.src = URL.createObjectURL(event.target.files[0]);
+      };  
+    </script>
+
+		<div><%= f.hidden_field :carousel1_p_cache %></div>
+		<div><%= f.label  :carousel1_link_p ,"導向頁面" %></div>
+		<div><%= f.text_field :carousel1_link_p, class: "form-control" %></div>
+		<hr>
+
+
+		<!-- 圖二 -->
+  	<h4 class="red">輪播圖二</h4>	
+		<%= f.file_field :carousel2_p, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile2_p(event)" %>
+    <%= image_tag(@setting.carousel2_p.url, id: "carousel2_p", style: "width:80px; height: 100px;") %>
+    <!-- 顯示欲上傳圖片 -->  
+    <script>
+      var loadFile2_p = function(event) {
+        var output2_p = document.getElementById('carousel2_p');
+        output2_p.src = URL.createObjectURL(event.target.files[0]);
+      };  
+    </script>
+
+		<div><%= f.label  :carousel2_link_p ,"導向頁面" %></div>
+		<div><%= f.text_field :carousel2_link_p, class: "form-control" %></div>
+		<hr>
+		
+
+
+		<!-- 圖三 -->
+  	<h4 class="red">輪播圖三</h4>	
+		<%= f.file_field :carousel3_p, accept: 'image/jpeg,image/gif,image/png', onchange: "loadFile3_p(event)" %>
+    <%= image_tag(@setting.carousel3_p.url, id: "carousel3_p", style: "width:80px; height: 100px;") %>
+    <!-- 顯示欲上傳圖片 -->  
+    <script>
+      var loadFile3_p = function(event) {
+        var output3_p = document.getElementById('carousel3_p');
+        output3_p.src = URL.createObjectURL(event.target.files[0]);
+      };  
+    </script>
+
+		<div><%= f.label  :carousel3_link_p ,"導向頁面" %></div>
+		<div><%= f.text_field :carousel3_link_p, class: "form-control" %></div>
+		<hr>				
+
+
+		<%= f.submit "送出", class: "btn btn-normal", data: { disable_with: "上傳並更新設定中..."} %>
+	</div>	
+<% end %> 

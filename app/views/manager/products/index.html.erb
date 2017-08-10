@@ -21,34 +21,54 @@
     		<% @products.each do |product| %>
     			<tr>
     				<td width="120"><%= image_tag(product.photo.image.thumb.url, class: "manager-img") %></td>
-    				<td><%= link_to product.title, product_path(product) %></td>
+    				<td><%= link_to product.title, product_path(product) %> 
+              <span class="red small">
+                <% if product.mark? %>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i> ( 置頂中 )
+                 <% end %> 
+              </span> 
+            </td>
     				<td class="hidden-xs"><%= product.price %></td>
     				<td class="" style="min-width: 60px">
     					<%= product.quantity %>
     					<div class="hidden-xs">
     						<%= form_tag(replenish_manager_product_path(product), method: "post") do %>
     							<%= text_field_tag(:number, nil, class: "replenishment") %>
-    							<%= submit_tag("補貨") %>
+    							<%= submit_tag("補貨", class: "btn-normal") %>
     						<% end %>	
     					</div>				
     				</td>
                     <!-- options -->
     				<td class="product-options">
     					<div>
-    						<%= link_to "編輯", edit_manager_product_path(product) %>
+    						<%= link_to  edit_manager_product_path(product), class: "green"  do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  編輯
+                <% end %>  
     					</div>
-    					<div>
-    						<%= link_to "刪除", manager_product_path(product), method: :delete,
-    					 		data: { confirm: "確定刪除 #{product.title}?"} %>
-    					</div>
+
     					<div>
     						<%= render_shelf_option(product) %>
     					</div>
+              <div>
+                  <% if product.mark %>
+                    <%= link_to "取消置頂", unmark_manager_product_path(product), method: :post %>
+                  <% else %>
+                    <%= link_to "置頂", mark_manager_product_path(product), method: :post  %>  
+                  <% end %>
+              </div>
+              <div>
+                  <%= link_to "刪除", manager_product_path(product), method: :delete,
+                      data: { confirm: "確定刪除 #{product.title}?"}, class: "small gray" %>
+              </div>                        
     				</td>
     			</tr>
     		<% end %>	
     	</tbody>
     </table>
+
+    <hr>
+    
     <!-- 分頁 -->
 	<%= paginate @products %>
   </div>

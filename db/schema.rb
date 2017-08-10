@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808131416) do
+ActiveRecord::Schema.define(version: 20170810172330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20170808131416) do
     t.string   "origin"
     t.string   "weight"
     t.string   "expiration_date"
+    t.boolean  "mark",            default: false
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -150,8 +151,8 @@ ActiveRecord::Schema.define(version: 20170808131416) do
     t.string   "carousel1"
     t.string   "carousel2"
     t.string   "carousel3"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "carousel1_link"
     t.string   "carousel2_link"
     t.string   "carousel3_link"
@@ -163,6 +164,12 @@ ActiveRecord::Schema.define(version: 20170808131416) do
     t.string   "phone"
     t.integer  "shipping_cost"
     t.integer  "shipping_free"
+    t.string   "carousel1_p"
+    t.string   "carousel2_p"
+    t.string   "carousel3_p"
+    t.string   "carousel1_link_p"
+    t.string   "carousel2_link_p"
+    t.string   "carousel3_link_p"
   end
 
   create_table "trade_infos", force: :cascade do |t|

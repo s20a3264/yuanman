@@ -9,11 +9,26 @@
 			<ul class="nav navbar-nav">
 			  <li><%= link_to "Home", root_path %></li>
 			  <li><%= link_to "訂單管理", manager_index_path %></li>
-			  <li><%= link_to "產品列表", manager_products_path %></li>
-			  <li><%= link_to "設定", manager_settings_path  %></li>
-			  <li><%= link_to "文章列表", manager_articles_path %></li>
+			  <li>
+			  	<%= link_to manager_products_path do %>
+			  		<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
+			  		產品列表
+			  	<% end %>	
+			  </li>
+			  <li>
+			  	<%= link_to manager_articles_path do %>
+			  		<i class="fa fa-book fa-lg" aria-hidden="true"></i>
+			  		文章列表
+			  	<% end %>	
+			  </li>
 			  <li><%= link_to "發表文章",  new_manager_article_path %></li>
 			  <li class="product-on-shelf"><%= link_to "新增商品", new_manager_product_path %></li>
+			  <li>
+			  	<%= link_to manager_settings_path do %>
+			  		<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+			  		設定
+			  	<% end %>	
+			  </li>			  
 			</ul>
 			<ul class="nav navbar-nav navbar-right nav-list">
 			  <li><%= link_to("登出", destroy_manager_session_path, method: :delete) %></li>

@@ -19,6 +19,8 @@ class Product < ActiveRecord::Base
 	scope :selling, -> { where(selling: true) }
 	#下架的商品
 	scope :unselling, -> { where(selling: false)}
+	#置頂的商品
+	scope :be_marked, -> { where(mark: true) }
 
 	attr_accessor :category_name
 

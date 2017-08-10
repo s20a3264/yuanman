@@ -1,2 +1,62 @@
 <footer>
+	<div class="row">
+
+		<!-- 聯絡資訊 -->
+		<div class="col-md-3 col-md-offset-1 col-xs-9 col-xs-offset-1">
+			<h3>聯絡我們</h3>
+			<br>
+			<div class="small">
+				<i class="fa fa-envelope" aria-hidden="true"></i> Email：
+				<span><%= @setting.email %></span>
+			</div>
+			<br>
+
+			<div class="small">	
+				<i class="fa fa-phone-square" aria-hidden="true"></i> 客服電話：
+				<span><%= @setting.phone %></span>
+			</div>
+			<br>
+
+			<div class="small">	
+				LINE：
+				<span><%= @setting.line %></span>
+			</div>
+		</div>
+
+		<!-- about -->
+		<div class="col-md-3 col-xs-9 col-xs-offset-1">
+			<h3>ABOUT</h3>
+			<br>
+			<div class="small">
+				<li>
+					<%= link_to "關於圓滿生機", "#", data: {toggle: "modal", target: "#about_us_modal"}, 
+					class: "gray2 normal"  %>
+				</li>
+			</div>
+			<br>
+
+			<div class="small">
+				<li>
+					<%= link_to "Q＆A", "#", data: {toggle: "modal", target: "#q_and_a_modal"}, 
+					class: "gray2 normal"  %>
+				</li>
+			</div>
+			<br>
+
+			<div class="small">
+				<li>
+					<%= link_to "#" do %>
+						<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+					<% end %>
+				</li>				
+			</div>
+		</div>
+
+		<div class="col-md-12 col-md-offset-1 col-xs-9 col-xs-offset-1 small  copyright">
+			Copyright©yuanman.com.tw
+		</div>
+
+
+	</div>
+
 </footer>

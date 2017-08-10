@@ -52,9 +52,9 @@
 			<!-- 數量與購物車 -->
 			<div class="row cart_and_number">
 				<% if @product.quantity == 0 %>
-					<span class="button-disabled col-md-5 col-md-offset-7">
-						此商品目前缺貨中
-					</span>
+					<div class="padding-rl pull-left">
+						<span class="button-disabled ">缺貨中</span>
+					</div>
 					
 				<% else %>
 
@@ -69,9 +69,9 @@
 						</div>
 
 						<div class="col-md-5 col-xs-5 pull-right">
-							<%= button_tag(type: "submit", class: "btn-normal") do %>
+							<%= button_tag(type: "submit", class: "btn-normal xs-small") do %>
 								<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
-								<span> 加入購物車</span>
+								<span class=""> 加入購物車</span>
 							<% end %>
 						</div>
 

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
         post :off_shelf
         post :on_shelf
         post :replenish
+        post :mark
+        post :unmark
       end
     end    
     resources :orders do

@@ -1,7 +1,13 @@
 <div class="products-page for-lg">
 
-	<div class="">
+
+	<!-- 輪播 -->
+	<div class="hidden-xs">
 		<%= render 'carousel' %>
+	</div>	
+
+	<div class="visible-xs-block">
+		<%= render 'phone_carousel' %>
 	</div>
 
 
@@ -36,7 +42,7 @@
 
 						<div class="col-md-11 col-md-offset-1 col-xs-12">
 							<%= link_to total_articles_products_path, class: "block-link" do %>
-								<span>觀看更多資訊</span>
+								<span class="lighter">觀看更多資訊</span>
 								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
 							<% end %>	
 						</div>
@@ -46,6 +52,22 @@
 		</div>
 	<% end %>
 	<!-- 置頂資訊end -->
+	<br>
+	
+
+
+	<!-- 置頂商品 -->
+	<div class="marked_products flex hidden-xs">
+		<% @marked_product.each do |product| %>
+			<div class="marked_product center">
+				<%= link_to product_path(product) do %>
+					<%= image_tag(product.photo.image.medium.url, 
+					alt: product.title, title: product.title, class: "") %>
+					<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
+				<% end %>
+			</div>
+		<% end %>	
+	</div>	
 
 
 
@@ -59,7 +81,7 @@
 		</div>
 	
 		<div class="">
-			<h5 class="inline-bloc pull-right"><%= link_to total_articles_products_path, class: "gray-link" do %>
+			<h5 class="inline-bloc pull-right hidden-xs"><%= link_to total_articles_products_path, class: "gray-link" do %>
 				<span>看更多</span>
 				<i class="fa fa-chevron-right" aria-hidden="true"></i>
 			<% end %>

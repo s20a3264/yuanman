@@ -10,6 +10,9 @@
     	<a href="#carousel_setting" aria-controls="carousel_setting" role="tab" data-toggle="tab">輪播圖設定</a>
     </li>
     <li role="presentation">
+      <a href="#phone_carousel_setting" aria-controls="phone_carousel_setting" role="tab" data-toggle="tab">手機輪播圖設定</a>
+    </li>    
+    <li role="presentation">
     	<a href="#about_us_setting" aria-controls="about_us_setting" role="tab" data-toggle="tab">編輯關於我們</a>
     </li>
     <li role="presentation">
@@ -29,6 +32,9 @@
     <div role="tabpanel" class="tab-pane active" id="carousel_setting">
 			<%= render 'carousel_setting' %>   	
     </div>
+    <div role="tabpanel" class="tab-pane" id="phone_carousel_setting">
+      <%= render 'phone_carousel_setting' %>    
+    </div>    
     <div role="tabpanel" class="tab-pane" id="about_us_setting">
     	<%= render 'about_setting' %>
     </div>

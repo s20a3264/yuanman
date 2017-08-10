@@ -7,7 +7,7 @@
 		<div class="col-md-12 col-xs-12 margin-td">
 			<%= link_to "首頁", root_path, class: "black-link"  %>
 			<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-			<%= link_to @product.category.name, "#", class: "black-link"  %>
+			<%= link_to @product.category.name, category_path(@product.category), class: "black-link"  %>
 			<i class="fa fa-angle-double-right" aria-hidden="true"></i>
 			<%= @product.title %>
 		</div>

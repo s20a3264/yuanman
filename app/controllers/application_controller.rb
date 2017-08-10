@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_cart
 
-  before_action :setting
+  before_action :setting, :categories
 
 
   def current_cart
@@ -38,6 +38,11 @@ class ApplicationController < ActionController::Base
 
   def setting
     @setting = Setting.last
+  end
+
+  def categories
+    @categories = Category.all
+  
   end
 	
 end

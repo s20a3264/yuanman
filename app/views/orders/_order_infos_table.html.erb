@@ -34,12 +34,12 @@
       <div class="money-box">
         <span class="money-type">商品總價</span>
         <span class="dollar-sign">$</span>
-        <span class="money"><%= render_order_total_price(@order_items) %></span>
+        <span class="money"><%= @order.total %></span>
       </div>
       <div class="money-box">
         <span class="money-type">運費(郵寄/宅配)</span>
         <span class="dollar-sign">$</span>
-        <span class="money">100</span>
+        <span class="money"><%= @order.shipping_cost %></span>
       </div>          
       <div class="money-box border-top">
         <span class="money-type">本次消費應付金額</span>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704230343) do
+ActiveRecord::Schema.define(version: 20170808131416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 20170704230343) do
     t.boolean  "undone",         default: false
     t.jsonb    "payment_info"
     t.datetime "deadline"
+    t.integer  "points",         default: 0
+    t.integer  "shipping_cost"
   end
 
   add_index "orders", ["aasm_state"], name: "index_orders_on_aasm_state", using: :btree

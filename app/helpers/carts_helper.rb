@@ -13,9 +13,15 @@ module CartsHelper
 		@sum	
 	end
 
+	#試算運費
+	def trial_shipping_cost
+		@shipping_cost = @sum >= 1000 ? 0 : @setting.shipping_cost
+		@shipping_cost 
+	end	
+
 	#訂單應付總金額
 	def render_total_amount
-		@sum + 100
+		@sum + @shipping_cost
 	end
 
 	#購物車單件商品小計
@@ -26,4 +32,6 @@ module CartsHelper
 	def find_cart_items_quantity(cart_items_hash, product)
 		cart_items_hash[product.id]
 	end
+
+
 end

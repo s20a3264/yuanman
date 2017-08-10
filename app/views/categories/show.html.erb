@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="categories col-md-2 col-sm-2 hidden-xs">
+		<div><%= link_to "所有產品", categories_path, class: "normal-link bold" %></div>
+		<% @categories.each do |category| %>
+			<div>
+				<%= link_to category.name , category_path(category), class: "normal-link bold" %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="product-items col-md-10  col-sm-10 col-xs-12">
+
+		<h2 class="background width100"><span><%= @category.name %></span></h2>
+		<%= render 'products' %>
+	</div>	
+
+</div>

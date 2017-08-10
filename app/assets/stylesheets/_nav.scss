@@ -48,11 +48,7 @@
 @media screen and (min-width: 768px) {
 	.navbar-default .navbar-nav {
 		li {
-			display: inline-block;
 			height: 50px;
-			&:hover {
-				border-left: 2px solid $gray2;
-			}
 			a {
 				color: #111;
 				height: 50px;
@@ -129,3 +125,14 @@
 		color: $brown;
 	}
 }
+
+
+/* 大螢幕下拉選單滑入展開 */
+
+@media screen and (min-width: 769px) {
+
+	.dropdown-menu li:hover .sub-menu {visibility: visible;}
+	.dropdown:hover .dropdown-menu {display: block;}	
+}
+
+

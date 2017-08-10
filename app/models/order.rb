@@ -57,8 +57,11 @@ class Order < ActiveRecord::Base
 		end	
 	end
 
+	#寫入訂單總價，運費，繳費期限
 	def calculate_total_and_deadline!(cart)
-		self.total = cart.total_price + 100
+		shipping_cost = cart.total_price >= 1000 ? 0 : Setting.last.shipping_cost
+		self.shipping_cost = shipping_cost
+		self.total = cart.total_price + shipping_cost
 		self.deadline = Time.zone.now.advance(days: 3).end_of_day
 		self.save
 	end

@@ -4,3 +4,19 @@
 		width: 100%;
 	}
 }
+
+#phone_carousel {
+	img {
+		width:160px; 
+		height: 200px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	#phone_carousel {
+	img {
+		width:104px; 
+		height: 130px;
+	}
+	}
+}

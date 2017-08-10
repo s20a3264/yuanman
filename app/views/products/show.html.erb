@@ -38,14 +38,14 @@
 
 			<!-- 產地，資訊等等.. -->
 			<div class="product-info row ">
-				<div class="col-md-7">產地： <%= @product.origin %></div>
+				<div class="col-md-7">運費： 
+					<%= "$#{@setting.shipping_cost}" %>
+				</div>					
 				<div class="col-md-5">保存期限： <%= @product.expiration_date %></div>
 				<div class="col-md-7">重量： <%= @product.weight %></div>
-				<div class="col-md-5">運費： 
-					<%= "$#{@setting.shipping_cost}" %>
-				</div>				
-
-
+				<% if !@product.origin.empty? %>
+					<div class="col-md-5">產地： <%= @product.origin %></div>
+				<% end %>	
 			</div>
 			
 

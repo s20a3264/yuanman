@@ -56,18 +56,7 @@
 	
 
 
-	<!-- 置頂商品 -->
-	<div class="marked_products flex hidden-xs">
-		<% @marked_product.each do |product| %>
-			<div class="marked_product center">
-				<%= link_to product_path(product) do %>
-					<%= image_tag(product.photo.image.medium.url, 
-					alt: product.title, title: product.title, class: "") %>
-					<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
-				<% end %>
-			</div>
-		<% end %>	
-	</div>	
+
 
 
 
@@ -89,6 +78,19 @@
 		</div>
 	 
 		<h4 class="inline-block">商城</h4>
+
+	<!-- 置頂商品 -->
+	<div class="marked_products flex hidden-xs">
+		<% @marked_product.each do |product| %>
+			<div class="marked_product center">
+				<%= link_to product_path(product) do %>
+					<%= image_tag(product.photo.image.medium.url, 
+					alt: product.title, title: product.title, class: "") %>
+					<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
+				<% end %>
+			</div>
+		<% end %>	
+	</div>			
 
 		
 		<div class="row">	

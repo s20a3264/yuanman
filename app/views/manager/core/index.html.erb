@@ -22,7 +22,7 @@
         <%= link_to(order.order_number, manager_order_path(order), class: "monospace" ) %> 
       </td>
 <!--       <td class="high-table"><%= link_to "買賣留言板", message_board_manager_order_path(order) %></td>
- -->      <td class="hidden-xs high-table"> <%= order.created_at.localtime.to_s(:normal) %> </td>
+ -->      <td class="hidden-xs high-table"> <%= order.created_at.to_s(:normal) %> </td>
       <td class="high-table"> <%= order.user.info["shipping_name"] %></td>
       <td class="hidden-xs high-table"><%= order.user.email %></td>
       <td class="high-table"> <%= render_order_state_manager(order) %> </td>

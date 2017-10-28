@@ -1,6 +1,5 @@
 <div class="products-page for-lg">
 
-
 	<!-- 輪播 -->
 	<div class="hidden-xs">
 		<%= render 'carousel' %>
@@ -13,52 +12,9 @@
 
 	<div class="hidden hidden-box"></div>
 
-	<!-- 置頂資訊 -->
-	<% if @sticky_1 && @sticky_2 %>
-		<div id="top-articles-box">
-			<div class="row">		
-				<!-- 置頂1 -->
-				<%= link_to "#", 
-				data: {toggle: "modal", target: "#article_#{@sticky_1.id}"}, class: "white-link opacity-link" do %>
-					<div class="col-md-7 col-xs-12 article-1 top-articles" style="background:url(<%= image_url(@sticky_1.	article_img.url) %>)">
-						<span class="date"><%= @sticky_1.created_at.to_s(:zh) %></span>
-						<span class="article-1-title"><%= @sticky_1.title %></span>
-					</div>
-				<% end %>
-				<%= render partial: 'article_content', locals: {id: @sticky_1.id, article: @sticky_1} %>
-
-
-				<div class="col-md-5 col-xs-12">
-					<div class="row">
-						<!-- 置頂2 -->
-						<%= link_to '#', 
-						data: {toggle: "modal", target: "#article_#{@sticky_2.id}"}, class: "white-link opacity-link" do %>
-							<div class="col-md-11 col-md-offset-1 col-xs-12 article-2 top-articles" style="background:url(<%= 		image_url(@sticky_2.article_img.url) %>)">
-								<span class="date"><%= @sticky_2.created_at.to_s(:zh) %></span>
-								<span class="article-2-title"><%= @sticky_2.title %></span>
-							</div>
-						<% end %>	
-						<%= render partial: 'article_content', locals: {id: @sticky_2.id, article: @sticky_2} %>
-
-						<div class="col-md-11 col-md-offset-1 col-xs-12">
-							<%= link_to total_articles_products_path, class: "block-link" do %>
-								<span class="lighter">觀看更多資訊</span>
-								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-							<% end %>	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	<% end %>
-	<!-- 置頂資訊end -->
-	<br>
 	
-
-
-
-
-
+	<!-- 置頂文章 -->
+	<%= render 'sticky' %>
 
 
 	<div class="padding-rl-40">
@@ -76,21 +32,22 @@
 			<% end %>
 			</h5>		
 		</div>
+		<!-- end資訊 -->
 	 
 		<h4 class="inline-block">商城</h4>
 
-	<!-- 置頂商品 -->
-	<div class="marked_products flex hidden-xs">
-		<% @marked_product.each do |product| %>
-			<div class="marked_product center">
-				<%= link_to product_path(product) do %>
-					<%= image_tag(product.photo.image.medium.url, 
-					alt: product.title, title: product.title, class: "") %>
-					<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
-				<% end %>
-			</div>
-		<% end %>	
-	</div>			
+		<!-- 置頂商品 -->
+		<div class="marked_products flex hidden-xs">
+			<% @marked_product.each do |product| %>
+				<div class="marked_product center">
+					<%= link_to product_path(product) do %>
+						<%= image_tag(product.photo.image.medium.url, 
+						alt: product.title, title: product.title, class: "") %>
+						<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
+					<% end %>
+				</div>
+			<% end %>	
+		</div>			
 
 		
 		<div class="row">	

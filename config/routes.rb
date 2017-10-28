@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   
       #新版智付通
-  match "spgateway_return",   to: 'orders#spgateway_return', via: [:get, :post]  
-  match "spgateway_notify",   to: 'orders#spgateway_notify', via: [:get, :post] 
-  match "spgateway_customer", to: 'orders#spgateway_customer', via: [:get, :post]
+  post "spgateway_return"   => 'orders#spgateway_return'
+  post "spgateway_notify"   => 'orders#spgateway_notify'
+  post "spgateway_customer" => 'orders#spgateway_customer'
 
   namespace :manager do
     root to:  'core#index'

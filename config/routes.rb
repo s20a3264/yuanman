@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   match "spgateway_customer", to: 'orders#spgateway_customer', via: [:get, :post]
 
   namespace :manager do
-    root to:  'core#index',
+    root to:  'core#index'
     get 'index' => 'core#index'
     get 'set_session' => 'core#set_session'
     get 'clear' => 'core#clear'

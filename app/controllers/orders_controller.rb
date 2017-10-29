@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
 
   	@order.store_trade_info(tradeinfo) if @order.trade_info.empty?
   	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == true
-			flash[:success] = "#{tradeinfo['Message']}"
+			flash[:success] = "#{tradeinfo['Message']}, 付款完成"
 			redirect_to order_path(@order.token)  		
 
 		elsif params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false

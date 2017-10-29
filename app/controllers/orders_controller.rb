@@ -60,6 +60,8 @@ class OrdersController < ApplicationController
   	if  params['Status'] == "SUCCESS" && tradeinfo['Status'] == "SUCCESS" && @order.is_paid == false	
 			@order.complete_payment(result['PaymentType'])
 		end
+
+		redirect_to root_path
 	end
 
 	def spgateway_return

@@ -27,9 +27,12 @@
 
 
   
-        <div class="pay-with pull-right">
+        <div class="pay-with pull-left">
           <%= render "spgateway", order: @order %>
-        </div>      
+        </div>
+        <div class="mtd-small small">
+          可接受付款方式：信用卡，WebATM，ATM 轉帳，超商代碼繳費
+        </div>     
       <% end %> 
     <% else %>
       <p class="text-center">此訂單已完成付款</p>

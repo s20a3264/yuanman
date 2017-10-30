@@ -54,7 +54,10 @@
 			<td colspan="4" class="cart-message">
   		  購物車內共有<span class="cart-items-count"><%= current_cart.items.count %></span>項商品，
   		  消費總金額 NT$ 
-  		  <span class="cart-price-total"><%= render_cart_total_price(@items, @cart_items_hash) %></span>
+  		  <span class="cart-price-total"><%= render_cart_total_price(@items, @cart_items_hash) %></span><br>
+        
+        <span class="small red"><%= "單筆訂單滿#{@setting.shipping_free}免運" %></span class="small red">
+
 
 
         <div id="cart-bottom-botton" class="clearfix">

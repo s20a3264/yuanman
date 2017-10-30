@@ -41,8 +41,8 @@ class ApplicationController < ActionController::Base
   end
 
   def categories
-    @categories = Category.all
-  
+    @categories = Category.all  
   end
+
 	
 end

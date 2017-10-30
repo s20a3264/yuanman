@@ -7,12 +7,22 @@
 		</div>
 		<div class="collapse navbar-collapse" id="nav-list">
 			<ul class="nav navbar-nav">
-			  <li><%= link_to "Home", root_path %></li>
-			  <li><%= link_to "訂單管理", manager_index_path %></li>
+			  <li>
+			  	<%= link_to root_path do %>
+			  		<i class="fa fa-home fa-lg" aria-hidden="true"></i>
+			  		首頁
+			  	<% end %>	
+			  </li>
+			  <li>
+			  	<%= link_to manager_index_path do %>
+			  		<i class="fa fa-list-alt fa-lg" aria-hidden="true"></i>
+			  		訂單管理
+			  	<% end %>	
+			  </li>
 			  <li>
 			  	<%= link_to manager_products_path do %>
 			  		<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-			  		產品列表
+			  		商品管理
 			  	<% end %>	
 			  </li>
 			  <li>
@@ -21,8 +31,18 @@
 			  		文章列表
 			  	<% end %>	
 			  </li>
-			  <li><%= link_to "發表文章",  new_manager_article_path %></li>
-			  <li class="product-on-shelf"><%= link_to "新增商品", new_manager_product_path %></li>
+			  <li>
+			  	<%= link_to  new_manager_article_path do %>
+			  		<i class="fa fa-paint-brush fa-lg" aria-hidden="true"></i>
+			  		發表文章
+			  	<% end %>	
+			  </li>
+			  <li class="product-on-shelf">
+			  	<%= link_to  new_manager_product_path do %>
+			  		<i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+			  		新增商品
+			  	<% end %>	
+			  </li>
 			  <li>
 			  	<%= link_to manager_settings_path do %>
 			  		<i class="fa fa-cog fa-lg" aria-hidden="true"></i>

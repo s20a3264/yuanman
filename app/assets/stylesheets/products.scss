@@ -296,6 +296,7 @@
 .marked_products {
 	margin: 40px -15px 20px -15px;
 	justify-content:space-between;
+	flex-wrap:wrap;
 	.marked_product {
 		width: 18%;
 		img {
@@ -307,6 +308,14 @@
 @media screen and (max-width: 1201px) {
 	.marked_products {
 		margin: 40px 0 20px 0;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.marked_products {
+		.marked_product {
+			width: 45%;
+		}
 	}
 }
 

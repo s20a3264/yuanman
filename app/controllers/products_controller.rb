@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
 
 	def show
 		@product = Product.find(params[:id])
+		@marked_product = Product.be_marked.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
 	end
 
 	def add_to_cart

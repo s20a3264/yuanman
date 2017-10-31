@@ -10,6 +10,9 @@
     <li role="presentation">
       <a href="#certification" aria-controls="certification" role="tab" data-toggle="tab">認證標章</a>
     </li>
+    <li role="presentation">
+      <a href="#send_description" aria-controls="send_description" role="tab" data-toggle="tab">運送說明</a>
+    </li>    
   </ul>
 
   <!-- Tab panes -->
@@ -22,6 +25,15 @@
     </div>
     <div role="tabpanel" class="tab-pane tab-product" id="certification">
       <%= image_tag(@product.certification.url) %>
+    </div>
+    <div role="tabpanel" class="tab-pane tab-product" id="send_description">
+      <div class="article-description">
+        ...
+        <br>
+        ....
+        <br>
+        .....
+      </div>
     </div>
   </div>
 

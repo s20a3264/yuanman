@@ -86,6 +86,20 @@
 			<%= render 'product_tabs' %>
 		</div>
 
+
+		<h3 class="mt background col-md-11 col-xs-12"><span class="pull-left"> 商品推薦 </span></h3>
+		<div class="marked_products flex col-md-11 col-xs-12">
+			<% @marked_product.each do |product| %>
+				<div class="marked_product  center">
+					<%= link_to product_path(product) do %>
+						<%= image_tag(product.photo.image.medium.url, 
+						alt: product.title, title: product.title, class: "") %>
+						<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
+					<% end %>
+				</div>
+			<% end %>	
+		</div>			
+
 <!-- 		<div class="col-md-3 col-md-offset-1 col-xs-12 border-m">
 				<p class="bold">付款方式</p>
 				<p>信用卡一次付清 / ATM / WebATM / 超商代碼繳費</p>

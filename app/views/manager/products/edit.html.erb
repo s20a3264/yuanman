@@ -1,4 +1,5 @@
-<div class="md">
+<div class="row">
+<div class="col-md-10 col-md-offset-1  border-n mt md md">
 <%= render "common/error_messages", var: @product %>
 <h2>商品編輯</h2>
 <%= form_for [:manager, @product] do |f| %>
@@ -71,4 +72,5 @@
 	<%= f.submit "送出", data: { disable_with: "上傳更新中....請稍後" }, class: "btn btn-primary" %>
 
 <% end %>	
+</div>
 </div>

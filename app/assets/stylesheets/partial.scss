@@ -1,3 +1,5 @@
+/* footer */
+
 footer {
 	margin-top: 45px;
 	padding: 15px;
@@ -5,5 +7,21 @@ footer {
 
 	.copyright {
 		margin-top: 30px;
+	}
+}
+
+.footer-logo {
+	img {
+		margin-top: 30px;
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.footer-logo {
+		img {
+			margin-top: 60px;
+		}
 	}
 }

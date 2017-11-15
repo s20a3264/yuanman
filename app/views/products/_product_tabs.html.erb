@@ -18,7 +18,7 @@
       <div class="article-description"><%= raw(@product.description) %></div>
     </div>
     <div role="tabpanel" class="tab-pane tab-product" id="nutrition">
-      <%= image_tag(@product.nutrition_facts.url) %>
+      <%= image_tag(@product.nutrition_facts.url, alt: "#{@product.title}") %>
     </div>
     <div role="tabpanel" class="tab-pane tab-product" id="certification">
       <%= image_tag(@product.certification.url) %>

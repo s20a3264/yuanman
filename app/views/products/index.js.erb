@@ -1,0 +1,7 @@
+$('#products-list').append("<%= j render 'categories/products' %>")
+
+<% if @products.next_page %>
+	$('#js-load-more').replaceWith('<%= j render_ajax_more_button(@products) %>')
+<% else %>	
+	$('#js-load-more').remove();
+<% end %>	

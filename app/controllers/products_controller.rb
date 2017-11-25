@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
 		@category_name = @category ? @category.name : "所有商品"
 
-    @products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
+    @products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC).page(params[:page]).per(6)
 
 		@articles = Article.order(created_at: :DESC).limit(4)
 
@@ -13,6 +13,12 @@ class ProductsController < ApplicationController
 		@sticky_2 = Article.find_by(sticky: 2)
 
 		@marked_product = Product.be_marked.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
+
+		respond_to do |format|
+			format.html
+			format.js
+		end	
+
 	end
 
 	def total_articles

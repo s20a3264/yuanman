@@ -17,10 +17,10 @@
 	<%= render 'sticky' %>
 
 
-	<div class="padding-rl-40">
+	<div class="padding-rl-40 ">
 	
 		<!-- 資訊 -->
-		<div class="mtd-small hidden-xs">
+		<div class="mtd-small hidden-xs" >
 			<h4 class="inline-block">資訊</h4>
 			<%= render 'articles' %>
 		</div>
@@ -66,6 +66,13 @@
 			<div class="product-items col-md-10  col-sm-10 col-xs-12">
 				<h2 class="background width100"><span> 所有產品 </span></h2>
 				<%= render 'categories/products' %>
+				<!-- 如果有下一頁顯示載入更多按鈕 -->
+				<div style="width: 100%;">
+					<% if @products.next_page %>
+						<%= render_ajax_more_button(@products) %>
+					<% end %>	
+				</div>
+				<!-- 載入更多按鈕end -->
 			</div>
 
 			<div class=" clearfix"></div>

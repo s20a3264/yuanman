@@ -25,10 +25,12 @@
 						<% end %>	
 						<%= render partial: 'article_content', locals: {id: @sticky_2.id, article: @sticky_2} %>
 
-						<div class="col-md-11 col-md-offset-1 col-xs-12">
-							<%= link_to total_articles_products_path, class: "block-link" do %>
-								<span class="letter-spacing-1 normal">觀看更多資訊</span>
-								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+						<div class="col-md-11 col-md-offset-1 col-xs-12 ">
+							<%= link_to total_articles_products_path, class: "gold-link" do %>
+								<div class=" animated infinite shake" style="animation-duration: 7s" >
+									<span class="letter-spacing-1 normal">觀看更多資訊</span>
+									<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+							</div>
 							<% end %>	
 						</div>
 					</div>

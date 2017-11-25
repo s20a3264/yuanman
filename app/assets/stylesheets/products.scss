@@ -154,14 +154,16 @@
 
     }
   }
-  .block-link {
+  .gold-link {
   	display: block;
+  	border: 2px solid $gold;
   	padding: 10px 20px;
   	margin: 12% -15px 0 -15px;
-  	background: #333;
-  	color: #fff;
+  	background: #fff;
+  	color: $gold;
   	text-align: center;
   	&:hover {
+  	  border: 2px solid #555;
   		background: #555;
   	}
   }
@@ -191,7 +193,7 @@
       	font-size: 0.7em;
 	    }
   	}
-  	.block-link {
+  	.gold-link {
   		margin-top: 1px;
   	}
   }

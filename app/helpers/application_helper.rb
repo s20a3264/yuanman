@@ -34,4 +34,9 @@ module ApplicationHelper
     end     
   end
 
+  #AJAX按鈕
+  def render_ajax_more_button(products)
+    link_to("MORE", products_path(page: products.next_page), remote: true, class: 'btn', id: "js-load-more")
+  end
+
 end

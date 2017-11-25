@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
 		@category_name = @category ? @category.name : "所有商品"
 
-    @products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC).page(params[:page]).per(1)
+    @products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC).page(params[:page]).per(2)
 
 		@articles = Article.order(created_at: :DESC).limit(4)
 

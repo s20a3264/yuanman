@@ -1,10 +1,9 @@
-$('#js-load-more').hide();
-$('#loading').show();
-
 
 $.ajax({
 	url: 'products',
 	beforeSend: function() {
+		$('#js-load-more').hide();
+		$('#loading').show();
 	},
 	success: function() {
 		$('#loading').hide();
@@ -12,8 +11,6 @@ $.ajax({
 		$('#products-list').append("<%= j render 'categories/products' %>")
 	},
 	complete: function() {
-		$('#loading').hide();
-		$('#js-load-more').show();		
 		<% if @products.next_page %>
 			$('#js-load-more').replaceWith('<%= j render_ajax_more_button(@products) %>')
 		<% else %>	

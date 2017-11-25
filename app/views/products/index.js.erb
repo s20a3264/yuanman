@@ -1,7 +1,22 @@
-$('#products-list').append("<%= j render 'categories/products' %>")
+$.ajax({
+	url: 'products',
+	beforeSend: function() {
+		$('#js-load-more').hide();
+		$('#loading').show();
+	},
+	success: function() {
+		$('#loading').hide();
+		$('#js-load-more').show();
+		$('#products-list').append("<%= j render 'categories/products' %>")
+	},
+	complete: function() {
+		<% if @products.next_page %>
+			$('#js-load-more').replaceWith('<%= j render_ajax_more_button(@products) %>')
+		<% else %>	
+			$('#js-load-more').remove();
+		<% end %>
+	}
+});
 
-<% if @products.next_page %>
-	$('#js-load-more').replaceWith('<%= j render_ajax_more_button(@products) %>')
-<% else %>	
-	$('#js-load-more').remove();
-<% end %>	
+
+

@@ -1,14 +1,17 @@
 
 $.ajax({
 	url: 'products',
+	beforeSend: function() {
+		$('#js-load-more').off('click');
+	},
 	success: function() {
-		$('#products-list').append("<%= j render 'categories/products' %>")		
+		$('#products-list').append("<%= j render 'categories/products' %>");	
 	},
 	complete: function() {
 		$('#loading').hide();
 		<% if @products.next_page %>
 			$('#js-load-more').show();
-			$('#js-load-more').replaceWith('<%= j render_ajax_more_button(@products) %>')
+			$('#js-load-more').replaceWith('<%= j render_ajax_more_button(@products) %>');
 
 			// 重新綁定click事件
 			$('#js-load-more').on('click', function() {

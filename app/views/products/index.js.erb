@@ -21,7 +21,10 @@ $.ajax({
 		<% else %>	
 			$('#js-load-more').remove();
 		<% end %>
-		
+	},
+	error: function() {
+		$('#loading').hide();
+		$('#js-load-more').show();
 	}
 });
 

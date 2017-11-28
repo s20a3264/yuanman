@@ -23,6 +23,7 @@
 				$('#ajax-article-description').html(description);
 			},
 			error: function() {
+				$('#ajax-article-title').html('....');
 				$('#ajax-article-description').html('文章載入失敗，請稍後重試');
 			}
 		});

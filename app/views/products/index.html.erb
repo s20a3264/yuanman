@@ -1,3 +1,4 @@
+
 <div class="products-page for-lg">
 
 
@@ -97,3 +98,26 @@
 
 <!-- 修正輪播圖寬高 -->
 <%= render 'js/bootstrap_tab' %>
+
+
+<!-- ajax載入文章 -->
+<script>
+	$('.load-article').on('click', function() {
+		$.ajax({
+			url: "<%= render_article_path(:json) %>",
+			type: 'GET',
+			datatype: "json",
+			data: {id: $(this).data('articleid')},
+			success: function(response) {
+				var title = response['title']
+				var description = response['description']
+				$('#ajax-article-title').html(title);
+				$('#ajax-article-description').html(description);
+			},
+			error: function() {
+				$('#ajax-article-description').html('文章載入失敗，請稍後重試');
+			}
+		});
+	});
+</script>
+

@@ -3,16 +3,15 @@ class ProductsController < ApplicationController
 
 	def index
 
-		@category_name = @category ? @category.name : "所有商品"
 
-    @products = Product.products_are_selling.includes(:photo, :category).order(created_at: :DESC).page(params[:page]).per(2)
+    @products = Product.products_are_selling.includes(:photo).order(created_at: :DESC).page(params[:page]).per(2)
 
-		@articles = Article.order(created_at: :DESC).limit(4)
+		@articles = Article.order(created_at: :DESC).limit(4).select("id, title, created_at, article_img")
 
-		@sticky_1 = Article.find_by(sticky: 1)
-		@sticky_2 = Article.find_by(sticky: 2)
+		@sticky_1 = Article.select("id, title, created_at, article_img, sticky").find_by(sticky: 1)
+		@sticky_2 = Article.select("id, title, created_at, article_img, sticky").find_by(sticky: 2)
 
-		@marked_product = Product.be_marked.products_are_selling.includes(:photo, :category).order(created_at: :DESC)
+		@marked_product = Product.be_marked.products_are_selling.includes(:photo).order(created_at: :DESC)
 
 		respond_to do |format|
 			format.html

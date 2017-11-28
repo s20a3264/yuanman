@@ -3,28 +3,26 @@
 		<div id="top-articles-box">
 			<div class="row">		
 				<!-- 置頂1 -->
-				<%= link_to "#", 
-				data: {toggle: "modal", target: "#article_#{@sticky_1.id}"}, class: "white-link opacity-link" do %>
-					<div class="col-md-7 col-xs-12 article-1 top-articles" style="background:url(<%= image_url(@sticky_1.	article_img.url) %>)">
-						<span class="date"><%= @sticky_1.created_at.to_s(:zh) %></span>
-						<span class="article-1-title"><%= @sticky_1.title %></span>
-					</div>
-				<% end %>
-				<%= render partial: 'article_content', locals: {id: @sticky_1.id, article: @sticky_1} %>
+					<%= link_to "#", data: {toggle: "modal", target: "#render_article"}, 
+					class: "white-link opacity-link" do %>
+						<div class="load-article col-md-7 col-xs-12 article-1 top-articles" style="background:url(<%= image_url(@sticky_1.article_img.url) %>)" data-articleid="<%= @sticky_1.id %>">
+							<span class="date"><%= @sticky_1.created_at.to_s(:zh) %></span>
+							<span class="article-1-title"><%= @sticky_1.title %></span>
+						</div>
+					<% end %>
 
-
-				<div class="col-md-5 col-xs-12">
+				<!-- 置頂2 -->
+				<div class="col-md-5 col-xs-12 load-article" data-articleid="<%= @sticky_2.id %>">
 					<div class="row">
-						<!-- 置頂2 -->
 						<%= link_to '#', 
-						data: {toggle: "modal", target: "#article_#{@sticky_2.id}"}, class: "white-link opacity-link" do %>
+						data: {toggle: "modal", target: "#render_article", articleid: "article.id"}, 
+						class: "white-link opacity-link load-article" do %>
 							<div class="col-md-11 col-md-offset-1 col-xs-12 article-2 top-articles" style="background:url(<%= 		image_url(@sticky_2.article_img.url) %>)">
 								<span class="date"><%= @sticky_2.created_at.to_s(:zh) %></span>
 								<span class="article-2-title"><%= @sticky_2.title %></span>
 							</div>
 						<% end %>	
-						<%= render partial: 'article_content', locals: {id: @sticky_2.id, article: @sticky_2} %>
-
+				<!-- 置頂2 end -->	
 						<div class="col-md-11 col-md-offset-1 col-xs-12 ">
 							<%= link_to total_articles_products_path, class: "gold-link" do %>
 								<div class=" animated infinite shake" style="animation-duration: 7s" >

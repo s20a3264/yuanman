@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :managers
   
   root 'products#index'
+  get  'render_article' => 'ajax#render_article'
 
       #新版智付寶
   post "pay2go_return"   => 'orders#pay2go_return'

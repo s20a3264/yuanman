@@ -58,28 +58,31 @@
 					
 				<% else %>
 
-					<!-- 加入購物車form -->
-					<%= form_tag({ controller: "products", action: "add_to_cart"}, method: "post") do %>
-						
-						<div class="col-md-7 col-xs-5">
-							<span class="black6">數量：</span>
-							<div class="styled-select inline-block">
-							  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
+					<!-- 加入購物車form & product-delegate -->
+					<div id="product-delegate">
+							
+							<div class="col-md-7 col-xs-5">
+								<span class="black6">數量：</span>
+								<div class="styled-select inline-block">
+								  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
+								</div>
 							</div>
-						</div>
-
-						<div class="col-md-5 col-xs-5 pull-right">
-							<%= button_tag(type: "submit", class: "btn-normal xs-small") do %>
-								<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
-								<span class=""> 加入購物車</span>
-							<% end %>
-						</div>
-
-					<% end %>	
+	
+							<div class="col-md-5 col-xs-5 pull-right">
+								<%= link_to("#", class: "add-to-cart-btn xs-small add_to_cart",
+								data: { "product-id" => @product.id}, remote: true ) do %>
+									<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+									<span class=""> 加入購物車</span>
+								<% end %>
+							</div>
+	
+					</div>
+					<!-- product-delegate end -->
 				<% end %>
 			</div>
 			<!-- 數量與購物車end -->
 		</div>
+
 
 		<!-- 商品訊息 -->
 		<div class=" col-md-11 col-xs-12">

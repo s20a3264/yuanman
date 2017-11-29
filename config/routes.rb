@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   root 'products#index'
   get  'render_article' => 'ajax#render_article'
-  get  'add_to_cart' => 'ajax#add_to_cart'
+  post  'add_to_cart' => 'ajax#add_to_cart'
 
       #新版智付寶
   post "pay2go_return"   => 'orders#pay2go_return'

@@ -71,7 +71,9 @@
 
 			<div class="product-items col-md-10  col-sm-10 col-xs-12">
 				<h2 class="background width100"><span> 所有產品 </span></h2>
-				<%= render 'categories/products' %>
+				<div id="product-delegate">
+					<%= render 'categories/products' %>
+				</div>
 				<!-- 如果有下一頁顯示載入更多按鈕 -->
 				<div style="width: 100%;">
 					<% if @products.next_page %>

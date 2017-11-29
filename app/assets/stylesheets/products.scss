@@ -479,6 +479,26 @@
 	}
 }
 
+.add-to-cart-btn {
+  border: 2px solid $mc;
+  border-radius: 3px;
+  padding: 12px 10px 8px 10px;
+  color: #fff;
+  background: $mc;
+  font-weight: normal;
+  &:hover {
+    background: darken($mc, 5%);
+    border: 2px solid darken($mc, 5%);
+    color: #fff;
+  }
+  &:focus {
+    background: darken($mc, 5%);
+    border: 2px solid darken($mc, 5%);
+    color: #fff;
+  }
+}
+
+
 
 
 

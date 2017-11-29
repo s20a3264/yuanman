@@ -16,14 +16,19 @@
 				<%= image_tag("logo4-01.png", class: "brand", alt: "圓滿生機") %>
 			<% end %>	
 
-			
-			<span class="visible-xs nav-cart">
-				<%= link_to carts_path do %>
+			<!-- 手機購物車 -->
+			<span class="visible-xs nav-cart ajax-cart">
+				<%= link_to carts_path, class: "" do %>
 					<i class="fa fa-shopping-cart gray2"></i>
-					<span class="inline-block">  <%= render_cart_items_count(current_cart) %>  </span> 
+					<span class="as" style="padding:0;">
+						<span style="animation-duration: 3s"><%= render_cart_items_count(current_cart) %></span> 
+					</span> 
 				<% end %>	
 			</span>
+			<!-- end手機購物車 -->
 		</div>
+
+		
 
 		<div class="collapse navbar-collapse" id="nav-list">
 
@@ -58,15 +63,17 @@
 
 			<!-- 右nav -->
 			<ul class="nav navbar-nav navbar-right center">
-				<li class="">
+				<!-- 購物車 -->
+				<li class="" id="cart-box">
 					<%= link_to carts_path, class: "ajax-cart" do %>
 						<i class="fa fa-shopping-cart gray2"></i>
 						購物車
-						<span id="as"> 
+						<span class="as"> 
 							( <span style="animation-duration: 3s"><%= render_cart_items_count(current_cart) %></span> ) 
 						</span> 
 					<% end %>	
 				</li>
+				<!-- end購物車 -->
 				<% if user_signed_in? %>
 					<li>
 						<%= link_to account_index_path  do %>

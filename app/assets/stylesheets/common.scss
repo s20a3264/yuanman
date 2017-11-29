@@ -36,6 +36,10 @@ body {
       text-decoration: none;
       color: inherit;
     }
+    &:focus {
+      color: #fff;
+      text-decoration: none;
+    }
     &:active {
     }
   }

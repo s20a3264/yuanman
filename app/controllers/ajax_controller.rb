@@ -11,12 +11,12 @@ class AjaxController < ApplicationController
 
 	def add_to_cart
 		@product = Product.find_by(id: params['id'])
-		quantity = 1
+		quantity = params['quantity'] ? params['quantity'].to_i : 1
 
 		if !current_cart.items.include?(@product)
 			current_cart.add_product_to_cart(@product, quantity)
 		else
-			item = current_cart.quantity_plus(@product)
+			item = current_cart.quantity_plus(@product, quantity)
 		end
 
 		quantity = current_cart.items.count

@@ -4,15 +4,19 @@ class Cart < ActiveRecord::Base
 
 
 	def add_product_to_cart(product, quantity)
+		quantity = quantity > 10 ? 10 : quantity 
 		cart_item = self.cart_items.build
 		cart_item.product = product
 		cart_item.quantity = quantity
 		cart_item.save
 	end
 
-	def quantity_plus(product)
+	def quantity_plus(product, quantity)
 		cart_item = self.cart_items.find_by(product_id: product.id)
-		cart_item.quantity += 1
+		max_quantity = product.quantity > 10 ? 10 : product.quantity
+		quantity = max_quantity - cart_item.quantity < quantity ? max_quantity - cart_item.quantity : quantity
+
+		cart_item.quantity += quantity
 		cart_item.save 
 	end
 

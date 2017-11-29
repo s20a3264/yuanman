@@ -1,6 +1,7 @@
 
 $.ajax({
 	url: 'products',
+	timeout: 10000,
 	beforeSend: function() {
 		$('#js-load-more').off('click');
 	},

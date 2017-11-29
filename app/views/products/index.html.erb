@@ -112,6 +112,7 @@
 			type: 'GET',
 			datatype: "json",
 			data: {id: $(this).data('articleid')},
+			timeout: 10000,
 			success: function(response) {
 				var title = response['title']
 				var description = response['description']

@@ -10,9 +10,15 @@
  				<div class="center">
  					<%= link_to  "view", product_path(product), class: "normal-link" %> / 
  					<% if product.quantity > 0 %>
- 						<%= link_to add_to_cart_product_path(id: product.id, quantity: 1), method: "post" do %>
+<!--  						<%= link_to add_to_cart_product_path(id: product.id, quantity: 1), method: "post" do %>
  							<i class="fa fa-shopping-cart green large"></i>
-						<% end %>
+						<% end %> -->
+
+						<%= link_to add_to_cart_path, class: "add_to_cart", 
+						data: {"product-id" => product.id}, remote: true do  %>
+							<i class="fa fa-shopping-cart green large"></i>
+						<% end %>	
+
 					<% else %>	
 						<span class="small gray1">缺貨中...</span>
 					<% end %>	

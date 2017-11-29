@@ -58,11 +58,13 @@
 
 			<!-- 右nav -->
 			<ul class="nav navbar-nav navbar-right center">
-				<li>
-					<%= link_to carts_path do %>
+				<li class="">
+					<%= link_to carts_path, class: "ajax-cart" do %>
 						<i class="fa fa-shopping-cart gray2"></i>
 						購物車
-						<span id="as"> ( <%= render_cart_items_count(current_cart) %> ) </span> 
+						<span id="as"> 
+							( <span style="animation-duration: 3s"><%= render_cart_items_count(current_cart) %></span> ) 
+						</span> 
 					<% end %>	
 				</li>
 				<% if user_signed_in? %>

@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 	def index
 
 
-    @products = Product.products_are_selling.includes(:photo).order(created_at: :DESC).page(params[:page]).per(2)
+    @products = Product.products_are_selling.includes(:photo).order(created_at: :DESC).page(params[:page]).per(6)
 
 		@articles = Article.order(created_at: :DESC).limit(4).select("id, title, created_at, article_img")
 

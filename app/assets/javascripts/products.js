@@ -1,3 +1,3 @@
-					$('#js-load-more').on('click', function() {
-						$('#products-list').append('123');
-					});
+$(document).on('ready page:load', function() {
+	
+});

@@ -9,6 +9,13 @@
 
 .navbar-default .navbar-toggle {
 	border: none;
+	&:hover, &:focus {
+		background-color: transparent !important;
+	}
+}
+
+.navbar-fixed-top .navbar-collapse {
+	max-height: 500px !important;
 }
 
 
@@ -88,14 +95,27 @@
 /* phone */
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	.navbar {
 		.navbar-nav {
+			margin: 0 -15px;
 			li {
 				padding-left:15px;
 			}
 		}
 		#nav-list {
+			li {
+				background: #666;
+				padding: 8px 0;
+				border-bottom: 1px solid $gold;
+				a {
+					color: $gold;
+					font-weight: normal;
+				}
+				i {
+					color: #fff;
+				}
+			}
 		}
 	}
 	.navar-header {
@@ -104,11 +124,14 @@
 	}
 	.navbar-brand {
 		height: 56px;
+		width: 40%;
 		line-height: 20px;
 		padding: 10px;
+		position: absolute;
+		left: 30%;
 		.brand {
 			height: 40px;
-			width: 136px;
+			width: 100%;
 		}
 	}
 }

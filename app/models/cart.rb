@@ -10,6 +10,12 @@ class Cart < ActiveRecord::Base
 		cart_item.save
 	end
 
+	def quantity_plus(product)
+		cart_item = self.cart_items.find_by(product_id: product.id)
+		cart_item.quantity += 1
+		cart_item.save 
+	end
+
 	def total_price
 		sum = 0
 

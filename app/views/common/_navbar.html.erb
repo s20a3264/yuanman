@@ -5,10 +5,11 @@
 	<div class="container-fluid">
 		<div class="navar-header">
 
-
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-list">
-				<i class="fa fa-bars" aria-hidden="true"></i>
-			</button>
+			<div class="flex-box visible-xs-block">
+				<div class="navbar-toggle lines-button x" data-toggle="collapse" data-target="#nav-list">
+					<span class="lines"></span>
+				</div>
+			</div>	
 
 
  			<%= link_to root_path, class: "navbar-brand" do %>	
@@ -27,7 +28,7 @@
 		<div class="collapse navbar-collapse" id="nav-list">
 
 			<!-- 左nav -->
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="nav navbar-nav navbar-left center">
 				<li>
 					<%= link_to "認識圓滿生機", "#", data: {toggle: "modal", target: "#about_us_modal"}  %>
 				</li>
@@ -45,18 +46,18 @@
 				</li>
 				<!-- 分類end -->
 				
-				<li><%= link_to "文章推薦", total_articles_products_path %></li>
+				<li class="hidden-sm" ><%= link_to "文章推薦", total_articles_products_path %></li>
 
 				<li><%= link_to "Q＆A", "#", data: {toggle: "modal", target: "#q_and_a_modal"}  %></li>
-				<li>
-					<%= link_to "#", class: "hidden-xs" do %>
+				<li class="hidden-xs hidden-sm">
+					<%= link_to "#" do %>
 						<i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
 					<% end %>
 				</li>
 			</ul>
 
 			<!-- 右nav -->
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right center">
 				<li>
 					<%= link_to carts_path do %>
 						<i class="fa fa-shopping-cart gray2"></i>

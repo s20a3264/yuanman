@@ -25,7 +25,10 @@
               <span class="red small">
                 <% if product.mark? %>
                   <i class="fa fa-star-half-o" aria-hidden="true"></i> ( 置頂中 )
-                 <% end %> 
+                 <% end %>
+                <% if product.special? %>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i> ( 特價中 )
+                 <% end %>                  
               </span> 
             </td>
     				<td class="hidden-xs"><%= product.price %></td>

@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
 	has_one  :info,  class_name: "OrderInfo", dependent: :destroy
 	has_many :comments, as: :commentable
 
+	validates_associated :info
+
 	#查詢天數內訂單
 	scope :last_days, -> (interval) { where(created_at: (Time.zone.now.to_date - interval.day)..Time.zone.now)}
 

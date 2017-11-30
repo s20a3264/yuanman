@@ -29,6 +29,24 @@
 
 /* button */
 
+.bt.bt-active {
+  transform: scale(1.1,1.1);
+  -moz-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  -o-transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  transform: scale(1.1,1.1);
+  cursor: default;
+  border: 2px dashed $red1;
+  background: #fff;
+  color: $red1;
+  &:hover {
+    border: 2px dashed $red1;
+    background: #fff;
+    color: $red1;
+  }
+}
+
 #js-load-more {
   border: 2px solid $gold;
   border-radius: 3px;
@@ -39,20 +57,20 @@
   font-size: 18px;    
 }
 
-.btn {
-
+.bt {
+  cursor: pointer;
 }
 
 .btn-normal {
-  border: 2px solid #444;
+  border: 2px solid #555;
   border-radius: 3px;
-  padding: 3px 10px;
-  background:  #444;
+  padding: 5px 10px;
+  background:  #555;
   color: #fff;
   font-size: 15px;
   &:hover {
-    border: 2px solid darken(#444, 10%);
-    background:darken(#444, 10%);
+    border: 2px solid darken(#555, 10%);
+    background:darken(#555, 10%);
     color: #fff;
   }
 }

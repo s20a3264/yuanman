@@ -23,8 +23,13 @@ class OrdersController < ApplicationController
 
 
 	def create
-		@order = current_user.orders.build(order_params)
-		current_user.info_build(order_params) if !current_user.info["shipping_name"]
+		if current_user
+			@order = current_user.orders.build(order_params)
+			current_user.info_build(order_params) if current_user.info.blank?
+		else
+			@order = Order.new(order_params)
+		end
+			
 		error_info = current_cart.stock_check
 		if error_info.empty?
 			if @order.save
@@ -34,8 +39,9 @@ class OrdersController < ApplicationController
 				
 				current_cart.clean!
 				redirect_to order_path(@order.token)
-			else	
-				render 'carts/checkout'	
+			else
+				@user_info = params['order']['info_attributes']
+				render 'carts/checkout'
 			end
 		else
 			flash[:warning] = error_message(error_info)

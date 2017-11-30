@@ -3,11 +3,13 @@
   		<%= f.label(:title, "商品名稱 : ") %>
   		<%= f.text_field(:title, class: "form-control") %>
   	</div>
+    <br>
 
     <div class="category-controller">
-      <p><%= link_to "點擊此處新增分類", "#", id: "new-category" %></p>
-      <p><%= link_to "選擇原有分類", "#", id: "old-category" %></p>
+      <p class=""><%= link_to "點擊此處新增分類", "#", id: "new-category", class: "btn-normal" %></p>
+      <p><%= link_to "選擇原有分類", "#", id: "old-category", class: "btn-normal"  %></p>
     </div>
+    <br>
 
 
   <div id="category-select" class="form-group">   
@@ -24,13 +26,36 @@
   
   	<div class="form-group">
   		<%= f.label(:quantity, "數量 : ") %>
-  		<%= f.text_field(:quantity, class: "form-control") %>
+  		<%= f.number_field(:quantity, class: "form-control") %>
   	</div>
-  
+
   	<div class="form-group">
   		<%= f.label(:price, "價格 : ") %>
-  		<%= f.text_field(:price, class: "form-control") %>
+  		<%= f.number_field(:price, class: "form-control") %>
   	</div>
+
+
+    <div>
+      <div class="btn-normal bt mrf inline-block <%= "bt-active" if @product.special %>" id="special-set" >
+        <%= @product.special ? "特價商品" : "特價" %>
+      </div>
+      <div class="btn-normal bt mrf inline-block <%= "bt-active" if !@product.special %>" id="special-cancel" >
+        <%= @product.special ? "取消特價" : "無特價商品" %>
+      </div>
+    </div>
+    <br>
+  
+
+    <div class="form-group hide">
+      <%= f.label(:special, "特價" )%>
+      <%= f.check_box :special %>
+    </div>
+
+
+    <div class="form-group" id="special-number-field" style="display: <%= @product.special ? "block" : "none" %>">
+      <%= f.label(:special_price, "特價價格 : ", class: "red") %>
+      <%= f.number_field(:special_price, class: "form-control") %>
+    </div>    
 
     <div class="form-group">
       <%= f.label(:origin, "產地 : ") %>
@@ -80,5 +105,20 @@
        $('[data-wysihtml5-dialog]').on('hidden.bs.modal', function(){
           $('.modal-backdrop').remove();
         })
+      // 特價欄位控制
+      // 特價
+      $('#special-set').on('click', function() {
+        $(this).addClass('bt-active');
+        $('#special-cancel').removeClass('bt-active');
+        $('#product_special').prop('checked', 'checked');
+        $('#special-number-field').slideDown(200);
+      });
+      // 取消特價
+      $('#special-cancel').on('click', function() {
+        $(this).addClass('bt-active');
+        $('#special-set').removeClass('bt-active');
+        $('#product_special').removeProp('checked');
+        $('#special-number-field').slideUp(200);
+      })
       });
     </script>

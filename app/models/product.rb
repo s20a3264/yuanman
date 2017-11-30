@@ -11,6 +11,8 @@ class Product < ActiveRecord::Base
 	accepts_nested_attributes_for :photo
 
 	validates :title, presence: { message: "請填寫商品名稱" }
+	validates :price, presence: { message: "請輸入商品價格" }
+	validate :valid_special_price
 
 	scope :products_are_selling, ->{ where(selling: true) }
 
@@ -21,10 +23,22 @@ class Product < ActiveRecord::Base
 	scope :unselling, -> { where(selling: false)}
 	#置頂的商品
 	scope :be_marked, -> { where(mark: true) }
+	#特價的商品
+	scope :special_price, -> { where(special: true) }
+	#缺貨的商品
+	scope :out_of_stock, -> { where(quantity: 0) }
+
 
 	attr_accessor :category_name
 
 	before_save :find_or_create_category
+
+	# 驗證特價時特價價格不能為空
+	def valid_special_price
+		if self.special && self.special_price.blank?
+			errors.add(:special, "必須設定特價價格")
+		end	
+	end
 
 	class << self 
 
@@ -58,6 +72,8 @@ class Product < ActiveRecord::Base
 				end
 			end			
 		end
+
+
 
 
 end

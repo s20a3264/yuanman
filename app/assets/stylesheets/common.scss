@@ -31,13 +31,11 @@ body {
   }
   a {
     color: #444;
-    font-weight: bold;
     &:hover {
       text-decoration: none;
       color: inherit;
     }
     &:focus {
-      color: #444;
       text-decoration: none;
     }
     &:active {
@@ -118,6 +116,13 @@ body {
 
 .gray-link {
   color: #666;
+}
+
+.red-link {
+  color: $red1;
+  a {
+    color: $red1;
+  }
 }
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810172330) do
+ActiveRecord::Schema.define(version: 20171130193909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20170810172330) do
     t.string   "title"
     t.text     "description"
     t.integer  "quantity",        default: 1
-    t.integer  "price"
+    t.integer  "price",           default: 1
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "selling",         default: false
@@ -142,10 +142,13 @@ ActiveRecord::Schema.define(version: 20170810172330) do
     t.string   "weight"
     t.string   "expiration_date"
     t.boolean  "mark",            default: false
+    t.integer  "special_price"
+    t.boolean  "special",         default: false
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["selling"], name: "index_products_on_selling", using: :btree
+  add_index "products", ["special"], name: "index_products_on_special", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "carousel1"
@@ -182,24 +185,22 @@ ActiveRecord::Schema.define(version: 20170810172330) do
   add_index "trade_infos", ["order_id"], name: "index_trade_infos_on_order_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.jsonb    "info",                   default: {}
-    t.boolean  "pre_use_info",           default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["pre_use_info"], name: "index_users_on_pre_use_info", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "trade_infos", "orders"

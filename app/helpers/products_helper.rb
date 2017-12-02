@@ -15,4 +15,15 @@ module ProductsHelper
 		end	
 		array	
 	end
+
+	#特價時顯示特價價格(products頁面)
+	def render_price(product)
+		if product.special?
+			content_tag(:span, "NT$#{product.price} ", class: "", style: "text-decoration:line-through;") +
+			content_tag(:span, " $#{product.special_price}", class: "red") 
+		else
+			content_tag(:span, "NT$#{product.price}", class: "")
+		end	
+	end
+
 end

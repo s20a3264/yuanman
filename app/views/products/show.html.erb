@@ -21,7 +21,15 @@
 	
 		<div class="col-md-7 col-xs-12">
 			<!-- 商品名 -->
-			<h3 class=""><%= @product.title %></h3>
+			<h3 class="flex">
+				<span><%= @product.title %></span>
+				<% if @product.special? %>
+					<span class="smallest red border-s" style="margin-left:10px;">
+						<i class="fa fa-star-half-o" aria-hidden="true"></i>
+						特價中
+					</span>
+				<% end %>
+			</h3>
 			<span class="small red"><%= "單筆訂單滿#{@setting.shipping_free}免運" %></span class="small red">
 
 			<!-- 簡述 -->
@@ -30,9 +38,21 @@
 	
 
 			<!-- 商品價格 -->
-			<div class="product-price">
-				<span id="product-price-nt" class="lighter"> NT$</span>
-				<span id="product-price-number" class="lighter"><%= @product.price %></span>
+			<div class="product-price" style="position: relative;">
+				<% if @product.special? %>
+					<div class="smallest lighter" style="text-decoration:line-through;margin-top:-19px;">
+						原價 NT$<%= @product.price %>
+					</div>
+				<% end %>
+				<span id="product-price-nt" class="<%= 'lighter' if !@product.special? %>"> NT$</span>
+				<span id="product-price-number" class="<%= 'lighter' if !@product.special? %>">
+					<% if  %>
+						<% @product.special? %>
+							<span class=""><%= @product.special_price %></span>
+					<% else %>
+							<span class="" style=""><%= @product.price %></span>
+					<% end %>
+				</span>
 			</div>
 
 
@@ -61,15 +81,15 @@
 					<!-- 加入購物車form & product-delegate -->
 					<div id="product-delegate">
 							
-							<div class="col-md-7 col-xs-5">
+							<div class="col-md-7 col-xs-6">
 								<span class="black6">數量：</span>
 								<div class="styled-select inline-block">
 								  <%= select_tag(:quantity, options_for_select(product_quantity_range(@product))) %>
 								</div>
 							</div>
 	
-							<div class="col-md-5 col-xs-5 pull-right">
-								<%= link_to("#", class: "add-to-cart-btn xs-small add_to_cart",
+							<div class="col-md-5 col-xs-4" style="margin-top:15px;">
+								<%= link_to("#", class: "button-special xs-small add_to_cart",
 								data: { "product-id" => @product.id}, remote: true ) do %>
 									<i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
 									<span class=""> 加入購物車</span>
@@ -97,7 +117,8 @@
 					<%= link_to product_path(product) do %>
 						<%= image_tag(product.photo.image.medium.url, 
 						alt: product.title, title: product.title, class: "") %>
-						<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
+						<h5><%= product.title %></h5>
+						<div class="center small" style="margin-top:-5px;"><%= render_price(product) %></div>
 					<% end %>
 				</div>
 			<% end %>	

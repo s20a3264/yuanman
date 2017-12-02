@@ -34,4 +34,14 @@ module CartsHelper
 	end
 
 
+	#有特價時顯示特價(購物車)
+	def render_price_in_cart(product)
+		if product.special?
+			content_tag(:span, product.special_price, class: "red")
+		else
+			product.price
+		end		
+	end
+
+
 end

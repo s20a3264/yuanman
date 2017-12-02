@@ -25,6 +25,15 @@
           <%= image_tag(product.photo.image.thumb.url, class: "cart-image") %>
         </td>
         <td class="td-item-info">
+          <!-- 特價提示 -->
+          <% if product.special? %>
+            <span class="smallest red block">
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+              特價商品
+            </span>
+          <% end %>
+          <!-- 特價提示end -->
+
           <%= link_to(product.title, product_path(product), class: "normal-link bold hidden-xs") %>
           <%= form_tag({ controller: "carts", action: "refresh"}, method: :post, remote: true) do %>
             <div class="lighter">
@@ -41,8 +50,10 @@
 					<% end %>  	
         </td>
         <td class="td-price ">
-          <div class="inline-block small lighter mr gray">$</div> 
-          <div class="break-word inline-block"><%= product.price %></div>
+          <div class="inline-block small lighter mr <%= product.special? ? "red" : "gray" %>">$</div> 
+          <div class="break-word inline-block">
+            <%= render_price_in_cart(product) %>
+          </div>
         </td>
         <td class="td-sum">
           <div class="inline-block small lighter mr gray">$</div>

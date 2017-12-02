@@ -6,7 +6,11 @@
 			<% end %>	</br>
 			<div class="product-item-info center">
 				<%= link_to product.title, product_path(product), class: "product-item-title" %>
- 		 		<div class="product-item-price"><span class=" bold small"><%= "NT$#{product.price}" %></span></div>
+ 		 		<div class="product-item-price">
+ 		 			<span class="  small">
+ 		 				<%= render_price(product) %>
+ 		 			</span>
+ 		 		</div>
  				<div class="center">
  					<%= link_to  "view", product_path(product), class: "normal-link" %> / 
 						<!-- ajax加入購物車 -->

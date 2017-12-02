@@ -49,7 +49,8 @@
 					<%= link_to product_path(product) do %>
 						<%= image_tag(product.photo.image.medium.url, 
 						alt: product.title, title: product.title, class: "") %>
-						<h5 style="color:#505050;"><%= product.title %> $ <%= product.price %></h5>
+						<h5><%= product.title %></h5>
+						<div class="center small" style="margin-top:-5px;"><%= render_price(product) %></div>
 					<% end %>
 				</div>
 			<% end %>	

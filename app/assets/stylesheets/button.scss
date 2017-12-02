@@ -1,0 +1,66 @@
+.button-special {
+  font-family: 'Oswad', sans-serif;
+  display: block;
+  height: 40px;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  width: 190px;
+  font-size: 13px;
+  line-height: 2em;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all .6s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3D(-50%, -50%, 0);
+  color: $mc;
+  border: 2px solid $mc;
+
+  &:before,
+  &:after {
+    width: 0%;
+    height: 2px;
+    position: absolute;
+    background: $gray;
+    transition: width .5s ease-in-out;
+    content: " ";
+  }
+
+  &:before {
+    left: 0;
+    top: -2px;
+  }
+
+  &:after {
+    bottom: -2px;
+    right: 0;
+  }
+
+  &:hover {
+    padding: 5px 25px 5px 35px;
+    border-color: $gray;
+    color: $black;
+
+    &:before,
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .button-special {
+    width: 170px;
+    padding: 5px 15px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .button-special {
+    width: 150px;
+    padding: 5px 10px;
+  }
+}

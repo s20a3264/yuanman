@@ -54,16 +54,21 @@ class Order < ActiveRecord::Base
 			item.product_name = product.title
 			item.product_id = product.id
 			item.quantity = cart.cart_items.find_by(product_id: product).quantity
-			item.price = product.price
+			item.price = product.special? ? product.special_price : product.price
 			item.save
 		end	
 	end
 
 	#寫入訂單總價，運費，繳費期限
-	def calculate_total_and_deadline!(cart)
-		shipping_cost = cart.total_price >= 1000 ? 0 : Setting.last.shipping_cost
+	def calculate_total_and_deadline!
+		sum = 0
+		total = self.items.each do |item|
+			sum += item.price * item.quantity
+		end
+			
+		shipping_cost = sum >= 1000 ? 0 : Setting.last.shipping_cost
 		self.shipping_cost = shipping_cost
-		self.total = cart.total_price + shipping_cost
+		self.total = sum + shipping_cost
 		self.deadline = Time.zone.now.advance(days: 3).end_of_day
 		self.save
 	end

@@ -20,11 +20,12 @@ class Cart < ActiveRecord::Base
 		cart_item.save 
 	end
 
+	#已訂單快照計算購物車總價
 	def total_price
 		sum = 0
 
-		self.cart_items.each do |cart_item|
-			sum += cart_item.product.price * cart_item.quantity
+		self.items.each do |item|
+			sum += item.price * item.quantity
 		end
 		
 		sum	

@@ -23,14 +23,14 @@
 		          <%= link_to(product.title, product_path(product)) %>
 		        </td>
 		        <td class="high-table">
-		        	<%= product.price %>
+		        	<%= true_price(product) %>
 		        </td>
 		        <td class="high-table">
 		        	<%= find_cart_items_quantity(@cart_items_hash, product) %>
 		        </td>
 		        <td class="high-table">
 		          <span class="small">NTD</span>
-		          <%=  product.price * find_cart_items_quantity(@cart_items_hash, product) %>
+			          <%=  true_price(product) * find_cart_items_quantity(@cart_items_hash, product) %>
 		        </td>
 		      </tr>
 		    <% end %>

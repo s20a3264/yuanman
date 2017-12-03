@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   	cart	
   end
 
+  #一次抓出購物車所有item對應的product_id&數量
   def cart_items_to_hash
     @cart_items_hash = {}
     current_cart.cart_items.each do |item|

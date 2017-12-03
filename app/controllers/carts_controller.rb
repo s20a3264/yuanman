@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-	before_action :authenticate_user!, only: [:checkout]
 	before_action :cart_items_to_hash, only: [:index, :checkout]
 
 	def index
@@ -20,7 +19,7 @@ class CartsController < ApplicationController
 			redirect_to root_path
 		end	
 		@user_info = current_user ? current_user.info : {}
-		@order = current_user.orders.build
+		@order = current_user ? current_user.orders.build : Order.new
 		@info = @order.build_info
 	end
 

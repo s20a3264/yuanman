@@ -4,9 +4,9 @@
   <%= hidden_field_tag "Version",        "1.4" %>
   <!-- new -->
   <%= hidden_field_tag "TradeInfo",
-    SpgatewayService.new(order, email: current_user.email, return_url: s_return_url, notify_url: s_notify_url, customer_url: s_customer_url, client_back_url: root_url ).aes_encrypt %>
+    SpgatewayService.new(order, email: @email, return_url: s_return_url, notify_url: s_notify_url, customer_url: s_customer_url, client_back_url: root_url ).aes_encrypt %>
   <%= hidden_field_tag "TradeSha", 
-    SpgatewayService.new(order, email: current_user.email, return_url: s_return_url, notify_url: s_notify_url, customer_url: s_customer_url, client_back_url: root_url ).sha256_encrypt %>
+    SpgatewayService.new(order, email: @email, return_url: s_return_url, notify_url: s_notify_url, customer_url: s_customer_url, client_back_url: root_url ).sha256_encrypt %>
 
   <%= submit_tag "智付通第三方支付", class: "btn-sw" %>
 <% end %>

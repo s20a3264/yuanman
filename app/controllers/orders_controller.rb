@@ -5,7 +5,8 @@ class OrdersController < ApplicationController
 																						  #新版智付寶
 																							:pay2go_return, :pay2go_notify, :pay2go_customer,
 																							#智付通
-																							:spgateway_notify, :spgateway_return, :spgateway_customer]
+																							:spgateway_notify, :spgateway_return, :spgateway_customer,
+																							:create, :show]
 
 	before_action :set_pay2go_json, only: [:pay2go_cc_return, :pay2go_cc_notify, :pay2go_wa_return,
 		                                     :pay2go_wa_notify, :realtime_return, :realtime_notify,
@@ -35,8 +36,8 @@ class OrdersController < ApplicationController
 			if @order.save
 				Product.set_inventory!(current_cart)
 				@order.build_item_cache_from_cart(current_cart)
-				@order.calculate_total_and_deadline!(current_cart)
-				
+				@order.calculate_total_and_deadline!
+
 				current_cart.clean!
 				redirect_to order_path(@order.token)
 			else
@@ -51,9 +52,11 @@ class OrdersController < ApplicationController
 	end
 
 	def show
-		@order = current_user.orders.find_by(token: params[:id])
+		@order = Order.find_by(token: params[:id])
 		@order_info = @order.info
 		@order_items = @order.items
+
+		@email = current_user ? current_user.email : ""
 	end
 
 	def spgateway_notify

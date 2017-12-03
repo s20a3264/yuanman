@@ -26,7 +26,8 @@ module CartsHelper
 
 	#購物車單件商品小計
 	def sum(cart_items_hash, product)
-		product.price * find_cart_items_quantity(cart_items_hash, product)
+		price = product.special? ? product.special_price : product.price
+		price * find_cart_items_quantity(cart_items_hash, product)
 	end
 
 	def find_cart_items_quantity(cart_items_hash, product)

@@ -2,6 +2,8 @@
 	<div class="categories col-md-2 col-sm-2 hidden-xs">
 		<div><%= link_to "所有產品", categories_path, class: "normal-link bold" %></div>
 		<hr>
+		<div><%= link_to "特價商品", categories_path(on_sale: true), class: "red" %></div>
+		<hr>
 		<% @categories.each do |category| %>
 			<div>
 				<%= link_to category.name , category_path(category), class: "normal-link bold" %>

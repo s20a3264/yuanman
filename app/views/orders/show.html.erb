@@ -1,5 +1,6 @@
 <div class="checkout-order clearfix">
   <h2> 訂單明細 </h2>
+  <h5 class="center red">訂單編號 ： <%= @order.order_number %></h5>
 
 <!--   <%= link_to "買賣留言板", message_board_account_order_path(@order.token), class: "under-h2" %>
  -->  <%= payment_info_link(@order) %>

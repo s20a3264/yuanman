@@ -26,4 +26,13 @@ module ProductsHelper
 		end	
 	end
 
+	#回傳真實價格
+	def true_price(product)
+		if product.special?
+			product.special_price
+		else	
+			product.price
+		end
+	end
+
 end

@@ -1,5 +1,10 @@
 class Product < ActiveRecord::Base
 
+	before_save :should_generate_new_friendly_id?
+
+	extend FriendlyId
+	friendly_id :slug_candidates, use: :slugged
+
 	mount_uploader :certification, CertificationUploader
 	mount_uploader :nutrition_facts,  NutritionFactsUploader
 
@@ -60,6 +65,23 @@ class Product < ActiveRecord::Base
 		self.selling = true
 		self.save		
 	end
+
+	#讓friendly_id能使用中文
+	def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize.to_s
+  end
+
+  #title重複時找price
+  def slug_candidates
+    [
+      :title,
+      [:title, :price]
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+  	slug.blank? || title_changed? # slug 為 nil 或 name column 變更時更新
+  end
 
 	private
 		def find_or_create_category

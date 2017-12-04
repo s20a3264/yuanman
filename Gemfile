@@ -17,6 +17,8 @@ gem "rb-readline"
 gem "fog"
 gem 'jquery-turbolinks'
 gem 'bootstrap-wysihtml5-rails'
+gem 'friendly_id', '~> 5.1.0'
+gem 'babosa'
 
 
 

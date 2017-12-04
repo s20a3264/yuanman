@@ -31,13 +31,16 @@
                  <% end %>                  
               </span> 
             </td>
-    				<td class="hidden-xs"><%= product.price %></td>
+    				<td class="hidden-xs">
+              $ <%= product.price %> <br>
+              <div class="red"><%= "目前售價 $ #{product.special_price}" if product.special? %></div>
+            </td>
     				<td class="" style="min-width: 60px">
     					<%= product.quantity %>
     					<div class="hidden-xs">
     						<%= form_tag(replenish_manager_product_path(product), method: "post") do %>
     							<%= text_field_tag(:number, nil, class: "replenishment") %>
-    							<%= submit_tag("補貨", class: "btn-normal") %>
+    							<%= submit_tag("補貨", class: "btn-small") %>
     						<% end %>	
     					</div>				
     				</td>

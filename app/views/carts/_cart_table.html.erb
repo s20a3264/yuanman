@@ -72,14 +72,18 @@
 
 
         <div id="cart-bottom-botton" class="clearfix">
-          <%= link_to products_path,  class: "back button-1 pull-left" do %>
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            <span>繼續選購</span>
+          <%= link_to products_path, class: "inline-block back hover-left btn-normal pull-left" do %>
+            <div>
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              <span>繼續選購</span>
+            </div>
           <% end %>
                
-          <%= link_to checkout_carts_path, method: :get, class: "btn-normal pull-right" do %>
-            <i class="fa fa-cart-arrow-down fa-2x" aria-hidden="true"></i>
-            <span class="">前往結帳</span>
+          <%= link_to checkout_carts_path, class: "inline-block hover-right btn-normal pull-right" do %>
+            <div>
+              <span class="">前往結帳</span>
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </div>  
           <% end %>
         </div>
 

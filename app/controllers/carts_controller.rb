@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+	before_action :authenticate_user!, only: [:checkout]
 	before_action :cart_items_to_hash, only: [:index, :checkout]
 
 	def index

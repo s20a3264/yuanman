@@ -41,7 +41,7 @@
 		padding: 0;
 		.brand {
 			height: 50px;
-			width: 166px;
+			width: 133px;
 		}
 	}
 
@@ -127,7 +127,10 @@
 		left: 30%;
 		.brand {
 			height: 40px;
-			width: 100%;
+			width: 106px;
+			a {
+				width:106px;
+			}
 		}
 	}
 }

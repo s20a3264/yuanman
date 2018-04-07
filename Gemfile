@@ -19,14 +19,15 @@ gem 'jquery-turbolinks'
 gem 'bootstrap-wysihtml5-rails'
 gem 'friendly_id', '~> 5.1.0'
 gem 'babosa'
+gem 'json', github: 'flori/json', branch: 'v1.8'
 
 
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.8'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -62,7 +63,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end
 
 group :development do 
